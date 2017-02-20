@@ -36,7 +36,6 @@ namespace AnsiToUtf8
             //    }
             //}
 
-
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("path     {0}", path);
             Console.WriteLine("filter   {0}", pattern);

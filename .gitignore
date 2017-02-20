@@ -23,6 +23,9 @@ Res_PC
 Library
 Temp
 
+# Office缓存文件
+~$*.*
+
 # Windows Installer files
 *.cab
 *.msi

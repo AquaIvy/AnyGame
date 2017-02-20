@@ -37,15 +37,15 @@ namespace TradeAge.Server.Game
             //Logs.Error("Templates.GetItemTemplate  {0},{1},{2}", itemtmp.Name, itemtmp.IconId, itemtmp.Description);
             //Logs.Error("Templates.GetItemTemplate  {0}", Templates.ItemTemplate.Length);
 
-            foreach (var item in Templates.CardTemplate)
-            {
-                Logs.Warn("{0} {1} {2} {3}",
-                    item.Id,
-                    item.Name,
-                    item.Picture,
-                    item.Speed);
+            //foreach (var item in Templates.CardTemplate)
+            //{
+            //    Logs.Warn("{0} {1} {2} {3}",
+            //        item.Id,
+            //        item.Name,
+            //        item.Picture,
+            //        item.Speed);
 
-            }
+            //}
 
             Logs.Notice("ServerConfig.ServerId  " + ServerConfig.ServerId);
             foreach (var item in ServerConfig.Tcp)
