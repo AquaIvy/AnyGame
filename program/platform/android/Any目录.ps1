@@ -1,14 +1,20 @@
 $waittime=300
 
-Start-Process D:\Unity\001_AnyGame\public -WindowStyle Maximized
+
+#文档目录
+Start-Process ..\..\..\plan\W文档 -WindowStyle Maximized
 Start-Sleep -m $waittime
 
-Start-Process D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\Server\TradeAge.Server.Game\bin\Debug -WindowStyle Maximized
+#文档导出目录
+Start-Process ..\..\..\public\data\dev -WindowStyle Maximized
 Start-Sleep -m $waittime
 
-Start-Process D:\Unity\001_AnyGame\program\platform\android\dev\ImageSource\images -WindowStyle Maximized
+#服务器exe
+Start-Process .\dev\AnyGame_vs\Server\TradeAge.Server.Game\bin\Debug -WindowStyle Maximized
 Start-Sleep -m $waittime
 
-
+#原始图片
+Start-Process  .\dev\ImageSource -WindowStyle Maximized
+Start-Sleep -m $waittime
 
 
