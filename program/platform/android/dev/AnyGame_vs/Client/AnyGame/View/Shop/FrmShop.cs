@@ -18,6 +18,9 @@ namespace AnyGame.View.Shop
         public FrmShop() : base("FrmShop")
         {
             InitForm();
+
+
+
         }
 
         protected override void OnClosed()
