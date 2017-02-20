@@ -45,19 +45,26 @@ namespace DogSE.Library.Serialize
 
             //  找到csv字段对应的属性
             var pros = new PropertyInfo[head.Count];
-            Dictionary<PropertyInfo, ArrayList> arrayMap = new Dictionary<PropertyInfo, ArrayList>();
+            Dictionary<PropertyInfo, ArrayList> arrayMap = new Dictionary<PropertyInfo, ArrayList>();       //lv 存储所有属性是数组（用;分隔）的情况
+            bool isHaveLevel = false;       //是否有level属性
 
             for (int i = 0; i < head.Count; i++)
             {
                 var p = type.GetPropertyByName(head[i]);
                 if (p == null)
+                {
                     Logs.Debug("Read csv {0} not find columns {1}", type.Name, head[i]);
+                }
                 else
                 {
+                    if (head[i] == "level")
+                    {
+                        isHaveLevel = true;
+                    }
+
                     if (p.PropertyType.IsGenericType)
                     {
-                        if (!p.PropertyType.InType(typeof(List<int>), typeof(List<float>), typeof(List<double>), typeof(List<long>),
-                                typeof(List<bool>), typeof(List<string>)))
+                        if (!p.PropertyType.InType(typeof(List<int>), typeof(List<float>), typeof(List<double>), typeof(List<long>), typeof(List<bool>), typeof(List<string>)))
                         {
                             if (!p.PropertyType.IsListEnum())
                                 continue;
@@ -73,6 +80,7 @@ namespace DogSE.Library.Serialize
             }
 
             List<string> data = new List<string>();
+            object obj_prev = null;     //保存一整行数据，当该行首列id不为空时替换成新的
 
             int row = 1;
             while (csvReader.ReadRow(data))
@@ -93,8 +101,11 @@ namespace DogSE.Library.Serialize
                 }
 
                 row++;
-                object obj = Activator.CreateInstance(type);
+                object obj = Activator.CreateInstance(type);        //这里的type可能是CardTemplate类型
                 CurrentLine = row;
+
+                //这里用一个类型把若干row的数据保存起来
+                //
                 for (int i = 0; i < head.Count; i++)
                 {
                     if (i >= data.Count)
@@ -104,14 +115,19 @@ namespace DogSE.Library.Serialize
                         break;
                     }
 
+                    if (i == 0 && !string.IsNullOrEmpty(data[0]))
+                    {
+
+                    }
+
                     var p = pros[i];
                     if (p == null)
                         continue;
 
                     if (p.PropertyType.IsGenericType)
                     {
-                        if (p.PropertyType.InType(typeof(List<int>), typeof(List<float>), typeof(List<double>), typeof(List<long>),
-                            typeof(List<bool>), typeof(List<string>))
+                        //  p 是泛型
+                        if (p.PropertyType.InType(typeof(List<int>), typeof(List<float>), typeof(List<double>), typeof(List<long>), typeof(List<bool>), typeof(List<string>))
                             || p.PropertyType.IsListEnum())
                         {
                             var list = Activator.CreateInstance(p.PropertyType) as IList;
@@ -127,7 +143,15 @@ namespace DogSE.Library.Serialize
 #endif
                             }
 
-                            p.SetValue(obj, list, null);
+                            //有level并且首列id为空的情况，是【一行数据的多level显示】
+                            if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                            {
+
+                            }
+                            else
+                            {
+                                p.SetValue(obj, list, null);
+                            }
                         }
                     }
                     else if (p.PropertyType.IsArray)
@@ -141,6 +165,7 @@ namespace DogSE.Library.Serialize
                     }
                     else
                     {
+                        //  p 是基础类型
 #if DEBUG
                         p.SetValue(obj, data[i].ConvertValue(p.PropertyType, head[i]), null);
 #else
