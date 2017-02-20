@@ -1,0 +1,119 @@
+2016-11-05 14:42:43.153 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 14:42:43.464 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 14:42:43.464 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 14:42:43.465 [MSG_ERROR] Not find Template Item
+2016-11-05 14:43:55.436 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 14:43:55.546 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 14:43:55.547 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 14:43:55.548 [MSG_ERROR] Not find Template Item
+2016-11-05 14:43:56.009 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:43:56.204 [MSG_ERROR] MySql.Data.MySqlClient.MySqlException (0x80004005): Table 'AnyMain.PlatformAccount' doesn't exist
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int32& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int32& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 IvyOrm.RecordQueryExtension.RecordQuery[T](DbConnection connection, IvyOrmOptions options, String commandText, Object[] args)
+   在 IvyOrm.RecordQueryExtension.RecordSingleOrDefault[T](DbConnection connection, IvyOrmOptions options, String commandText, Object[] args)
+   在 IvyOrm.RecordQueryExtension.RecordSingleOrDefault[T](DbConnection connection, String commandText, Object[] args)
+   在 DogSE.Server.Database.MySQL.MySqlService.QueryEntity[T](String where) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\ServerEngine\DogSE.Server.Database\MySql\MySqlService.cs:行号 90
+   在 LoginWeb.Controller.AccountController.GetPlatformAccount(String uid, PlatformTypes type) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Controller\AccountController.cs:行号 115
+   在 LoginWeb.Api.AnyGame.Page_Load(Object sender, EventArgs e) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Api\AnyGame.aspx.cs:行号 43
+2016-11-05 14:46:20.677 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:46:20.684 [MSG_ERROR] MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'AnyMain'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.AuthenticateNew(Boolean reset)
+   在 MySql.Data.MySqlClient.NativeDriver.Authenticate(Boolean reset)
+   在 MySql.Data.MySqlClient.NativeDriver.Open()
+   在 MySql.Data.MySqlClient.Driver.Open()
+   在 MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   在 MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   在 MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   在 MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   在 MySql.Data.MySqlClient.MySqlConnection.Open()
+   在 DogSE.Server.Database.MySQL.MySqlConnectPool.GetConnection() 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\ServerEngine\DogSE.Server.Database\MySql\MySqlConnectPool.cs:行号 89
+   在 DogSE.Server.Database.MySQL.MySqlService.QueryEntity[T](String where) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\ServerEngine\DogSE.Server.Database\MySql\MySqlService.cs:行号 88
+   在 LoginWeb.Controller.AccountController.GetPlatformAccount(String uid, PlatformTypes type) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Controller\AccountController.cs:行号 115
+   在 LoginWeb.Api.AnyGame.Page_Load(Object sender, EventArgs e) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Api\AnyGame.aspx.cs:行号 43
+2016-11-05 14:46:44.236 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:46:44.246 [MSG_ERROR] MySql.Data.MySqlClient.MySqlException (0x80004005): Table 'AnyMain.PlatformAccount' doesn't exist
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int32& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int32& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 IvyOrm.RecordQueryExtension.RecordQuery[T](DbConnection connection, IvyOrmOptions options, String commandText, Object[] args)
+   在 IvyOrm.RecordQueryExtension.RecordSingleOrDefault[T](DbConnection connection, IvyOrmOptions options, String commandText, Object[] args)
+   在 IvyOrm.RecordQueryExtension.RecordSingleOrDefault[T](DbConnection connection, String commandText, Object[] args)
+   在 DogSE.Server.Database.MySQL.MySqlService.QueryEntity[T](String where) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\ServerEngine\DogSE.Server.Database\MySql\MySqlService.cs:行号 90
+   在 LoginWeb.Controller.AccountController.GetPlatformAccount(String uid, PlatformTypes type) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Controller\AccountController.cs:行号 115
+   在 LoginWeb.Api.AnyGame.Page_Load(Object sender, EventArgs e) 位置 D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\Api\AnyGame.aspx.cs:行号 43
+2016-11-05 14:47:25.812 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 14:47:25.942 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 14:47:25.942 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 14:47:25.944 [MSG_ERROR] Not find Template Item
+2016-11-05 14:47:43.315 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:51:35.968 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 14:51:36.108 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 14:51:36.109 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 14:51:36.110 [MSG_ERROR] Not find Template Item
+2016-11-05 14:51:47.263 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:51:50.469 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:52:38.725 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:57:52.845 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 14:57:53.097 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 14:57:53.098 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 14:57:53.100 [MSG_ERROR] Not find Template Item
+2016-11-05 14:58:13.945 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:58:17.961 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:58:19.373 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 14:58:51.831 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 14:59:50.461 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 14:59:50.498 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:10:40.778 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 15:10:41.164 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 15:10:41.164 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 15:10:41.166 [MSG_ERROR] Not find Template Item
+2016-11-05 15:10:45.608 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:45.843 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:45.861 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:10:45.874 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:10:45.884 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:10:49.785 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:49.798 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:51.887 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:51.901 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:52.816 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:52.835 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:53.572 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:10:53.585 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:13:12.275 [MSG_INFO] LoginWeb Application_Start.
+2016-11-05 15:13:12.424 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\Item.csv .
+2016-11-05 15:13:12.425 [MSG_ERROR] Not find dynamic config file:D:\Unity\001_AnyGame\program\platform\android\dev\AnyGame_vs\GMTools\LoginWeb\..\ConfigData\GlobalData.csv .
+2016-11-05 15:13:12.426 [MSG_ERROR] Not find Template Item
+2016-11-05 15:13:12.962 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:13:13.152 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:13:13.256 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMain;user=aqua;pwd=123456
+2016-11-05 15:13:13.268 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:13:13.283 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:13:13.294 [MSG_INFO] set connestring host=127.0.0.1;database=AnyMaster;user=aqua;pwd=123456
+2016-11-05 15:13:13.889 [MSG_INFO] MySqlConnectPool
+FreeCount:10
+InitialCapacity:10
+NewCount:0
+AcquireCount:3
+ReleaseCount:3
+
+2016-11-05 15:13:13.891 [MSG_INFO] MySqlConnectPool
+FreeCount:10
+InitialCapacity:10
+NewCount:0
+AcquireCount:3
+ReleaseCount:3
+

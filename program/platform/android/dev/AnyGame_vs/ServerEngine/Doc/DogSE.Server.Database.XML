@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DogSE.Server.Database</name>
+    </assembly>
+    <members>
+        <member name="T:DogSE.Server.Database.IDataService">
+            <summary>
+            游戏里的数据访问接口
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.LoadEntity``1(System.Int32)">
+            <summary>
+            通过实体id，加载某个具体的实体数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serial"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.LoadEntitys``1">
+            <summary>
+            加载某个类型的所有实体数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.UpdateEntity``1(``0)">
+            <summary>
+            更新（新增）某个实体数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.InsertEntity``1(``0)">
+            <summary>
+            更新（新增）某个实体数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.DeleteEntity``1(``0)">
+            <summary>
+            删除某个实体数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.ExecuteSql(System.String)">
+            <summary>
+            执行一组sql语句
+            </summary>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.IDataService.ExecuteDataSet(System.String)">
+            <summary>
+            执行并返回一个结果集
+            </summary>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DogSE.Server.Database.AbstractDBEntityProfile">
+            <summary>
+            抽象的性能监控类
+            </summary>
+        </member>
+        <member name="P:DogSE.Server.Database.AbstractDBEntityProfile.Name">
+            <summary>
+            统计的实体的名字
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Load">
+            <summary>
+            加载
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Insert">
+            <summary>
+            插入
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Update">
+            <summary>
+            更新
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Delete">
+            <summary>
+            更新
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Query">
+            <summary>
+            查询
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.Seach">
+            <summary>
+            搜索
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AbstractDBEntityProfile.MatchesSeach">
+            <summary>
+            模糊搜索
+            </summary>
+        </member>
+        <member name="T:DogSE.Server.Database.DBEntityProfile`1">
+            <summary>
+            性能统计工具
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:DogSE.Server.Database.DBEntityProfile`1.Instance">
+            <summary>
+            单例模式
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.DBEntityProfile`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DogSE.Server.Database.AccessData">
+            <summary>
+            访问统计
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AccessData.TotalCount">
+            <summary>
+            加载访问次数
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AccessData.TotalTime">
+            <summary>
+            访问耗时，单位Ticks
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AccessData.ErrorCount">
+            <summary>
+            发生错误次数
+            </summary>
+        </member>
+        <member name="F:DogSE.Server.Database.AccessData.Watch">
+            <summary>
+            监视器
+            </summary>
+        </member>
+        <member name="T:DogSE.Server.Database.EntityProfileManager">
+            <summary>
+            性能监控管理类
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.EntityProfileManager.AddEntityProfile(DogSE.Server.Database.AbstractDBEntityProfile)">
+            <summary>
+            添加一个监控对象
+            </summary>
+            <param name="profile"></param>
+        </member>
+        <member name="M:DogSE.Server.Database.EntityProfileManager.GetDBProfiles">
+            <summary>
+            获得数据库的监控数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DogSE.Server.Database.MySQL.MySqlConnectPool">
+            <summary>
+            MySQl的连接池
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlConnectPool.#ctor">
+            <summary>
+            只创建10个就OK了
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlConnectPool.ClearConnection">
+            <summary>
+            清理所有连接，释放对应的资源
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlConnectPool.GetConnection">
+            <summary>
+            获得一个连接对象，注意，使用完后要返回连接池
+            方法内部会初始化数据库连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DogSE.Server.Database.MySQL.MySqlConnectPool.ConnectString">
+            <summary>
+            数据库的连接字符串
+            </summary>
+        </member>
+        <member name="T:DogSE.Server.Database.MySQL.MySqlService">
+            <summary>
+                Mysql对数据访问接口的实现
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.#ctor(System.String)">
+            <summary>
+            </summary>
+            <param name="connectStr"></param>
+        </member>
+        <member name="F:DogSE.Server.Database.MySQL.MySqlService.ConPool">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.ClearConnectPool">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.LoadEntity``1(System.Int32)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serial"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntity``1(System.String)">
+            <summary>
+            根据条件，和类型查询某个数据实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryValueEntitySQL``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryValueEntitysSQL``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryValueEntity``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitySQL``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntity``1(System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntity``1(System.String,System.Int32)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntity``1(System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <param name="param1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitys``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitysSQL``1(System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitys``1(System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitys``1(System.String,System.Int32)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitysSQL``1(System.String,System.Int32)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.QueryEntitys``1(System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="whereFormatter"></param>
+            <param name="param0"></param>
+            <param name="param1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.GetTableName(System.Type)">
+            <summary>
+            获得某个类型所对应的数据库表名
+            这里通过 Type与string 的字典做缓存
+            如果定义过 TableAttribute 则使用里面的Table去访问数据库
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.LoadEntitys``1">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.UpdateEntity``1(``0)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.SyncUpdateEntity``1(``0)">
+            <summary>
+            异步更新一个对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.InsertEntity``1(``0)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.InsertLogEntity``1(``0)">
+            <summary>
+            插入一个log数据的实体类，对于这个对象没有主键id的需求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.DeleteEntity``1(``0)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.ExecuteSql(System.String)">
+            <summary>
+            </summary>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.ExecuteDataSet(System.String)">
+            <summary>
+            </summary>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.SyncInsertEntity``1(``0)">
+            <summary>
+            异步出入一个数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:DogSE.Server.Database.MySQL.MySqlService.ReplaceSqlInjection(System.String)">
+            <summary>
+            替换sql注入文档
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DogSE.Server.Database.MySQL.MySqlService.ZoneId">
+            <summary>
+            数据库对应的分区id，这个值不一定存在
+            </summary>
+        </member>
+        <member name="T:DogSE.Server.Database.MySQL.MySQL">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

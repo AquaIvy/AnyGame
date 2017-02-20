@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16636A03-CFD1-49B2-8A6F-E1924014AB01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnyGame</RootNamespace>
+    <AssemblyName>AnyGame</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DOTween">
+      <HintPath>..\..\ServerEngine\Lib\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>..\..\ServerEngine\Lib\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="lzma">
+      <HintPath>..\..\ServerEngine\Lib\lzma.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\ServerEngine\Lib\5.3.5\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\ServerEngine\Lib\5.3.5\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Content\DownloadTask.cs" />
+    <Compile Include="Content\Lang.cs" />
+    <Compile Include="Content\Manager\AssetBundleMgr.cs" />
+    <Compile Include="Content\Manager\AudioMgr.cs" />
+    <Compile Include="Content\Manager\CanvasMgr.cs" />
+    <Compile Include="Content\Manager\ContentMgr.cs" />
+    <Compile Include="Content\Manager\FontMgr.cs" />
+    <Compile Include="Content\Manager\InputMgr.cs" />
+    <Compile Include="Content\Manager\JsonMgr.cs" />
+    <Compile Include="Content\Manager\MaterialMgr.cs" />
+    <Compile Include="Content\Manager\SceneMgr.cs" />
+    <Compile Include="Content\Manager\ShaderMgr.cs" />
+    <Compile Include="Content\Manager\SpriteMgr.cs" />
+    <Compile Include="Content\Texture\SpriteSample.cs" />
+    <Compile Include="Content\Texture\SpriteWrap.cs" />
+    <Compile Include="Content\Texture\TextureMgr.cs" />
+    <Compile Include="Content\Texture\TextureWrap.cs" />
+    <Compile Include="GameCenter.cs" />
+    <Compile Include="LoginPlugin\AquaIvy.cs" />
+    <Compile Include="LoginPlugin\Fishluv.cs" />
+    <Compile Include="LoginPlugin\ServerStatus.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GlobalInfo.cs" />
+    <Compile Include="UI\FrmBase.cs" />
+    <Compile Include="UI\UIButton.cs" />
+    <Compile Include="UI\UICanvas.cs" />
+    <Compile Include="UI\UIContent.cs" />
+    <Compile Include="UI\UIElement.cs" />
+    <Compile Include="UI\UIEvent.cs" />
+    <Compile Include="UI\UIHitArea.cs" />
+    <Compile Include="UI\UIImage.cs" />
+    <Compile Include="UI\UIImageBase.cs" />
+    <Compile Include="UI\UIInputField.cs" />
+    <Compile Include="UI\UIMask.cs" />
+    <Compile Include="UI\UINode.cs" />
+    <Compile Include="UI\UIRoot.cs" />
+    <Compile Include="UI\UIScrollbar.cs" />
+    <Compile Include="UI\UIScrollView.cs" />
+    <Compile Include="UI\UIText.cs" />
+    <Compile Include="UI\UIUtils.cs" />
+    <Compile Include="Utils\Tasks\Task.cs" />
+    <Compile Include="LoginPlugin\ILoginProxy.cs" />
+    <Compile Include="LoginPlugin\LoginBridge.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DontDestroyThisGameObject.cs" />
+    <Compile Include="Utils\RuntimeProfiler.cs" />
+    <Compile Include="Utils\EventTriggerListener.cs" />
+    <Compile Include="Utils\PlatformUtils.cs" />
+    <Compile Include="Utils\ProfilerSample.cs" />
+    <Compile Include="Utils\TweenLite\Back.cs" />
+    <Compile Include="Utils\TweenLite\Bounce.cs" />
+    <Compile Include="Utils\TweenLite\Circular.cs" />
+    <Compile Include="Utils\TweenLite\Cubic.cs" />
+    <Compile Include="Utils\TweenLite\Elastic.cs" />
+    <Compile Include="Utils\TweenLite\Empty.cs" />
+    <Compile Include="Utils\TweenLite\Exponential.cs" />
+    <Compile Include="Utils\TweenLite\Linear.cs" />
+    <Compile Include="Utils\TweenLite\Quadratic.cs" />
+    <Compile Include="Utils\TweenLite\Quartic.cs" />
+    <Compile Include="Utils\TweenLite\Quintic.cs" />
+    <Compile Include="Utils\TweenLite\Sinusoidal.cs" />
+    <Compile Include="Utils\TweenLite\TweenLite.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="View\Banner\FrmBanner.cs" />
+    <Compile Include="View\Login\CGameServer.cs" />
+    <Compile Include="View\Login\FrmCreateCharacter.cs" />
+    <Compile Include="View\Login\FrmLogin.cs" />
+    <Compile Include="View\Login\FrmLogin.designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\FrmMain.cs" />
+    <Compile Include="View\Main\FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shop\CShopCard.cs" />
+    <Compile Include="View\Shop\CShopChest.cs" />
+    <Compile Include="View\Shop\FrmShop.cs" />
+    <Compile Include="View\Shop\FrmShop.designer.cs">
+      <DependentUpon>FrmShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Client.Core\DogSE.Client.Core.csproj">
+      <Project>{c9bbbe58-672b-4fec-b66e-b020966186d0}</Project>
+      <Name>DogSE.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.net35.csproj">
+      <Project>{e7fe81a8-ce39-46c1-8eb2-c1f5d0ad130a}</Project>
+      <Name>DogSE.Library.net35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnyGame.Client.Template\AnyGame.Client.Template.csproj">
+      <Project>{be47f005-469c-4ec4-a22e-11cdb8d283c1}</Project>
+      <Name>AnyGame.Client.Template</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TradeAge.Client.Controller\TradeAge.Client.Controller.csproj">
+      <Project>{69dac743-a6b6-46f7-9c07-1d80f86eb13c}</Project>
+      <Name>TradeAge.Client.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TradeAge.Client.Entity\TradeAge.Client.Entity.csproj">
+      <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
+      <Name>TradeAge.Client.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Card\" />
+    <Folder Include="View\Clan\" />
+    <Folder Include="View\TV\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+
+
+
+
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

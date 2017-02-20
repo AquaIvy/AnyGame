@@ -1,0 +1,6 @@
+#{"Name":"texture_0","TextureName":"bg","Format":"Platform","Width":"2048","Height":"2048"}
+bg/background_01.png	bg/texture_0	1,365,450,600	450,600
+bg/background_02.png	bg/texture_0	813,967,20,1080	20,1080
+bg/background_03.png	bg/texture_0	453,425,405,540	405,540
+bg/background_04.png	bg/texture_0	835,1507,405,540	405,540
+bg/background_05.png	bg/texture_0	1,967,810,1080	810,1080

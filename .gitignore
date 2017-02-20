@@ -8,6 +8,21 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+# C#项目的一些东西不用同步
+.vs
+bin
+obj
+
+# 大型文件，没必要同步
+AnyGame_persistentDataPath
+ImageSource
+Res_Android
+Res_PC
+
+# Unity可自动生成的
+Library
+Temp
+
 # Windows Installer files
 *.cab
 *.msi

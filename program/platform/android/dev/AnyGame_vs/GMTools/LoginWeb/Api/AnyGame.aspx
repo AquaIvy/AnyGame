@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AnyGame.aspx.cs" Inherits="LoginWeb.Api.AnyGame" %>

@@ -1,0 +1,13 @@
+#{"Name":"texture_1","TextureName":"profile","Format":"Platform","Width":"1024","Height":"1024"}
+profile/1001.png	profile/texture_1	201,27,302,200	608,440
+profile/1002.png	profile/texture_1	1,623,224,400	608,440
+profile/1004.png	profile/texture_1	1,13,198,214	608,440
+profile/1005.png	profile/texture_1	505,3,230,256	608,440
+profile/1008.png	profile/texture_1	535,549,198,174	608,440
+profile/1201.png	profile/texture_1	737,723,286,300	608,440
+profile/1207.png	profile/texture_1	309,261,224,374	608,440
+profile/1210.png	profile/texture_1	475,725,260,298	608,440
+profile/1212.png	profile/texture_1	535,261,304,286	608,440
+profile/1215.png	profile/texture_1	227,637,246,386	608,440
+profile/1220.png	profile/texture_1	1,229,306,392	608,440
+profile/1404.png	profile/texture_1	737,9,192,250	608,440

@@ -1,0 +1,17 @@
+#{"Name":"texture_0","TextureName":"profile","Format":"Platform","Width":"1024","Height":"1024"}
+profile/1006.png	profile/texture_0	385,9,252,342	608,440
+profile/1010.png	profile/texture_0	1,353,202,264	608,440
+profile/1205.png	profile/texture_0	547,731,466,292	608,440
+profile/1206.png	profile/texture_0	547,731,466,292	608,440
+profile/1209.png	profile/texture_0	547,731,466,292	608,440
+profile/1211.png	profile/texture_0	1,619,544,404	608,440
+profile/1219.png	profile/texture_0	547,353,384,376	608,440
+profile/1221.png	profile/texture_0	1,1,382,350	608,440
+profile/1222.png	profile/texture_0	547,731,466,292	608,440
+profile/1223.png	profile/texture_0	639,75,378,276	608,440
+profile/1224.png	profile/texture_0	547,731,466,292	608,440
+profile/1225.png	profile/texture_0	547,731,466,292	608,440
+profile/1226.png	profile/texture_0	547,731,466,292	608,440
+profile/1407.png	profile/texture_0	205,359,230,258	608,440
+profile/1408.png	profile/texture_0	547,731,466,292	608,440
+profile/1409.png	profile/texture_0	547,731,466,292	608,440
