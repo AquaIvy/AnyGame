@@ -88,5 +88,11 @@ namespace AnyGame.Server.Template.Card
         [CSVColumn("移动速度")]
         public int Speed { get; set; }
 
+        /// <summary>
+        /// 数组测试
+        /// </summary>
+        [CSVColumn("数组测试")]
+        public List<float> ArrayTest { get; set; }
+
     }
 }

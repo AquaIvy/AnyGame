@@ -57,7 +57,7 @@ namespace DogSE.Library.Serialize
                 }
                 else
                 {
-                    if (head[i] == "level")
+                    if (head[i] == "等级")
                     {
                         isHaveLevel = true;
                     }
@@ -103,6 +103,7 @@ namespace DogSE.Library.Serialize
                 row++;
                 object obj = Activator.CreateInstance(type);        //这里的type可能是CardTemplate类型
                 CurrentLine = row;
+                bool isCurLineNewLine = false;
 
                 //这里用一个类型把若干row的数据保存起来
                 //
@@ -115,9 +116,11 @@ namespace DogSE.Library.Serialize
                         break;
                     }
 
+                    //首列id不为空，说明是新一排数据，暂存一下
                     if (i == 0 && !string.IsNullOrEmpty(data[0]))
                     {
-
+                        obj_prev = obj;
+                        isCurLineNewLine = true;
                     }
 
                     var p = pros[i];
@@ -146,7 +149,13 @@ namespace DogSE.Library.Serialize
                             //有level并且首列id为空的情况，是【一行数据的多level显示】
                             if (isHaveLevel && string.IsNullOrEmpty(data[0]))
                             {
+                                var list_prev = obj_prev.GetType().GetProperty(p.Name).GetValue(obj_prev, null) as IList;
 
+                                foreach (var l in list)
+                                {
+                                    list_prev.Add(l);
+                                }
+                                p.SetValue(obj_prev, list_prev, null);
                             }
                             else
                             {
@@ -158,7 +167,20 @@ namespace DogSE.Library.Serialize
                     {
                         //  p 是数组
 #if DEBUG
-                        arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType(), head[i]));
+                        //有level并且首列id为空的情况，是【一行数据的多level显示】
+                        if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                        {
+                            var array_prev = obj_prev.GetType().GetProperty(p.Name).GetValue(obj_prev, null) as Array;
+
+                            var new_array = data[i].ConvertValue(p.PropertyType.GetElementType(), head[i]);
+                            ArrayList al = new ArrayList(array_prev);
+                            al.Add(new_array);
+                            p.SetValue(obj_prev, al.ToArray(p.PropertyType.GetElementType()), null);
+                        }
+                        else
+                        {
+                            arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType(), head[i]));
+                        }
 #else
                         arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType()));
 #endif
@@ -167,7 +189,14 @@ namespace DogSE.Library.Serialize
                     {
                         //  p 是基础类型
 #if DEBUG
-                        p.SetValue(obj, data[i].ConvertValue(p.PropertyType, head[i]), null);
+                        if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                        {
+
+                        }
+                        else
+                        {
+                            p.SetValue(obj, data[i].ConvertValue(p.PropertyType, head[i]), null);
+                        }
 #else
                         p.SetValue(obj, data[i].ConvertValue(p.PropertyType), null);
 #endif
@@ -186,7 +215,10 @@ namespace DogSE.Library.Serialize
                     }
                 }
 
-                ret.Add(obj);
+                if (isCurLineNewLine)
+                {
+                    ret.Add(obj);
+                }
             }
 
             return ret.ToArray(type);
@@ -297,7 +329,6 @@ namespace DogSE.Library.Serialize
 
                 return Convert.ToInt32(value);
             }
-
 
             if (type == typeof(long))
             {

@@ -8,6 +8,7 @@ using DogSE.Server.Core.Protocol.AutoCode;
 using TradeAge.Server.Logic;
 using TradeAge.Server.Database;
 using AnyGame.Server.Template;
+using System.Diagnostics;
 
 namespace TradeAge.Server.Game
 {
@@ -44,7 +45,6 @@ namespace TradeAge.Server.Game
             //        item.Name,
             //        item.Picture,
             //        item.Speed);
-
             //}
 
             Logs.Notice("ServerConfig.ServerId  " + ServerConfig.ServerId);
