@@ -12,6 +12,7 @@ $RECYCLE.BIN/
 .vs
 bin
 obj
+*.pdb
 
 # 大型文件，没必要同步
 AnyGame_persistentDataPath
@@ -22,6 +23,7 @@ Res_PC
 # Unity可自动生成的
 Library
 Temp
+dll_vs
 
 # Office缓存文件
 ~$*.*
