@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExcelHelper
+namespace ExportExcelToCsv
 {
     class Program
     {
@@ -33,7 +33,7 @@ namespace ExcelHelper
             Console.WriteLine("filter   {0}", targetPath);
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            ExcelEdit excel = new ExcelEdit();
+            ExcelHelper excel = new ExcelHelper();
             excel.Open(@"D:\Unity\Projects\AnyGame\plan\W文档\Card.xlsx");
             excel.SaveAs(@"D:\Unity\Projects\AnyGame\plan\W文档\Card.csv", XlFileFormat.xlCSV);
             excel.Close();

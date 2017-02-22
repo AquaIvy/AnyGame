@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExcelHelper
+namespace ExportExcelToCsv
 {
-    public class ExcelEdit
+    public class ExcelHelper
     {
         public string mFilename;
         public Application app;
@@ -14,7 +14,7 @@ namespace ExcelHelper
         public Workbook wb;
         public Worksheets wss;
         public Worksheet ws;
-        public ExcelEdit()
+        public ExcelHelper()
         {
 
         }
