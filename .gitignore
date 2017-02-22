@@ -19,6 +19,8 @@ AnyGame_persistentDataPath
 ImageSource
 Res_Android
 Res_PC
+AdvServerData
+AztecData
 
 # Unity可自动生成的
 Library
