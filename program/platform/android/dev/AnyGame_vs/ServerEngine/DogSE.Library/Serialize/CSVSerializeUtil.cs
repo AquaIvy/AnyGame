@@ -127,6 +127,9 @@ namespace DogSE.Library.Serialize
                     if (p == null)
                         continue;
 
+                    //该行是否为副行，即首列id为空，level数据的多行显示
+                    bool isCurLineSubLine = isHaveLevel && string.IsNullOrEmpty(data[0]);
+
                     if (p.PropertyType.IsGenericType)
                     {
                         //  p 是泛型
@@ -146,8 +149,8 @@ namespace DogSE.Library.Serialize
 #endif
                             }
 
-                            //有level并且首列id为空的情况，是【一行数据的多level显示】
-                            if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                            //子行，将本行数据存入上一行的类型中
+                            if (isCurLineSubLine)
                             {
                                 var list_prev = obj_prev.GetType().GetProperty(p.Name).GetValue(obj_prev, null) as IList;
 
@@ -167,8 +170,8 @@ namespace DogSE.Library.Serialize
                     {
                         //  p 是数组
 #if DEBUG
-                        //有level并且首列id为空的情况，是【一行数据的多level显示】
-                        if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                        //子行，将本行数据存入上一行的类型中
+                        if (isCurLineSubLine)
                         {
                             var array_prev = obj_prev.GetType().GetProperty(p.Name).GetValue(obj_prev, null) as Array;
 
@@ -182,23 +185,46 @@ namespace DogSE.Library.Serialize
                             arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType(), head[i]));
                         }
 #else
-                        arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType()));
+                        //子行，将本行数据存入上一行的类型中
+                        if (isCurLineSubLine)
+                        {
+                            var array_prev = obj_prev.GetType().GetProperty(p.Name).GetValue(obj_prev, null) as Array;
+
+                            var new_array = data[i].ConvertValue(p.PropertyType.GetElementType(), head[i]);
+                            ArrayList al = new ArrayList(array_prev);
+                            al.Add(new_array);
+                            p.SetValue(obj_prev, al.ToArray(p.PropertyType.GetElementType()), null);
+                        }
+                        else
+                        {
+                            arrayMap[p].Add(data[i].ConvertValue(p.PropertyType.GetElementType()));
+                        }
 #endif
                     }
                     else
                     {
                         //  p 是基础类型
 #if DEBUG
-                        if (isHaveLevel && string.IsNullOrEmpty(data[0]))
+                        //子行，将本行数据存入上一行的类型中
+                        if (isCurLineSubLine)
                         {
-
+                            //基础类型理论上不会出现多行情况
                         }
                         else
                         {
                             p.SetValue(obj, data[i].ConvertValue(p.PropertyType, head[i]), null);
                         }
 #else
-                        p.SetValue(obj, data[i].ConvertValue(p.PropertyType), null);
+                        //子行，将本行数据存入上一行的类型中
+                        if (isCurLineSubLine)
+                        {
+                            //基础类型理论上不会出现多行情况
+                        }
+                        else
+                        {
+                            p.SetValue(obj, data[i].ConvertValue(p.PropertyType), null);
+                        }
+
 #endif
                     }
                 }

@@ -9,11 +9,13 @@ namespace ExportExcelToCsv
     public class ExcelHelper
     {
         public string mFilename;
+
         public Application app;
         public Workbooks wbs;
         public Workbook wb;
         public Worksheets wss;
         public Worksheet ws;
+
         public ExcelHelper()
         {
 
@@ -32,13 +34,13 @@ namespace ExportExcelToCsv
         /// <summary>
         /// 打开一个Microsoft.Office.Interop.Excel文件
         /// </summary>
-        /// <param name="FileName"></param>
-        public void Open(string FileName)
+        /// <param name="fileName">这里的fileName一定要写绝对路径，不然会从documents里找</param>
+        public void Open(string fileName)
         {
             app = new Application();
             wbs = app.Workbooks;
-            wb = wbs.Add(FileName);
-            mFilename = FileName;
+            wb = wbs.Add(fileName);
+            mFilename = fileName;
         }
 
         /// <summary>

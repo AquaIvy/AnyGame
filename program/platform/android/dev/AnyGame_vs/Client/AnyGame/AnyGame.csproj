@@ -167,23 +167,23 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+    <PostBuildEvent>xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.pdb $(ProjectDir)..\..\..\AnyGame\Assets\dll_vs\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
 
 
