@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     class UICanvas : UIElement
     {

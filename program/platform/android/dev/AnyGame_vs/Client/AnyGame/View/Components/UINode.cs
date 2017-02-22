@@ -11,7 +11,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     class UINode : UIElement
     {

@@ -1,16 +1,9 @@
-﻿using AnyGame.LoginPlugin;
-using AnyGame.UI;
-using AnyGame.View.Login;
-using AnyGame.View.Shop;
-using DogSE.Client.Core;
+﻿using AnyGame.View.Components;
+using AnyGame.View.Forms.Login;
+using AnyGame.View.Forms.Shop;
 using DogSE.Library.Log;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TradeAge.Client.Controller.Login;
-using TradeAge.Client.Entity.Character;
 using TradeAge.Client.Entity.Login;
-using UnityEngine;
 
 namespace AnyGame
 {

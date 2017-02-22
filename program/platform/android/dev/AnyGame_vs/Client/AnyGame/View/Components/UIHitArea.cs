@@ -1,5 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
+using AnyGame.UI;
 using DG.Tweening;
 using DogSE.Library.Log;
 using System;
@@ -11,7 +12,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     /// <summary>
     /// 透明点击区

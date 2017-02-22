@@ -1,15 +1,10 @@
-﻿using AnyGame.Content.Manager;
-using AnyGame.Content.Texture;
-using AnyGame.Utils.TweenLite;
-using DogSE.Library.Log;
-using System;
+﻿using AnyGame.Utils.TweenLite;
+using AnyGame.View.Components;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Forms
 {
     abstract class FrmBase : UIImageBase
     {

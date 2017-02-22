@@ -1,12 +1,6 @@
-﻿using AnyGame.Content.Manager;
-using AnyGame.Content.Texture;
-using AnyGame.UI;
-using AnyGame.View.Shop;
-using DogSE.Library.Log;
+﻿using AnyGame.View.Components;
+using AnyGame.View.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,4 +1,5 @@
-﻿using DogSE.Library.Log;
+﻿using AnyGame.UI;
+using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     abstract class UIElement
     {

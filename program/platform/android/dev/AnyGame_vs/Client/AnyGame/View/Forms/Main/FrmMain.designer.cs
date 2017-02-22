@@ -1,15 +1,8 @@
-﻿using AnyGame.Content.Manager;
-using AnyGame.Content.Texture;
-using AnyGame.UI;
-using DogSE.Library.Log;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AnyGame.UI;
+using AnyGame.View.Components;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace AnyGame.View.Main
+namespace AnyGame.View.Forms.Main
 {
     partial class FrmMain
     {

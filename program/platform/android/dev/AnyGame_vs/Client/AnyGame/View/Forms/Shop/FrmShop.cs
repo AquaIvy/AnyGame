@@ -9,7 +9,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnyGame.View.Shop
+namespace AnyGame.View.Forms.Shop
 {
     partial class FrmShop : FrmBase
     {

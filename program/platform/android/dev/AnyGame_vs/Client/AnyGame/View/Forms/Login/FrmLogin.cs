@@ -1,16 +1,13 @@
 ﻿using AnyGame.LoginPlugin;
-using AnyGame.UI;
+using AnyGame.View.Components;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TradeAge.Client.Controller.Login;
-using TradeAge.Client.Entity.Character;
-using TradeAge.Client.Entity.Login;
 using UnityEngine;
 
-namespace AnyGame.View.Login
+namespace AnyGame.View.Forms.Login
 {
     partial class FrmLogin : FrmBase
     {

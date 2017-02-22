@@ -1,8 +1,9 @@
 ﻿using AnyGame.LoginPlugin;
 using AnyGame.UI;
+using AnyGame.View.Components;
 using UnityEngine;
 
-namespace AnyGame.View.Login
+namespace AnyGame.View.Forms.Login
 {
     partial class FrmLogin
     {

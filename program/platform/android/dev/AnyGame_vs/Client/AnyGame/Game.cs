@@ -1,10 +1,11 @@
 ﻿using AnyGame;
 using AnyGame.Content.Manager;
 using AnyGame.LoginPlugin;
-using AnyGame.UI;
 using AnyGame.Utils.TweenLite;
-using AnyGame.View.Login;
-using AnyGame.View.Shop;
+using AnyGame.View.Components;
+using AnyGame.View.Forms;
+using AnyGame.View.Forms.Login;
+using AnyGame.View.Forms.Shop;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
 using System;

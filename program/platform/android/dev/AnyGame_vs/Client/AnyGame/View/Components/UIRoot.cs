@@ -1,9 +1,8 @@
-﻿using System;
+﻿using AnyGame.View.Forms;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     class UIRoot
     {

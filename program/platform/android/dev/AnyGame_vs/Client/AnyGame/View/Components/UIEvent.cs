@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.UI
+namespace AnyGame.View.Components
 {
     delegate void UIEvent(UIElement sender, EventArgs e);
 
