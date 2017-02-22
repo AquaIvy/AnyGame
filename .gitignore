@@ -24,6 +24,7 @@ Res_PC
 Library
 Temp
 dll_vs
+vslib
 
 # Office缓存文件
 ~$*.*

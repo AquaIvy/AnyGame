@@ -63,7 +63,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginWeb", "GMTools\LoginWe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnsiToUtf8", "GMTools\SampleTools\AnsiToUtf8\AnsiToUtf8.csproj", "{ED591736-2DE3-4173-9B14-05065E9F1A4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportExcelToCsv", "GMTools\SampleTools\ExcelHelper\ExportExcelToCsv.csproj", "{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportExcelToCsv", "GMTools\SampleTools\ExportExcelToCsv\ExportExcelToCsv.csproj", "{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
