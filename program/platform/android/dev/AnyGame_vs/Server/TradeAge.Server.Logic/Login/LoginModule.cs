@@ -80,9 +80,6 @@ namespace TradeAge.Server.Logic.Login
                 WorldSeqGen.AccountSeq = new IntSequenceGenerator(accounts.Max(o => o.Id) + 1);
 
             Logs.Info("加载账号数据 {0} 条", accounts.Length);
-
-            //var a0 = DB.GameDB.LoadEntity<Account>(1);
-            //Logs.Notice("a0    " + (a0.Password));
         }
 
         /// <summary>
@@ -245,7 +242,11 @@ namespace TradeAge.Server.Logic.Login
 
         #endregion
 
-
+        /// <summary>
+        /// 玩家与服务器连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNetStateConnect(object sender, NetStateConnectEventArgs e)
         {
             int curCount = WorldEntityManager.OnlinePlayers.Count;
@@ -257,6 +258,11 @@ namespace TradeAge.Server.Logic.Login
             }
         }
 
+        /// <summary>
+        /// 玩家与服务器断开连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnNetStateDisconnect(object sender, NetStateDisconnectEventArgs e)
         {
             var netState = e.NetState;

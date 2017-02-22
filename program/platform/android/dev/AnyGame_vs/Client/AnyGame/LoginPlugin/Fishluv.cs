@@ -39,7 +39,7 @@ namespace AnyGame.LoginPlugin
         public void Login(string account)
         {
             var phoneId = SystemInfo.deviceUniqueIdentifier;
-            var loginCheck = string.Format("http://192.168.2.84:200/AnyGameLogin/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
+            var loginCheck = string.Format("http://192.168.2.84:200/AnyGame/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
             if (System.Net.Dns.GetHostName() == "Ivy")
             {
                 loginCheck = string.Format("http://192.168.249.204:200/LoginWeb/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
@@ -50,7 +50,6 @@ namespace AnyGame.LoginPlugin
             {
                 if (progDownloadTask == null)
                 {
-                    //Game.ShowAndroidToast("服务器访问地址 " + loginCheck);
                     Debug.LogWarning("服务器访问地址 " + loginCheck);
                     progDownloadTask = new DownloadTask(loginCheck);
                 }

@@ -92,14 +92,13 @@ namespace Assets.Scripts
             LGlobalInfo.SERVER_MATCHLIST_PATH = LGlobalInfo.SERVER_ROOT_PATH + @"matchlist.txt";
 
             //版本验证地址
-            LGlobalInfo.VERSION_AUTH_PATH = "http://192.168.2.84:200/LoginWeb/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";       //公司
+            LGlobalInfo.VERSION_AUTH_PATH = "http://192.168.2.84:200/AnyGame/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";       //公司
 
             if (System.Net.Dns.GetHostName() == "Ivy")
             {
                 LGlobalInfo.VERSION_AUTH_PATH = "http://192.168.249.204:200/LoginWeb/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";       //家里
             }
 
-            //LGlobalInfo.VERSION_AUTH_PATH = "http://www.aquaivy.com/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";                  //300块服务器
 
             //StreamingAssets
             //if (Application.platform == RuntimePlatform.Android)

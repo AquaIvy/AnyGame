@@ -79,23 +79,23 @@
     <Compile Include="LoginPlugin\ServerStatus.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GlobalInfo.cs" />
-    <Compile Include="UI\FrmBase.cs" />
-    <Compile Include="UI\UIButton.cs" />
-    <Compile Include="UI\UICanvas.cs" />
-    <Compile Include="UI\UIContent.cs" />
-    <Compile Include="UI\UIElement.cs" />
-    <Compile Include="UI\UIEvent.cs" />
-    <Compile Include="UI\UIHitArea.cs" />
-    <Compile Include="UI\UIImage.cs" />
-    <Compile Include="UI\UIImageBase.cs" />
-    <Compile Include="UI\UIInputField.cs" />
-    <Compile Include="UI\UIMask.cs" />
-    <Compile Include="UI\UINode.cs" />
-    <Compile Include="UI\UIRoot.cs" />
-    <Compile Include="UI\UIScrollbar.cs" />
-    <Compile Include="UI\UIScrollView.cs" />
-    <Compile Include="UI\UIText.cs" />
-    <Compile Include="UI\UIUtils.cs" />
+    <Compile Include="View\Forms\FrmBase.cs" />
+    <Compile Include="View\Components\UIButton.cs" />
+    <Compile Include="View\Components\UICanvas.cs" />
+    <Compile Include="View\Components\UIContent.cs" />
+    <Compile Include="View\Components\UIElement.cs" />
+    <Compile Include="View\Components\UIEvent.cs" />
+    <Compile Include="View\Components\UIHitArea.cs" />
+    <Compile Include="View\Components\UIImage.cs" />
+    <Compile Include="View\Components\UIImageBase.cs" />
+    <Compile Include="View\Components\UIInputField.cs" />
+    <Compile Include="View\Components\UIMask.cs" />
+    <Compile Include="View\Components\UINode.cs" />
+    <Compile Include="View\Components\UIRoot.cs" />
+    <Compile Include="View\Components\UIScrollbar.cs" />
+    <Compile Include="View\Components\UIScrollView.cs" />
+    <Compile Include="View\Components\UIText.cs" />
+    <Compile Include="View\UIUtils.cs" />
     <Compile Include="Utils\Tasks\Task.cs" />
     <Compile Include="LoginPlugin\ILoginProxy.cs" />
     <Compile Include="LoginPlugin\LoginBridge.cs" />
@@ -119,21 +119,21 @@
     <Compile Include="Utils\TweenLite\Sinusoidal.cs" />
     <Compile Include="Utils\TweenLite\TweenLite.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <Compile Include="View\Banner\FrmBanner.cs" />
-    <Compile Include="View\Login\CGameServer.cs" />
-    <Compile Include="View\Login\FrmCreateCharacter.cs" />
-    <Compile Include="View\Login\FrmLogin.cs" />
-    <Compile Include="View\Login\FrmLogin.designer.cs">
+    <Compile Include="View\Forms\Banner\FrmBanner.cs" />
+    <Compile Include="View\Forms\Login\CGameServer.cs" />
+    <Compile Include="View\Forms\Login\FrmCreateCharacter.cs" />
+    <Compile Include="View\Forms\Login\FrmLogin.cs" />
+    <Compile Include="View\Forms\Login\FrmLogin.designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Main\FrmMain.cs" />
-    <Compile Include="View\Main\FrmMain.designer.cs">
+    <Compile Include="View\Forms\Main\FrmMain.cs" />
+    <Compile Include="View\Forms\Main\FrmMain.designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Shop\CShopCard.cs" />
-    <Compile Include="View\Shop\CShopChest.cs" />
-    <Compile Include="View\Shop\FrmShop.cs" />
-    <Compile Include="View\Shop\FrmShop.designer.cs">
+    <Compile Include="View\Forms\Shop\CShopCard.cs" />
+    <Compile Include="View\Forms\Shop\CShopChest.cs" />
+    <Compile Include="View\Forms\Shop\FrmShop.cs" />
+    <Compile Include="View\Forms\Shop\FrmShop.designer.cs">
       <DependentUpon>FrmShop.cs</DependentUpon>
     </Compile>
     <Compile Include="Workflow.cs" />
@@ -161,9 +161,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Card\" />
-    <Folder Include="View\Clan\" />
-    <Folder Include="View\TV\" />
+    <Folder Include="View\Forms\Card\" />
+    <Folder Include="View\Forms\Clan\" />
+    <Folder Include="View\Forms\TV\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
