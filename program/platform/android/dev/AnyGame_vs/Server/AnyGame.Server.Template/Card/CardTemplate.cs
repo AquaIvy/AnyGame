@@ -11,7 +11,7 @@ namespace AnyGame.Server.Template.Card
     public class CardTemplate
     {
         /// <summary>
-        /// 卡牌模版ID
+        /// 模版ID
         /// </summary>
         [CSVColumn("ID")]
         public int Id { get; set; }
@@ -27,12 +27,6 @@ namespace AnyGame.Server.Template.Card
         /// </summary>
         [CSVColumn("描述")]
         public string Description { get; set; }
-
-        /// <summary>
-        /// 竞技场解锁等级
-        /// </summary>
-        [CSVColumn("解锁等级")]
-        public int UnlockLevel { get; set; }
 
         /// <summary>
         /// 显示排序索引
@@ -53,46 +47,106 @@ namespace AnyGame.Server.Template.Card
         public string Picture { get; set; }
 
         /// <summary>
-        /// 卡牌等级
+        /// 气血
         /// </summary>
-        [CSVColumn("等级")]
-        public List<int> Level { get; set; }
+        [CSVColumn("气血")]
+        public int Hp { get; set; }
 
         /// <summary>
-        /// 血量
+        /// 魔法
         /// </summary>
-        [CSVColumn("血量")]
-        public List<int> Hp { get; set; }
+        [CSVColumn("魔法")]
+        public int Mp { get; set; }
+
+        #region 属性
 
         /// <summary>
-        /// 攻击伤害
+        /// 命中
         /// </summary>
-        [CSVColumn("攻击伤害")]
-        public List<float> Damage { get; set; }
+        [CSVColumn("命中")]
+        public int HitRate { get; set; }
 
         /// <summary>
-        /// 对塔伤害
+        /// 伤害
         /// </summary>
-        [CSVColumn("对塔伤害")]
-        public List<float> TowerDamage { get; set; }
+        [CSVColumn("伤害")]
+        public int Damage { get; set; }
 
         /// <summary>
-        /// 攻击CD
+        /// 防御
         /// </summary>
-        [CSVColumn("攻击CD")]
-        public int AttackCD { get; set; }
+        [CSVColumn("防御")]
+        public int Defense { get; set; }
 
         /// <summary>
-        /// 移动速度
+        /// 速度
         /// </summary>
-        [CSVColumn("移动速度")]
+        [CSVColumn("速度")]
         public int Speed { get; set; }
 
         /// <summary>
-        /// 数组测试
+        /// 法伤
         /// </summary>
-        [CSVColumn("数组测试")]
-        public List<float> ArrayTest { get; set; }
+        [CSVColumn("法伤")]
+        public int SpellDamage { get; set; }
+
+        /// <summary>
+        /// 法防
+        /// </summary>
+        [CSVColumn("法防")]
+        public int SpellDefense { get; set; }
+
+        #endregion
+
+        #region 潜力点
+
+        /// <summary>
+        /// 体质
+        /// </summary>
+        [CSVColumn("体质")]
+        public int Physique { get; set; }
+
+        /// <summary>
+        /// 魔力
+        /// </summary>
+        [CSVColumn("魔力")]
+        public int Mana { get; set; }
+
+        /// <summary>
+        /// 力量
+        /// </summary>
+        [CSVColumn("力量")]
+        public int Strength { get; set; }
+
+        /// <summary>
+        /// 耐力
+        /// </summary>
+        [CSVColumn("耐力")]
+        public int Endurance { get; set; }
+
+        /// <summary>
+        /// 敏捷
+        /// </summary>
+        [CSVColumn("敏捷")]
+        public int Agility { get; set; }
+
+        #endregion
+
+        #region 技能
+
+        /// <summary>
+        /// 技能
+        /// </summary>
+        [CSVColumn("技能")]
+        public List<int> Spells { get; set; }
+
+        /// <summary>
+        /// 觉醒技能
+        /// </summary>
+        [CSVColumn("觉醒技能")]
+        public int AwakeSpell { get; set; }
+
+        #endregion
 
     }
 }

@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Card\CardTemplate.cs" />
     <Compile Include="Item\ItemTemplate.cs" />
+    <Compile Include="Spell\SpellEnum.cs" />
+    <Compile Include="Spell\SpellTemplate.cs" />
     <Compile Include="Templates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

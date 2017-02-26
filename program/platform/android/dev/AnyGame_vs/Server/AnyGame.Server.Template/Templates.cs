@@ -1,5 +1,6 @@
 ﻿using AnyGame.Server.Template.Card;
 using AnyGame.Server.Template.Item;
+using AnyGame.Server.Template.Spell;
 using DogSE.Library.Log;
 using DogSE.Server.Core.Config;
 using System;
@@ -23,7 +24,11 @@ namespace AnyGame.Server.Template
         public static CardTemplate[] CardTemplate { get; private set; }
         private static Dictionary<int, CardTemplate> cardMap = new Dictionary<int, CardTemplate>();
 
-
+        /// <summary>
+        /// 技能模版列表
+        /// </summary>
+        public static SpellTemplate[] SpellTemplate { get; private set; }
+        private static Dictionary<int, SpellTemplate> spellMap = new Dictionary<int, SpellTemplate>();
 
         #endregion
 
@@ -47,6 +52,16 @@ namespace AnyGame.Server.Template
         public static CardTemplate GetCardTemplate(int id)
         {
             return cardMap[id];
+        }
+
+        /// <summary>
+        /// 获得技能模版
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static SpellTemplate GetSpellTemplate(int id)
+        {
+            return spellMap[id];
         }
 
         #endregion
@@ -104,6 +119,14 @@ namespace AnyGame.Server.Template
             cardMap = CardTemplate.ToMap(o => o.Id);
             #endregion
 
+            #region Spell
+
+            SpellTemplate = DynamicConfigFileManager.GetConfigData<SpellTemplate>("Spell");
+            Logs.Debug("Template Spell count:{0}", SpellTemplate.Length);
+
+            spellMap = SpellTemplate.ToMap(o => o.Id);
+
+            #endregion
         }
         #endregion
     }
