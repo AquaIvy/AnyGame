@@ -129,7 +129,6 @@ namespace AnyGame.Content.Manager
             if (tmpControl != null)
             {
                 Control = tmpControl.transform;
-                //tmpControl.GetComponent<CanvasScaler>().matchWidthOrHeight = GlobalInfo.CanvasMatch;
             }
 
             var tmpTips = GameObject.Find(basicTips);
@@ -145,7 +144,6 @@ namespace AnyGame.Content.Manager
             if (tmpFadeInOut != null)
             {
                 FadeInOut = tmpFadeInOut.transform;
-                //tmpFadeInOut.GetComponent<CanvasScaler>().matchWidthOrHeight = GlobalInfo.CanvasMatch;
             }
         }
 

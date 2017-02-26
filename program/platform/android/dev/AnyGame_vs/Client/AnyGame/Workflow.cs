@@ -43,8 +43,8 @@ namespace AnyGame
         {
             Logs.Info("同步数据完成，可以进入主界面了   {0}", GameCenter.Entity.Player.Name);
 
-            var shop = new FrmShop();
-            UIRoot.Show(shop);
+            //var shop = new FrmShop();
+            //UIRoot.Show(shop);
         }
 
         public static void Update()

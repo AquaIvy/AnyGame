@@ -336,7 +336,7 @@ namespace AnyGame.Content.Manager
                 yield break;
             }
 
-            GlobalInfo.WAIT_CREATE_UI_WORLD = sceneName;
+            //GlobalInfo.WAIT_CREATE_UI_WORLD = sceneName;
             Logs.Warn("!!!  {0}   {1}", empty, path);
             AssetBundle bundle = AssetBundle.LoadFromFile(path);
             var asyncOperation = SceneManager.LoadSceneAsync(empty);

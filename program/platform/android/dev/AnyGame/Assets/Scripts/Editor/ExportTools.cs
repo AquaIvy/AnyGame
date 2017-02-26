@@ -293,7 +293,7 @@ public class ExportTools : EditorWindow
         //}
         //else if (Dns.GetHostName() == "Ivy")
         {
-            BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, @"D:\WebSite\Client\AnyGame\");
+            BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, @"D:\Unity\AnyGame\program\platform\android\dev\Res_Android\");
         }
 
         //BuildAssetBundles(BuildTarget.iOS, @"D:\WebSite\ClientRescources\RoyalWar_ios\");
