@@ -45,18 +45,18 @@ public class GlobalInfo
     /// 每次跳转场景，先跳转到empty场景，然后根据配置加载游戏世界和UI
     /// 该值用于存储即将加载的配置信息（新场景的配置信息）
     /// </summary>
-    public static string WAIT_CREATE_UI_WORLD = string.Empty;
+    //public static string WAIT_CREATE_UI_WORLD = string.Empty;
 
 
     /// <summary>
-    /// 游戏的设计width    720
+    /// 游戏的设计width    1280
     /// </summary>
-    public const float width = 720f;
+    public const float width = 1280f;
 
     /// <summary>
-    /// 游戏的设计height   1280
+    /// 游戏的设计height   720
     /// </summary>
-    public const float height = 1280;
+    public const float height = 720f;
 
     /// <summary>
     /// 360
@@ -71,11 +71,11 @@ public class GlobalInfo
     /// <summary>
     /// 屏幕自适应 0是以宽为基准，1是已高为基准
     /// </summary>
-    public static float CanvasMatch = 1.0f;
+    //public static float CanvasMatch = 1.0f;
     /// <summary>
     /// 屏幕适应后，画布下第一个子孩子宽高
     /// </summary>
-    public static Vector2 CanvasParentRect = new Vector2(width, height);
+    //public static Vector2 CanvasParentRect = new Vector2(width, height);
 
 
     public static void Init()
@@ -90,7 +90,7 @@ public class GlobalInfo
         // 屏幕不休眠
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         //设置竖屏显示
-        Screen.orientation = ScreenOrientation.Portrait;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         //限制帧速率
         Application.targetFrameRate = 60;
 
@@ -98,7 +98,7 @@ public class GlobalInfo
         //      16/9     1280/720       1.777777
         //      3/2      1280/853.33    1.5
         //      4/3      1280/960       1.333333
-
+        /*
         //屏幕适应
         if (Screen.height * 1.0f / Screen.width >= height / width)
         {
@@ -113,13 +113,12 @@ public class GlobalInfo
             //更胖的屏幕
             //最多支持到 4/3
             GlobalInfo.CanvasMatch = 1.0f;
-            //var tmp = CanvasDevWidth * Screen.height / Screen.width;
-            //GlobalInfo.CanvasParentRect = new Vector2(CanvasDevWidth, tmp);
             var tmp = height * Screen.width / Screen.height;
             GlobalInfo.CanvasParentRect = new Vector2(tmp, height);
         }
         Logs.Info("屏幕分辨率：height/width  {0}/{1}={2}", Screen.height, Screen.width, Screen.height * 1.0f / Screen.width);
         Logs.Info("逻辑分辨率：height/width  {0}/{1}", GlobalInfo.CanvasParentRect.y, GlobalInfo.CanvasParentRect.x);
+        */
 
         //资源目录
         if (Application.platform == RuntimePlatform.WindowsEditor

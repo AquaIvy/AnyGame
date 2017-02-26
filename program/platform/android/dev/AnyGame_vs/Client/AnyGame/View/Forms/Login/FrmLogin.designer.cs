@@ -13,7 +13,7 @@ namespace AnyGame.View.Forms.Login
             this.size = new Vector2(GlobalInfo.width, GlobalInfo.height);
             this.border = new Vector4(10, 10, 10, 10);
 
-            node1 = new UINode();
+            node1 = new UINode(280,-400);
             AddChild(node1);
 
             var txt1 = new UIText("账号", 120, 675, 24, Color.black);
@@ -34,10 +34,10 @@ namespace AnyGame.View.Forms.Login
             inputPwd.textContent.y = 24;
             node1.AddChild(inputPwd);
 
-            btnLogin = new UIButton("ui/button/button_09.png", GlobalInfo.harfWidth, GlobalInfo.height - 300, "登录", 30);
+            btnLogin = new UIButton("ui/button/button_09.png", GlobalInfo.harfWidth, GlobalInfo.height - 200, "登录", 30);
             AddChild(btnLogin);
 
-            btnLogoff = new UIButton("ui/button/button_09.png", 600, 200, "注销", 30);
+            btnLogoff = new UIButton("ui/button/button_09.png", 1148, 70, "注销", 30);
             AddChild(btnLogoff);
 
             //AddChild(new UIImage("ui/kabao/mofa_00.png", 0, 0));

@@ -11,7 +11,7 @@ public class RuntimeProfiler : MonoBehaviour
     private Stopwatch stopwatch;
 
 
-    private Rect rect = new Rect(2, 2, 100f / 720 * Screen.width, 65f / 1280 * Screen.height);
+    private Rect rect = new Rect(2, 2, 150f / 1280 * Screen.width, 100f / 720 * Screen.height);
     GUIStyle style = null;
     string info = "";
 

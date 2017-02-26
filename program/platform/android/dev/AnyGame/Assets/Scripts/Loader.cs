@@ -30,17 +30,12 @@ public class Loader : MonoBehaviour
         }
 
         Debug.LogFormat("平台: {0}    版本:{1}", Application.platform, Application.version);
-
         DontDestroyOnLoad(this);
 
         LGlobalInfo.Init();
 
         FrmUpdate = new FrmUpdate();
         FrmUpdate.Show();
-
-        //var property = this.GetType().GetProperty("FrmUpdate");
-        //var a = property.GetValue(this, null);
-        //Debug.Log("a  " + a);
     }
 
 
