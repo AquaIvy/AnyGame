@@ -13,7 +13,7 @@ namespace AnyGame.View.Forms.Login
             this.size = new Vector2(GlobalInfo.width, GlobalInfo.height);
             this.border = new Vector4(10, 10, 10, 10);
 
-            node1 = new UINode(280,-400);
+            node1 = new UINode(280, -400);
             AddChild(node1);
 
             var txt1 = new UIText("账号", 120, 675, 24, Color.black);
@@ -44,6 +44,9 @@ namespace AnyGame.View.Forms.Login
             //AddChild(new UIImage("ui/kabao/mofa_0.png", GlobalInfo.width, 0, UIUtils.MiddleCenter));
         }
 
+        /// <summary>
+        /// 创建一个默认服务器
+        /// </summary>
         private void InitNode2()
         {
             if (node2 != null) { return; }
@@ -51,12 +54,15 @@ namespace AnyGame.View.Forms.Login
             node2 = new UINode();
             AddChild(node2);
 
-            curSelectServer = new CGameServer(curServer, 360, 830);
+            curSelectServer = new CGameServer(curServer, 640, 360);
             node2.AddChild(curSelectServer);
 
             curSelectServer.OnClick += LastLoginServer_OnClick;
         }
 
+        /// <summary>
+        /// 创建所有服务器列表
+        /// </summary>
         private void InitNode3()
         {
             if (node3 != null) { return; }
@@ -64,7 +70,7 @@ namespace AnyGame.View.Forms.Login
             node3 = new UINode();
             AddChild(node3);
 
-            var imgScrollBG = new UIImage("ui/common/base_01.png", 210, 520, UIUtils.UpperLeft, UIUtils.Border10);
+            var imgScrollBG = new UIImage("ui/common/base_01.png", 480, 60, UIUtils.UpperLeft, UIUtils.Border10);
             imgScrollBG.size = new Vector2(300, 400);
             node3.AddChild(imgScrollBG);
 

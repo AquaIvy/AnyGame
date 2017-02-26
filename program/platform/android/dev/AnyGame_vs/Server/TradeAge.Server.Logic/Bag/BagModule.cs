@@ -72,9 +72,9 @@ namespace TradeAge.Server.Logic.Bags
             //    WorldEntityManager.BagCache.AddOrReplace(bag);
             //}
 
-            var bag = player.Bag;
+            //var bag = player.Bag;
 
-            ClientProxy.Bag.SyncBag(player.NetState, bag.MaxCount, bag.CurCount);
+            //ClientProxy.Bag.SyncBag(player.NetState, bag.MaxCount, bag.CurCount);
         }
 
         public void OnUseItem(NetState netstate, int itemId, int useCount)

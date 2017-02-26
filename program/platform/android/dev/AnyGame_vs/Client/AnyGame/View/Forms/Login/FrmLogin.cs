@@ -47,9 +47,9 @@ namespace AnyGame.View.Forms.Login
         public FrmLogin() : base("FrmLogin")
         {
             InitForm();
-
+            //WebLogin返回事件
             Game.LoginProxy.LoginResult += LoginProxy_LoginResult;
-
+            //网络连接（在WebLogin之后）
             GameCenter.Controller.Net.NetStateConnect += Net_NetStateConnect;
 
             btnLogin.OnClick += BtnLogin_OnClick;
@@ -82,7 +82,7 @@ namespace AnyGame.View.Forms.Login
 
         private void BtnLogin_OnClick(UIElement sender, EventArgs e)
         {
-            #region WebLogin
+            #region 去WebLogin进行登录验证
 
             if (loginState == LoginState.WaitWebLogin)
             {
@@ -130,6 +130,11 @@ namespace AnyGame.View.Forms.Login
 
         List<GameServer> allServers = null;
         GameServer curServer = null;
+        /// <summary>
+        /// WebLogin返回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginProxy_LoginResult(object sender, LoginPlugin.LoginSuccessEventArgs e)
         {
             if (e.IsSucess)

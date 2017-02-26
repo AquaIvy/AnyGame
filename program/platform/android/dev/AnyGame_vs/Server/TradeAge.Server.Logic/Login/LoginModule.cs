@@ -270,6 +270,8 @@ namespace TradeAge.Server.Logic.Login
             {
                 //  标示玩家已经登陆过游戏，离线时会触发一系列的操作
                 var player = (Player)netState.Player;
+                if (player == null) return;
+
                 Logs.Info("{0} net disconnect.", player.Name);
 
                 player.LastLogoffTime = OneServer.NowTime;

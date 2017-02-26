@@ -29,6 +29,8 @@ namespace AnyGame
 
                 if (!e.IsCreatedPlayer)
                 {
+                    Logs.Info("未创建过角色，准备创建");
+
                     var createCharacter = new FrmCreateCharacter();
                     UIRoot.Show(createCharacter);
                 }

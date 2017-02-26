@@ -64,11 +64,11 @@ namespace AnyGame.View.Forms.Login
             var characters = new UIButton[3];
             for (int i = 0; i < characters.Length; i++)
             {
-                characters[i] = new UIButton("card/" + (1204 + i) + ".png", 200 + 150 * i, 400);
+                characters[i] = new UIButton("card/" + (1204 + i) + ".png", 350 + 150 * i, 200);
                 AddChild(characters[i]);
             }
 
-            inputCharacterName = new UIInputField("ui/common/base_01.png", 360, 850);
+            inputCharacterName = new UIInputField("ui/common/base_01.png", 640, 500);
             inputCharacterName.pivot = UIUtils.MiddleCenter;
             inputCharacterName.border = UIUtils.Border10;
             inputCharacterName.size = new Vector2(270, 65);
@@ -80,7 +80,7 @@ namespace AnyGame.View.Forms.Login
 
             AddChild(inputCharacterName);
 
-            btnCreate = new UIButton("ui/button/queding.png", 360, 1020);
+            btnCreate = new UIButton("ui/button/queding.png", 640, 610);
             AddChild(btnCreate);
         }
 
