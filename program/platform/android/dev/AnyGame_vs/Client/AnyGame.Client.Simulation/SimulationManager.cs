@@ -1,11 +1,13 @@
 ﻿using AnyGame.Client.Simulation.Simulation;
 using DogSE.Client.Core;
+using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnyGame.Client.Simulation
 {
@@ -14,13 +16,13 @@ namespace AnyGame.Client.Simulation
     /// </summary>
     public class SimulationManager
     {
+        readonly List<SimulationClient> clients = new List<SimulationClient>();
         public SimulationManager()
         {
             NamePre = "Test";
             StartId = 1;
             EndId = 100000;
         }
-        readonly List<SimulationClient> clients = new List<SimulationClient>();
 
         /// <summary>
         /// 客户端列表
@@ -52,6 +54,56 @@ namespace AnyGame.Client.Simulation
         private string Host;
         private int Port;
 
+        private DateTime lastUpdateTime = DateTime.Now;
+
+        /// <summary>
+        /// 开始测试
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="port"></param>
+        /// <param name="num"></param>
+        public void StartRun(string host, int port, int num)
+        {
+            isRuning = true;
+            测试总人数 += num;
+            等待登陆人数 = num;
+
+            Host = host;
+            Port = port;
+
+            if (runTaskThread == null)
+            {
+                runTaskThread = new Thread(RunTask);
+                runTaskThread.Start();
+            }
+            if (runLoginThread == null)
+            {
+                runLoginThread = new Thread(TaskRunLogin);
+                runLoginThread.Start();
+            }
+        }
+
+        /// <summary>
+        /// 开始测试
+        /// </summary>
+        /// <param name="num"></param>
+        public void AppendRun(int num)
+        {
+            if (num == 0)
+                return;
+
+            等待登陆人数 += num;
+
+            if (runLoginThread == null)
+            {
+                runLoginThread = new Thread(RunLogin);
+                runLoginThread.Start();
+            }
+        }
+
+        /// <summary>
+        /// 客户端每帧循环（相当于Update）
+        /// </summary>
         void RunTask()
         {
             while (isRuning)
@@ -170,7 +222,7 @@ namespace AnyGame.Client.Simulation
                 runClient.Add(client);
             }
 
-            Console.WriteLine("获得takon时间 {0}sec", (DateTime.Now - startTime).TotalSeconds);
+            Console.WriteLine("获得token时间 {0}sec", (DateTime.Now - startTime).TotalSeconds);
 
             Parallel.ForEach(runClient, new ParallelOptions { MaxDegreeOfParallelism = 5 }, client =>
             {
@@ -195,51 +247,6 @@ namespace AnyGame.Client.Simulation
 
             int sec = (int)(DateTime.Now - startTime).TotalSeconds;
             登陆用时 = string.Format("{0}sec {1}ms", sec, (DateTime.Now - startTime).TotalMilliseconds / 已经登陆人数);
-        }
-
-        /// <summary>
-        /// 开始测试
-        /// </summary>
-        /// <param name="host"></param>
-        /// <param name="port"></param>
-        /// <param name="num"></param>
-        public void StartRun(string host, int port, int num)
-        {
-            isRuning = true;
-            测试总人数 += num;
-            等待登陆人数 = num;
-
-            Host = host;
-            Port = port;
-
-            if (runTaskThread == null)
-            {
-                runTaskThread = new Thread(RunTask);
-                runTaskThread.Start();
-            }
-            if (runLoginThread == null)
-            {
-                runLoginThread = new Thread(TaskRunLogin);
-                runLoginThread.Start();
-            }
-        }
-
-        /// <summary>
-        /// 开始测试
-        /// </summary>
-        /// <param name="num"></param>
-        public void AppendRun(int num)
-        {
-            if (num == 0)
-                return;
-
-            等待登陆人数 += num;
-
-            if (runLoginThread == null)
-            {
-                runLoginThread = new Thread(RunLogin);
-                runLoginThread.Start();
-            }
         }
 
         private Thread runTaskThread;
@@ -306,7 +313,6 @@ namespace AnyGame.Client.Simulation
 
         public string 登陆用时 { get; set; }
 
-        private DateTime lastUpdateTime = DateTime.Now;
         public string AI处理时间
         {
             get

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Xml.Linq;
 using TradeAge.Client.Controller;
+using TradeAge.Client.Controller.Login;
+using TradeAge.Client.Entity.Character;
+using TradeAge.Client.Entity.Login;
 
 namespace AnyGame.Client.Simulation.Simulation
 {
@@ -18,9 +21,11 @@ namespace AnyGame.Client.Simulation.Simulation
     {
         public string Host = "192.168.2.83";
         public int Port = 4530;
+        public string LoginBaseUrl = "http://192.168.2.83:81/Login/Api/Fishluv.aspx?uid=";
+        string loginToken = string.Empty;
+
         GameController controller = new GameController();
 
-        string loginTakon = string.Empty;
 
 
         /// <summary>
@@ -37,13 +42,12 @@ namespace AnyGame.Client.Simulation.Simulation
             controller.Net.NetStateConnect += OnNetStateConnect;
             controller.Net.NetStateDisconnect += Net_NetStateDisconnect;
 
+            controller.Net.ConnectServer(Host, Port);
 
-            //controller.Net.ConnectServer(Host, Port);
-
-            if (loginTakon == string.Empty)
+            if (loginToken == string.Empty)
                 GetToken();
 
-            controller.Login.Login2(Host, Port, loginTakon, 0, "fishluv");
+            //controller.Login.LoginServer(AccountName, "123456", 0);
 
             //  已15s为一个周期进行服务器验证
             WaitIsTrue(() => IsLoginSuccess | IsError, 15);
@@ -51,23 +55,21 @@ namespace AnyGame.Client.Simulation.Simulation
 
         public void GetToken()
         {
+            //WebClient wc = new WebClient();
+            //wc.Encoding = Encoding.UTF8;
+            //var xml = wc.DownloadString(LoginBaseUrl + AccountName);
 
-            WebClient wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            var xml = wc.DownloadString(LoginBaseUrl + AccountName);
+            //try
+            //{
+            //    XElement root = XElement.Parse(xml);
 
-            try
-            {
-                XElement root = XElement.Parse(xml);
-
-                var notice = root;
-                loginTakon = notice.Element("LoginTakon").Value;
-            }
-            catch (Exception ex)
-            {
-                Logs.Error("init GameServerStatus xml fail." + ex.ToString());
-            }
-
+            //    var notice = root;
+            //    loginToken = notice.Element("LoginToken").Value;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logs.Error("init GameServerStatus xml fail." + ex.ToString());
+            //}
         }
 
         void Net_NetStateDisconnect(object sender, NetStateDisconnectEventArgs e)
@@ -85,10 +87,6 @@ namespace AnyGame.Client.Simulation.Simulation
         /// </summary>
         public string AccountName { get; set; }
 
-        /// <summary>
-        /// 登陆验证的地址
-        /// </summary>
-        public string LoginBaseUrl = "http://192.168.2.83:81/Login/Api/Fishluv.aspx?uid=";
 
         private static int accountIndex = 0;
 
@@ -96,10 +94,9 @@ namespace AnyGame.Client.Simulation.Simulation
         {
             if (e.IsConnected)
             {
-                //Assert.IsTrue(e.IsConnected, "服务器连接失败。");
-                controller.Login.LoginServerRet += OnLoginServer;
+                controller.Login.LoginServerRet += Login_LoginServerRet;
 
-                //controller.Login.LoginServer(AccountName, Password, 1, 0);
+                controller.Login.LoginServer(AccountName, "123456", 0);
             }
             else
             {
@@ -108,14 +105,14 @@ namespace AnyGame.Client.Simulation.Simulation
             }
         }
 
-        void OnLoginServer(object sender, LoginController.LoginServerResultEventArgs e)
+        private void Login_LoginServerRet(object sender, LoginServerResultEventArgs e)
         {
             if (e.Result == LoginServerResult.Success)
             {
-                if (!e.IsCreatePlayered)
+                if (!e.IsCreatedPlayer)
                 {
-                    controller.Login.CreatePlayerRet += OnCreatePlayer;
-                    controller.Login.CreatePlayer(AccountName, 1001);
+                    controller.Login.CreatePlayerRet += Login_CreatePlayerRet;
+                    controller.Login.CreatePlayer(AccountName, Sex.Male);
                 }
                 else
                 {
@@ -132,20 +129,20 @@ namespace AnyGame.Client.Simulation.Simulation
             }
         }
 
-        void OnCreatePlayer(object sender, LoginController.CreatePlayerResultEventArgs e)
+        private void Login_CreatePlayerRet(CraetePlayerResult e)
         {
-            if (e.Result == CraetePlayerResult.Success)
+            if (e == CraetePlayerResult.Success)
             {
                 Logs.Info("{0} 登陆并创建角色完成", AccountName);
                 IsLoginSuccess = true;
-                InitcontrollerEvent();
+                InitControllerEvent();
 
                 RunGM("showmethemoney 3000");
                 RandomReward();
             }
             else
             {
-                Logs.Error("登陆失败，创建角色返回 {0}", e.Result.ToString());
+                Logs.Error("登陆失败，创建角色返回 {0}", e.ToString());
                 IsError = true;
             }
         }
@@ -167,13 +164,13 @@ namespace AnyGame.Client.Simulation.Simulation
         void WriteResultLog<T>(T type, string evenetName)
         {
             错误计数 += Convert.ToInt32(type) == 0 ? 0 : 1;
-            //Logs.Info("{0} {1} result: {2}", controller.Model.PlayerName, evenetName, type.ToString());
+            Logs.Info("{0} {1} result: {2}", controller.Model.Player.Name, evenetName, type.ToString());
         }
 
         /// <summary>
         /// 初始化一些相关事件
         /// </summary>
-        void InitcontrollerEvent()
+        void InitControllerEvent()
         {
             //controller.Adventure.OpenGameLevelEvent += OpenGameLevelEvent;
             //controller.Adventure.AdventureEventResultEvent += AdventureEventResultEvent;
@@ -190,24 +187,6 @@ namespace AnyGame.Client.Simulation.Simulation
             //controller.Hero.AwakeReturn += Hero_AwakeReturn;
             //controller.BarrageChat.SyncBarrageMessage += BarrageChat_SyncBarrageMessage;
         }
-
-
-        //void Hero_RestResultEvent(object sender, RestResultEventArgs e)
-        //{
-        //    错误计数 += e.Result == RestResult.Success ? 0 : 1;
-        //    var hero = controller.Hero.Heros.FirstOrDefault(o => o.HeroId == e.HeroId);
-        //    if (hero == null)
-        //        hero = new Hero();
-
-        //    Logs.Info("{0}-{1} RestResult result: {2}", controller.Model.PlayerName, hero.Name, e.Result.ToString());
-        //}
-
-
-
-
-
-
-
 
         #endregion
 
@@ -288,14 +267,12 @@ namespace AnyGame.Client.Simulation.Simulation
         /// </summary>
         void RandomReward()
         {
-            return;
-
-            for (int i = 0; i < gms.Length; i++)
-            {
-                var index = rand.Next(0, gms.Length);
-                var msg = gms[index];
-                //controller.System.RunGMCommand(msg);
-            }
+            //for (int i = 0; i < gms.Length; i++)
+            //{
+            //    var index = rand.Next(0, gms.Length);
+            //    var msg = gms[index];
+            //    controller.System.RunGMCommand(msg);
+            //}            
         }
 
         /// <summary>
@@ -347,21 +324,6 @@ namespace AnyGame.Client.Simulation.Simulation
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public int 当前英雄数量 { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int 当前出战英雄数量 { get; set; }
-
-        /// <summary>
-        /// 当前关卡
-        /// </summary>
-        public int 当前关卡 { get; set; }
-
-        /// <summary>
         /// 各项操作不是返回success的数据
         /// </summary>
         public int 错误计数 { get; set; }
@@ -369,12 +331,5 @@ namespace AnyGame.Client.Simulation.Simulation
         #endregion
     }
 
-    /// <summary>
-    /// 一些扩展方法
-    /// </summary>
-    public static class controllerExtend
-    {
-
-    }
 }
 

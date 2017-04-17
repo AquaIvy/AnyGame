@@ -62,6 +62,10 @@
       <Project>{69dac743-a6b6-46f7-9c07-1d80f86eb13c}</Project>
       <Name>TradeAge.Client.Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TradeAge.Client.Entity\TradeAge.Client.Entity.csproj">
+      <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
+      <Name>TradeAge.Client.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UnitTest\" />
