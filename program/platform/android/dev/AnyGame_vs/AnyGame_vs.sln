@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{1ED7E873-951D-4689-9379-FB105497B36A}"
 EndProject
@@ -64,6 +64,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnsiToUtf8", "GMTools\SampleTools\AnsiToUtf8\AnsiToUtf8.csproj", "{ED591736-2DE3-4173-9B14-05065E9F1A4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportExcelToCsv", "GMTools\SampleTools\ExportExcelToCsv\ExportExcelToCsv.csproj", "{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Client.Simulation", "Client\AnyGame.Client.Simulation\AnyGame.Client.Simulation.csproj", "{81F4DF48-6444-4D9A-9A30-DD6004AF6B13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +171,10 @@ Global
 		{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F4DF48-6444-4D9A-9A30-DD6004AF6B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F4DF48-6444-4D9A-9A30-DD6004AF6B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F4DF48-6444-4D9A-9A30-DD6004AF6B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F4DF48-6444-4D9A-9A30-DD6004AF6B13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,5 +206,6 @@ Global
 		{591AF5D6-C0F3-4E1C-971B-27D239BED60F} = {CAB1C3A2-2833-4183-8563-D79934C34D38}
 		{ED591736-2DE3-4173-9B14-05065E9F1A4A} = {428D8E9D-D692-4FD3-B0AE-F0929FF5C02B}
 		{B75CB3F3-C50F-4F5B-90EF-16105E8D7A93} = {428D8E9D-D692-4FD3-B0AE-F0929FF5C02B}
+		{81F4DF48-6444-4D9A-9A30-DD6004AF6B13} = {1ED7E873-951D-4689-9379-FB105497B36A}
 	EndGlobalSection
 EndGlobal
