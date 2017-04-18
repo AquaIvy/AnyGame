@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogSE.Server.Database.Mongo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleTools", "SampleTools", "{428D8E9D-D692-4FD3-B0AE-F0929FF5C02B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersionChecker", "GMTools\SampleTools\VersionChecker\VersionChecker.csproj", "{D76A0CD7-1C13-4488-85AA-AB843C89EA06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeVersion", "GMTools\SampleTools\VersionChecker\ChangeVersion.csproj", "{D76A0CD7-1C13-4488-85AA-AB843C89EA06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogSE.Tools.CodeGeneration", "ServerEngine\DogSE.Tools.CodeGeneration\DogSE.Tools.CodeGeneration.csproj", "{3CBB0BB8-E94A-4719-99B9-5580B4EC3205}"
 EndProject
