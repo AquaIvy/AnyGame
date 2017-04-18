@@ -1,8 +1,8 @@
 ﻿using DogSE.Server.Database.MongoDB;
 using DogSE.Server.Database.MySQL;
-using TradeAge.Server.Database.Account;
+using AnyGame.Server.Database.Account;
 
-namespace TradeAge.Server.Database
+namespace AnyGame.Server.Database
 {
     /// <summary>
     /// 游戏的数据库访问器

@@ -6,19 +6,19 @@ using DogSE.Library.Time;
 using DogSE.Server.Core.LogicModule;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using TradeAge.Server.Entity;
-using TradeAge.Server.Entity.Character;
-using TradeAge.Server.Entity.Common;
-using TradeAge.Server.Entity.Login;
-using TradeAge.Server.Interface.Client;
-using ILogin = TradeAge.Server.Interface.Server.ILogin;
+using AnyGame.Server.Entity;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Common;
+using AnyGame.Server.Entity.Login;
+using AnyGame.Server.Interface.Client;
+using ILogin = AnyGame.Server.Interface.Server.ILogin;
 using System.Linq;
 using DogSE.Server.Core;
-using TradeAge.Server.Entity.GameEvent;
-using TradeAge.Server.Database;
-using TradeAge.Server.Entity.Bags;
+using AnyGame.Server.Entity.GameEvent;
+using AnyGame.Server.Database;
+using AnyGame.Server.Entity.Bags;
 
-namespace TradeAge.Server.Logic.Login
+namespace AnyGame.Server.Logic.Login
 {
     /// <summary>
     /// 登陆模块

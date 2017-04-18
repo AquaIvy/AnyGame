@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Common;
 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 账号信息，账号和玩家对象不是同一个对象，虽然他们的id可能是一样的

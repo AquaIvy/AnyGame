@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("TradeAge.Server.Interface")]
+[assembly: AssemblyTitle("AnyGame.Server.Interface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JUJUMAO")]
-[assembly: AssemblyProduct("TradeAge.Server.Interface")]
+[assembly: AssemblyProduct("AnyGame.Server.Interface")]
 [assembly: AssemblyCopyright("Copyright © JUJUMAO 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

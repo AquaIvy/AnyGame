@@ -2,7 +2,7 @@
 using IvyOrm;
 using System;
 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 游戏内的账户表

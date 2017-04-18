@@ -8,7 +8,7 @@ using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 
-namespace TradeAge.Client.Controller.Login
+namespace AnyGame.Client.Controller.Login
 {
 
 
@@ -55,12 +55,12 @@ PacketHandlerManager.Register(1004, OnSyncInitDataFinish);
         BaseLoginController module;
 
 void OnLoginServerResult(NetState netstate, PacketReader reader){
-var p1 = (TradeAge.Client.Entity.Login.LoginServerResult)reader.ReadByte();
+var p1 = (AnyGame.Client.Entity.Login.LoginServerResult)reader.ReadByte();
 var p2 = reader.ReadBoolean();
 module.OnLoginServerResult(p1,p2);
 }
 void OnCreatePlayerResult(NetState netstate, PacketReader reader){
-var p1 = (TradeAge.Client.Entity.Login.CraetePlayerResult)reader.ReadByte();
+var p1 = (AnyGame.Client.Entity.Login.CraetePlayerResult)reader.ReadByte();
 module.OnCreatePlayerResult(p1);
 }
 void OnSyncInitDataFinish(NetState netstate, PacketReader reader){

@@ -8,7 +8,7 @@ using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 
-namespace TradeAge.Client.Controller.Bag
+namespace AnyGame.Client.Controller.Bag
 {
 
 
@@ -54,7 +54,7 @@ PacketHandlerManager.Register(1202, OnSyncBag);
         BaseBagController module;
 
 void OnUseItemResult(NetState netstate, PacketReader reader){
-var p1 = (TradeAge.Client.Entity.Bags.UseItemResult)reader.ReadByte();
+var p1 = (AnyGame.Client.Entity.Bags.UseItemResult)reader.ReadByte();
 var p2 = reader.ReadInt32();
 var p3 = reader.ReadInt32();
 module.OnUseItemResult(p1,p2,p3);

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TradeAge.Client.Controller;
-using TradeAge.Client.Entity;
+using AnyGame.Client.Controller;
+using AnyGame.Client.Entity;
 
 namespace AnyGame
 {

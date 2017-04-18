@@ -40,7 +40,7 @@ namespace AnyGame.Client.Simulation
             sm.EndId = 1000000;
 
             sm.LoginBaseUrl = "http://192.168.2.83:81/Login/Api/Fishluv.aspx?uid=";
-            sm.StartRun("192.168.2.84", 4601, 1);
+            sm.StartRun("192.168.2.84", 4601, 10);
 
             var starTime = DateTime.Now;
             int i = 0;

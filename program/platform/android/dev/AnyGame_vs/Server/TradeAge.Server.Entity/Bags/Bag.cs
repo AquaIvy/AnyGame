@@ -1,6 +1,6 @@
 ﻿using DogSE.Common;
 
-namespace TradeAge.Server.Entity.Bags
+namespace AnyGame.Server.Entity.Bags
 {
     /// <summary>
     /// 

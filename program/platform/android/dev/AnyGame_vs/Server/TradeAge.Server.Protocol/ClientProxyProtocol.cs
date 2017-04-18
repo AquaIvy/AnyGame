@@ -19,16 +19,16 @@ namespace DogSE.Server.Core.Protocol.AutoCode
         /// </summary>
         public static void Register()
         {
-TradeAge.Server.Interface.Client.ClientProxy.Login = new ILoginProxy1();
-TradeAge.Server.Interface.Client.ClientProxy.Game = new IGameProxy1();
-TradeAge.Server.Interface.Client.ClientProxy.Bag = new IBagProxy1();
+AnyGame.Server.Interface.Client.ClientProxy.Login = new ILoginProxy1();
+AnyGame.Server.Interface.Client.ClientProxy.Game = new IGameProxy1();
+AnyGame.Server.Interface.Client.ClientProxy.Bag = new IBagProxy1();
 
         }
     }
 
-    class IBagProxy1:TradeAge.Server.Interface.Client.IBag
+    class IBagProxy1:AnyGame.Server.Interface.Client.IBag
     {
-        public void UseItemResult(NetState netstate,TradeAge.Server.Entity.Bags.UseItemResult result,int itemId,int lessCount)
+        public void UseItemResult(NetState netstate,AnyGame.Server.Entity.Bags.UseItemResult result,int itemId,int lessCount)
 {
 var pw = PacketWriter.AcquireContent(1201);
             PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1201 );
@@ -61,7 +61,7 @@ PacketWriter.ReleaseContent(pw);
     }
 
 
-    class IGameProxy1:TradeAge.Server.Interface.Client.IGame
+    class IGameProxy1:AnyGame.Server.Interface.Client.IGame
     {
         public void SyncServerTime(NetState netstate,DateTime serverTime,int id)
 {
@@ -82,9 +82,9 @@ PacketWriter.ReleaseContent(pw);
     }
 
 
-    class ILoginProxy1:TradeAge.Server.Interface.Client.ILogin
+    class ILoginProxy1:AnyGame.Server.Interface.Client.ILogin
     {
-        public void LoginServerResult(NetState netstate,TradeAge.Server.Entity.Login.LoginServerResult result,bool isCreatePlayer)
+        public void LoginServerResult(NetState netstate,AnyGame.Server.Entity.Login.LoginServerResult result,bool isCreatePlayer)
 {
 var pw = PacketWriter.AcquireContent(1001);
             PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1001 );
@@ -97,7 +97,7 @@ netstate.Send(pw);
 PacketWriter.ReleaseContent(pw);
 }
 
-public void CreatePlayerResult(NetState netstate,TradeAge.Server.Entity.Login.CraetePlayerResult result)
+public void CreatePlayerResult(NetState netstate,AnyGame.Server.Entity.Login.CraetePlayerResult result)
 {
 var pw = PacketWriter.AcquireContent(1003);
             PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1003 );

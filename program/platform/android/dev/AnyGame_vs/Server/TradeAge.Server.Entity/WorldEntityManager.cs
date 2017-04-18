@@ -2,10 +2,10 @@
 using System.Linq;
 using DogSE.Library.Log;
 using DogSE.Server.Core.Entity;
-using TradeAge.Server.Entity.Character;
-using TradeAge.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 
-namespace TradeAge.Server.Entity
+namespace AnyGame.Server.Entity
 {
     /// <summary>
     /// 整个游戏世界的数据管理类，

@@ -1,10 +1,10 @@
 ﻿using DogSE.Server.Core.LogicModule;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using TradeAge.Server.Entity.Bags;
-using TradeAge.Server.Entity.NetCode;
+using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.NetCode;
 
-namespace TradeAge.Server.Interface.Client
+namespace AnyGame.Server.Interface.Client
 {
     /// <summary>
     /// 使用背包物品结果

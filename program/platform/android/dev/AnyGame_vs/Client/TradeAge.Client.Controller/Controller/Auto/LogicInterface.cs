@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace TradeAge.Client.Controller
+namespace AnyGame.Client.Controller
 {
 
 
@@ -15,7 +15,7 @@ namespace TradeAge.Client.Controller
     
     public abstract class BaseBagController
     {
-internal abstract void OnUseItemResult(TradeAge.Client.Entity.Bags.UseItemResult result,int itemId,int lessCount);
+internal abstract void OnUseItemResult(AnyGame.Client.Entity.Bags.UseItemResult result,int itemId,int lessCount);
 internal abstract void OnSyncBag(int MaxCount,int CurCount);
         
     }
@@ -38,8 +38,8 @@ internal abstract void OnSyncServerTime(DateTime serverTime,int id);
     
     public abstract class BaseLoginController
     {
-internal abstract void OnLoginServerResult(TradeAge.Client.Entity.Login.LoginServerResult result,bool isCreatePlayer);
-internal abstract void OnCreatePlayerResult(TradeAge.Client.Entity.Login.CraetePlayerResult result);
+internal abstract void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result,bool isCreatePlayer);
+internal abstract void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result);
 internal abstract void OnSyncInitDataFinish();
         
     }

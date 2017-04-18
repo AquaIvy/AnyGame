@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Client.Core.Net;
 
-namespace TradeAge.Client.Controller.Login
+namespace AnyGame.Client.Controller.Login
 {
 
 
@@ -36,7 +36,7 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 /// <param name="playerName"></param>
 /// <param name="sex"></param>
 
-public void CreatePlayer(string playerName,TradeAge.Client.Entity.Character.Sex sex)
+public void CreatePlayer(string playerName,AnyGame.Client.Entity.Character.Sex sex)
 {
 var pw = PacketWriter.AcquireContent(1003);
 pw.WriteUTF8Null(playerName);

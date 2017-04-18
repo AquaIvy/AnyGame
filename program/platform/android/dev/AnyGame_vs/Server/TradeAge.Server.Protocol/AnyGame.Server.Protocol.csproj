@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE1BDE36-B98A-42FF-BF63-611C73186645}</ProjectGuid>
+    <ProjectGuid>{6780B91B-AF66-4874-810A-0AD67DF40841}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TradeAge.Server.Database</RootNamespace>
-    <AssemblyName>TradeAge.Server.Database</AssemblyName>
+    <RootNamespace>AnyGame.Server.Protocol</RootNamespace>
+    <AssemblyName>AnyGame.Server.Protocol</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,24 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IvyOrm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d545510b318c2037, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ServerEngine\Lib\IvyOrm.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ServerEngine\Lib\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountService.cs" />
-    <Compile Include="DBConfig.cs" />
-    <Compile Include="DB.cs" />
-    <Compile Include="MongoDBConfig.cs" />
+    <Compile Include="ClientProxyProtocol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerLogicProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.csproj">
@@ -59,17 +47,13 @@
       <Project>{cf95170e-0dc6-46b1-b7d3-8d16dd94106f}</Project>
       <Name>DogSE.Server.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Database.MongoDB\DogSE.Server.Database.MongoDB.csproj">
-      <Project>{5fb84966-cebd-4dbe-82b9-df00e2cff279}</Project>
-      <Name>DogSE.Server.Database.MongoDB</Name>
+    <ProjectReference Include="..\TradeAge.Server.Interface\AnyGame.Server.Interface.csproj">
+      <Project>{71dc0ea6-94e6-4348-a86f-636ccd449b3b}</Project>
+      <Name>AnyGame.Server.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Database\DogSE.Server.Database.csproj">
-      <Project>{85faf347-7046-408a-9cd8-b5f5eed84301}</Project>
-      <Name>DogSE.Server.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Entity\TradeAge.Server.Entity.csproj">
+    <ProjectReference Include="..\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
       <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
-      <Name>TradeAge.Server.Entity</Name>
+      <Name>AnyGame.Server.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

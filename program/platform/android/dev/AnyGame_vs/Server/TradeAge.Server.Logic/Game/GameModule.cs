@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using DogSE.Library.Time;
 using DogSE.Server.Core.Net;
-using TradeAge.Server.Entity.Character;
-using TradeAge.Server.Interface.Client;
-using IGame = TradeAge.Server.Interface.Server.IGame;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Interface.Client;
+using IGame = AnyGame.Server.Interface.Server.IGame;
 
-namespace TradeAge.Server.Logic.Game
+namespace AnyGame.Server.Logic.Game
 {
     /// <summary>
     /// 游戏的一个主体模块

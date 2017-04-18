@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TradeAge.Server.Entity.Common
+namespace AnyGame.Server.Entity.Common
 {
     /// <summary>
     /// 游戏世界的唯一序列生成器

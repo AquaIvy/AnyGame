@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TradeAge.Server.Entity.Character;
+using AnyGame.Server.Entity.Character;
 
-namespace TradeAge.Server.Entity.GameEvent
+namespace AnyGame.Server.Entity.GameEvent
 {
     /// <summary>
     /// 玩家事件

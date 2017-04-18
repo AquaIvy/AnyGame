@@ -41,23 +41,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogSE.Tools.CodeGeneration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Template", "Server\AnyGame.Server.Template\AnyGame.Server.Template.csproj", "{742391AB-470E-4548-A5AD-F1533BBC7827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Database", "Server\TradeAge.Server.Database\TradeAge.Server.Database.csproj", "{BE1BDE36-B98A-42FF-BF63-611C73186645}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Database", "Server\TradeAge.Server.Database\AnyGame.Server.Database.csproj", "{BE1BDE36-B98A-42FF-BF63-611C73186645}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Entity", "Server\TradeAge.Server.Entity\TradeAge.Server.Entity.csproj", "{7E2F65E0-1C97-40C9-BDF8-12008BEDE0CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Entity", "Server\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj", "{7E2F65E0-1C97-40C9-BDF8-12008BEDE0CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Interface", "Server\TradeAge.Server.Interface\TradeAge.Server.Interface.csproj", "{71DC0EA6-94E6-4348-A86F-636CCD449B3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Interface", "Server\TradeAge.Server.Interface\AnyGame.Server.Interface.csproj", "{71DC0EA6-94E6-4348-A86F-636CCD449B3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Logic", "Server\TradeAge.Server.Logic\TradeAge.Server.Logic.csproj", "{C45D9121-12A2-44B4-8274-C5FC5098A780}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Logic", "Server\TradeAge.Server.Logic\AnyGame.Server.Logic.csproj", "{C45D9121-12A2-44B4-8274-C5FC5098A780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Protocol", "Server\TradeAge.Server.Protocol\TradeAge.Server.Protocol.csproj", "{6780B91B-AF66-4874-810A-0AD67DF40841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Protocol", "Server\TradeAge.Server.Protocol\AnyGame.Server.Protocol.csproj", "{6780B91B-AF66-4874-810A-0AD67DF40841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Server.Game", "Server\TradeAge.Server.Game\TradeAge.Server.Game.csproj", "{1CEBAA71-7742-4AA6-857E-81BFC81EAF84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Game", "Server\TradeAge.Server.Game\AnyGame.Server.Game.csproj", "{1CEBAA71-7742-4AA6-857E-81BFC81EAF84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Client.Template", "Client\AnyGame.Client.Template\AnyGame.Client.Template.csproj", "{BE47F005-469C-4EC4-A22E-11CDB8D283C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Client.Controller", "Client\TradeAge.Client.Controller\TradeAge.Client.Controller.csproj", "{69DAC743-A6B6-46F7-9C07-1D80F86EB13C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Client.Controller", "Client\TradeAge.Client.Controller\AnyGame.Client.Controller.csproj", "{69DAC743-A6B6-46F7-9C07-1D80F86EB13C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeAge.Client.Entity", "Client\TradeAge.Client.Entity\TradeAge.Client.Entity.csproj", "{82F1AFF6-2C00-43EF-B923-BC39311C71A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Client.Entity", "Client\TradeAge.Client.Entity\AnyGame.Client.Entity.csproj", "{82F1AFF6-2C00-43EF-B923-BC39311C71A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginWeb", "GMTools\LoginWeb\LoginWeb.csproj", "{591AF5D6-C0F3-4E1C-971B-27D239BED60F}"
 EndProject

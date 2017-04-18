@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TradeAge.Server.Interface.Client
+namespace AnyGame.Server.Interface.Client
 {
     /// <summary>
     /// 客户端接口代理

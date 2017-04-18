@@ -2,8 +2,8 @@
 using AnyGame.View.Forms.Login;
 using AnyGame.View.Forms.Shop;
 using DogSE.Library.Log;
-using TradeAge.Client.Controller.Login;
-using TradeAge.Client.Entity.Login;
+using AnyGame.Client.Controller.Login;
+using AnyGame.Client.Entity.Login;
 
 namespace AnyGame
 {

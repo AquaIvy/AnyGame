@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71DC0EA6-94E6-4348-A86F-636CCD449B3B}</ProjectGuid>
+    <ProjectGuid>{69DAC743-A6B6-46F7-9C07-1D80F86EB13C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TradeAge.Server.Interface</RootNamespace>
-    <AssemblyName>TradeAge.Server.Interface</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>AnyGame.Client</RootNamespace>
+    <AssemblyName>AnyGame.Client.Controller</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,41 +29,41 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\ClientProxy.cs" />
-    <Compile Include="Client\IBag.cs" />
-    <Compile Include="Client\IGame.cs" />
-    <Compile Include="Client\ILogin.cs" />
+    <Compile Include="Controller\Auto\LogicInterface.cs" />
+    <Compile Include="Controller\Bag\BagController.Logic.cs" />
+    <Compile Include="Controller\Bag\BagController.Net.cs" />
+    <Compile Include="Controller\Bag\BagController.Proxy.cs" />
+    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\Game\GameController.Logic.cs" />
+    <Compile Include="Controller\Game\GameController.Net.cs" />
+    <Compile Include="Controller\Game\GameController.Proxy.cs" />
+    <Compile Include="Controller\Login\LoginController.Logic.cs" />
+    <Compile Include="Controller\Login\LoginController.Net.cs" />
+    <Compile Include="Controller\Login\LoginController.Proxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\IBag.cs" />
-    <Compile Include="Server\IGame.cs" />
-    <Compile Include="Server\ILogin.cs" />
-    <Compile Include="Server\IShop.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.csproj">
-      <Project>{797943e1-dd93-4363-be95-8a1758d5bae1}</Project>
-      <Name>DogSE.Library</Name>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Client.Core\DogSE.Client.Core.csproj">
+      <Project>{c9bbbe58-672b-4fec-b66e-b020966186d0}</Project>
+      <Name>DogSE.Client.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Core\DogSE.Server.Core.csproj">
-      <Project>{cf95170e-0dc6-46b1-b7d3-8d16dd94106f}</Project>
-      <Name>DogSE.Server.Core</Name>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.net35.csproj">
+      <Project>{e7fe81a8-ce39-46c1-8eb2-c1f5d0ad130a}</Project>
+      <Name>DogSE.Library.net35</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Entity\TradeAge.Server.Entity.csproj">
-      <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
-      <Name>TradeAge.Server.Entity</Name>
+    <ProjectReference Include="..\TradeAge.Client.Entity\AnyGame.Client.Entity.csproj">
+      <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
+      <Name>AnyGame.Client.Entity</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Client\Readme%28 s2c %29.txt" />
-    <Content Include="Server\Readme%28 c2s %29.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

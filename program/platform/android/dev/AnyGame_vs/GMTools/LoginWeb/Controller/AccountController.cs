@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using LoginWeb.Utils;
 using System.Text;
-using TradeAge.Server.Entity.Common;
-using TradeAge.Server.Entity.Character;
+using AnyGame.Server.Entity.Common;
+using AnyGame.Server.Entity.Character;
 
 namespace LoginWeb.Controller
 {

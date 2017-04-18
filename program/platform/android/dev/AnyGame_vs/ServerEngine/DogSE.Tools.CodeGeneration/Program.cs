@@ -21,25 +21,25 @@ namespace DogSE.Tools.CodeGeneration
 
         static void CreateServerCode()
         {
-            ServerLogicProtocolGeneration.CreateCode(@"..\..\..\..\Server\TradeAge.Server.Interface\bin\Debug\TradeAge.Server.Interface.dll",
-                        @"..\..\..\..\Server\TradeAge.Server.Protocol\ServerLogicProtocol.cs");
+            ServerLogicProtocolGeneration.CreateCode(@"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                        @"..\..\..\..\Server\AnyGame.Server.Protocol\ServerLogicProtocol.cs");
 
-            ClientProxyProtocolGeneration.CreateCode(@"..\..\..\..\Server\TradeAge.Server.Interface\bin\Debug\TradeAge.Server.Interface.dll",
-                        @"..\..\..\..\Server\TradeAge.Server.Protocol\ClientProxyProtocol.cs");
+            ClientProxyProtocolGeneration.CreateCode(@"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                        @"..\..\..\..\Server\AnyGame.Server.Protocol\ClientProxyProtocol.cs");
         }
 
         static void CreateClientCode()
         {
             ClientLogicProtocolGeneration.CreateCode(
-                @"..\..\..\..\Server\TradeAge.Server.Interface\bin\Debug\TradeAge.Server.Interface.dll",
-                @"..\..\..\..\Client\TradeAge.Client.Controller\",
-                "TradeAge.Client");
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Client\AnyGame.Client.Controller\",
+                "AnyGame.Client");
 
 
             ServerProxyProtocolGeneration.CreateCode(
-                @"..\..\..\..\Server\TradeAge.Server.Interface\bin\Debug\TradeAge.Server.Interface.dll",
-                @"..\..\..\..\Client\TradeAge.Client.Controller\",
-                "TradeAge.Client");
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Client\AnyGame.Client.Controller\",
+                "AnyGame.Client");
         }
     }
 }

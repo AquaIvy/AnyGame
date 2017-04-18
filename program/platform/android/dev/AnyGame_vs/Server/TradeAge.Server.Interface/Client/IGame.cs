@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using TradeAge.Server.Entity.NetCode;
+using AnyGame.Server.Entity.NetCode;
 
-namespace TradeAge.Server.Interface.Client
+namespace AnyGame.Server.Interface.Client
 {
     /// <summary>
     /// 和游戏主体相关的一些方法

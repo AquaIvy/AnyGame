@@ -117,9 +117,9 @@ public class Loader : MonoBehaviour
         var assemblyNames = new string[] {
             "DogSE.Library.net35.dll",
             "DogSE.Client.Core.dll",
-            "TradeAge.Client.Entity.dll",
+            "AnyGame.Client.Entity.dll",
             "AnyGame.Client.Template.dll",
-            "TradeAge.Client.Controller.dll",
+            "AnyGame.Client.Controller.dll",
             "AnyGame.dll",
         };
 

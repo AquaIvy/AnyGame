@@ -1,4 +1,4 @@
-﻿namespace TradeAge.Server.Entity.NetCode
+﻿namespace AnyGame.Server.Entity.NetCode
 {
     /// <summary>
     /// 游戏的消息码

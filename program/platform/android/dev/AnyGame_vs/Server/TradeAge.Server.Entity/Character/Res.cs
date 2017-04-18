@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 玩家的资源

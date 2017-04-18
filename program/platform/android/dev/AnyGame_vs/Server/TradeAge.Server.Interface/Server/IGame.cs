@@ -5,9 +5,9 @@ using System.Text;
 using DogSE.Server.Core.LogicModule;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using TradeAge.Server.Entity.NetCode;
+using AnyGame.Server.Entity.NetCode;
 
-namespace TradeAge.Server.Interface.Server
+namespace AnyGame.Server.Interface.Server
 {
     /// <summary>
     /// 和游戏主体有关的一些接口

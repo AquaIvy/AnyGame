@@ -5,7 +5,7 @@ using System.Text;
 using DogSE.Library.Log;
 using DogSE.Library.Time;
 
-namespace TradeAge.Client.Controller.Game
+namespace AnyGame.Client.Controller.Game
 {
     /// <summary>
     /// 游戏主要的控制器

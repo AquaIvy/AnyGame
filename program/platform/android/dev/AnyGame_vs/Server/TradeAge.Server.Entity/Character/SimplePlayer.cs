@@ -5,11 +5,11 @@ using System.Text;
 using DogSE.Common;
 
 #if Server 
-using TradeAge.Server.Entity.Common;
-namespace TradeAge.Server.Entity.Character
+using AnyGame.Server.Entity.Common;
+namespace AnyGame.Server.Entity.Character
 #else
-using TradeAge.Client.Entity.Common;
-namespace TradeAge.Client.Entity.Character
+using AnyGame.Client.Entity.Common;
+namespace AnyGame.Client.Entity.Character
 #endif
 {
     /// <summary>

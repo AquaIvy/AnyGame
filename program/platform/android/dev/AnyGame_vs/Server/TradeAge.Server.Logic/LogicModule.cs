@@ -5,7 +5,7 @@ using System.Text;
 using DogSE.Server.Core.LogicModule;
 using DogSE.Server.Core.Util;
 
-namespace TradeAge.Server.Logic
+namespace AnyGame.Server.Logic
 {
     public class LogicModule
     {

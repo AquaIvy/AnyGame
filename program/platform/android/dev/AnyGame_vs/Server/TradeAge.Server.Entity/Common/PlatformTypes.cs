@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 
 #if Server
-namespace TradeAge.Server.Entity.Common
+namespace AnyGame.Server.Entity.Common
 #else
-namespace TradeAge.Client.Entity.Common
+namespace AnyGame.Client.Entity.Common
 #endif
 {
     /// <summary>

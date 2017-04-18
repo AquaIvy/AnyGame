@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 #if Server 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 #else
-namespace TradeAge.Client.Entity.Character
+namespace AnyGame.Client.Entity.Character
 #endif
 {
     /// <summary>

@@ -7,8 +7,8 @@
     <ProjectGuid>{82F1AFF6-2C00-43EF-B923-BC39311C71A1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TradeAge.Client.Entity</RootNamespace>
-    <AssemblyName>TradeAge.Client.Entity</AssemblyName>
+    <RootNamespace>AnyGame.Client.Entity</RootNamespace>
+    <AssemblyName>AnyGame.Client.Entity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

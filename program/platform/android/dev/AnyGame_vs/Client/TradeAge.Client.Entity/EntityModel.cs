@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TradeAge.Client.Entity.Character;
-using TradeAge.Server.Entity.Bags;
+using AnyGame.Client.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 
-namespace TradeAge.Client.Entity
+namespace AnyGame.Client.Entity
 {
     /// <summary>
     /// 和玩家自身相关的模型数据

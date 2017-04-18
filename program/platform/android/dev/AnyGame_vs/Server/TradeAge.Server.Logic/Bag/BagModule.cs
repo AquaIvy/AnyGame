@@ -5,15 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TradeAge.Server.Database;
-using TradeAge.Server.Entity;
-using TradeAge.Server.Entity.Bags;
-using TradeAge.Server.Entity.Character;
-using TradeAge.Server.Entity.GameEvent;
-using TradeAge.Server.Interface.Client;
-using IBag = TradeAge.Server.Interface.Server.IBag;
+using AnyGame.Server.Database;
+using AnyGame.Server.Entity;
+using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.GameEvent;
+using AnyGame.Server.Interface.Client;
+using IBag = AnyGame.Server.Interface.Server.IBag;
 
-namespace TradeAge.Server.Logic.Bags
+namespace AnyGame.Server.Logic.Bags
 {
     /// <summary>
     /// 

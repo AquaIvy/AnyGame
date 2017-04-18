@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
-using TradeAge.Client.Entity.Login;
+using AnyGame.Client.Entity.Login;
 
-namespace TradeAge.Client.Controller.Login
+namespace AnyGame.Client.Controller.Login
 {
     /// <summary>
     /// 登陆控制器

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Library.Component;
 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 {
     public partial class Player : IComponentManager
     {

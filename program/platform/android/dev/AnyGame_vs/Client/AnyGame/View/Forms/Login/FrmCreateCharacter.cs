@@ -2,8 +2,8 @@
 using AnyGame.View.Components;
 using DogSE.Library.Log;
 using System;
-using TradeAge.Client.Entity.Character;
-using TradeAge.Client.Entity.Login;
+using AnyGame.Client.Entity.Character;
+using AnyGame.Client.Entity.Login;
 using UnityEngine;
 
 namespace AnyGame.View.Forms.Login

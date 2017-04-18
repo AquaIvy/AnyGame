@@ -8,7 +8,7 @@ using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 
-namespace TradeAge.Client.Controller.Game
+namespace AnyGame.Client.Controller.Game
 {
 
 

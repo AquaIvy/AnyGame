@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-using TradeAge.Server.Database.Account;
+using AnyGame.Server.Database.Account;
 
 namespace LoginWeb.Controller
 {

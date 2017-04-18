@@ -2,10 +2,10 @@
 using DogSE.Server.Core.Net;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-using TradeAge.Server.Entity.Bags;
-using TradeAge.Server.Entity.Common;
+using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Common;
 
-namespace TradeAge.Server.Entity.Character
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 玩家角色（存储数据）

@@ -5,8 +5,8 @@ using LoginWeb.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TradeAge.Server.Entity.Character;
-using TradeAge.Server.Entity.Common;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Common;
 
 namespace LoginWeb.Api
 {

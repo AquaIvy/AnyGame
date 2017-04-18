@@ -1,9 +1,9 @@
 ﻿using DogSE.Client.Core;
-using TradeAge.Client.Controller.Bag;
-using TradeAge.Client.Controller.Login;
-using TradeAge.Client.Entity;
+using AnyGame.Client.Controller.Bag;
+using AnyGame.Client.Controller.Login;
+using AnyGame.Client.Entity;
 
-namespace TradeAge.Client.Controller
+namespace AnyGame.Client.Controller
 {
     /// <summary>
     /// 游戏控制器

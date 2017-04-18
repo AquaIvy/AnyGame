@@ -25,36 +25,36 @@ namespace DogSE.Server.Core.Protocol.AutoCode
         {
             foreach (var m in modules)
             {
-                if (m is TradeAge.Server.Interface.Server.IBag)
+                if (m is AnyGame.Server.Interface.Server.IBag)
                 {
                     IProtoclAutoCode pac = new IBagAccess1();
                     list.Add(pac);
 
-                    pac.SetModule(m as TradeAge.Server.Interface.Server.IBag);
+                    pac.SetModule(m as AnyGame.Server.Interface.Server.IBag);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }                if (m is TradeAge.Server.Interface.Server.IGame)
+                }                if (m is AnyGame.Server.Interface.Server.IGame)
                 {
                     IProtoclAutoCode pac = new IGameAccess2();
                     list.Add(pac);
 
-                    pac.SetModule(m as TradeAge.Server.Interface.Server.IGame);
+                    pac.SetModule(m as AnyGame.Server.Interface.Server.IGame);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }                if (m is TradeAge.Server.Interface.Server.ILogin)
+                }                if (m is AnyGame.Server.Interface.Server.ILogin)
                 {
                     IProtoclAutoCode pac = new ILoginAccess3();
                     list.Add(pac);
 
-                    pac.SetModule(m as TradeAge.Server.Interface.Server.ILogin);
+                    pac.SetModule(m as AnyGame.Server.Interface.Server.ILogin);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }                if (m is TradeAge.Server.Interface.Server.IShop)
+                }                if (m is AnyGame.Server.Interface.Server.IShop)
                 {
                     IProtoclAutoCode pac = new IShopAccess4();
                     list.Add(pac);
 
-                    pac.SetModule(m as TradeAge.Server.Interface.Server.IShop);
+                    pac.SetModule(m as AnyGame.Server.Interface.Server.IShop);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
                 }
@@ -68,16 +68,16 @@ namespace DogSE.Server.Core.Protocol.AutoCode
     {
         public PacketHandlersBase PacketHandlerManager {get;set;}
 
-        TradeAge.Server.Interface.Server.IBag module;
+        AnyGame.Server.Interface.Server.IBag module;
 
         public void SetModule(ILogicModule m)
         {
             if (m == null)
                 throw new ArgumentNullException("ILogicModule");
-            module = (TradeAge.Server.Interface.Server.IBag)m;
+            module = (AnyGame.Server.Interface.Server.IBag)m;
             if (module == null)
             {
-                throw new NullReferenceException(string.Format("{0} not TradeAge.Server.Interface.Server.IBag", m.GetType().FullName));
+                throw new NullReferenceException(string.Format("{0} not AnyGame.Server.Interface.Server.IBag", m.GetType().FullName));
             }
         }
 
@@ -104,16 +104,16 @@ module.OnUseItem(netstate,p1,p2);
     {
         public PacketHandlersBase PacketHandlerManager {get;set;}
 
-        TradeAge.Server.Interface.Server.IGame module;
+        AnyGame.Server.Interface.Server.IGame module;
 
         public void SetModule(ILogicModule m)
         {
             if (m == null)
                 throw new ArgumentNullException("ILogicModule");
-            module = (TradeAge.Server.Interface.Server.IGame)m;
+            module = (AnyGame.Server.Interface.Server.IGame)m;
             if (module == null)
             {
-                throw new NullReferenceException(string.Format("{0} not TradeAge.Server.Interface.Server.IGame", m.GetType().FullName));
+                throw new NullReferenceException(string.Format("{0} not AnyGame.Server.Interface.Server.IGame", m.GetType().FullName));
             }
         }
 
@@ -139,16 +139,16 @@ module.Heartbeat(netstate,p1);
     {
         public PacketHandlersBase PacketHandlerManager {get;set;}
 
-        TradeAge.Server.Interface.Server.ILogin module;
+        AnyGame.Server.Interface.Server.ILogin module;
 
         public void SetModule(ILogicModule m)
         {
             if (m == null)
                 throw new ArgumentNullException("ILogicModule");
-            module = (TradeAge.Server.Interface.Server.ILogin)m;
+            module = (AnyGame.Server.Interface.Server.ILogin)m;
             if (module == null)
             {
-                throw new NullReferenceException(string.Format("{0} not TradeAge.Server.Interface.Server.ILogin", m.GetType().FullName));
+                throw new NullReferenceException(string.Format("{0} not AnyGame.Server.Interface.Server.ILogin", m.GetType().FullName));
             }
         }
 
@@ -169,7 +169,7 @@ module.OnLoginServer(netstate,p1,p2,p3);
 void OnCreatePlayer(NetState netstate, PacketReader reader){
 if (!netstate.IsVerifyLogin) return;
 var p1 = reader.ReadUTF8String();
-var p2 = (TradeAge.Server.Entity.Character.Sex)reader.ReadByte();
+var p2 = (AnyGame.Server.Entity.Character.Sex)reader.ReadByte();
 module.OnCreatePlayer(netstate,p1,p2);
 }
 
@@ -182,16 +182,16 @@ module.OnCreatePlayer(netstate,p1,p2);
     {
         public PacketHandlersBase PacketHandlerManager {get;set;}
 
-        TradeAge.Server.Interface.Server.IShop module;
+        AnyGame.Server.Interface.Server.IShop module;
 
         public void SetModule(ILogicModule m)
         {
             if (m == null)
                 throw new ArgumentNullException("ILogicModule");
-            module = (TradeAge.Server.Interface.Server.IShop)m;
+            module = (AnyGame.Server.Interface.Server.IShop)m;
             if (module == null)
             {
-                throw new NullReferenceException(string.Format("{0} not TradeAge.Server.Interface.Server.IShop", m.GetType().FullName));
+                throw new NullReferenceException(string.Format("{0} not AnyGame.Server.Interface.Server.IShop", m.GetType().FullName));
             }
         }
 

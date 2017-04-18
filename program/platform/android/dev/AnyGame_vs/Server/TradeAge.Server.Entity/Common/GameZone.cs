@@ -4,7 +4,7 @@ using IvyOrm;
 using System;
 using System.Collections.Generic;
 
-namespace TradeAge.Server.Entity.Common
+namespace AnyGame.Server.Entity.Common
 {
     /// <summary>
     /// 游戏分区

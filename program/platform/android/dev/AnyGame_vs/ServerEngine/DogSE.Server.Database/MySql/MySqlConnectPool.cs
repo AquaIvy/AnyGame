@@ -91,7 +91,7 @@ namespace DogSE.Server.Database.MySQL
             return con;
         }
 
-        string m_connectStr = "server=localhost;User Id=root;Persist Security Info=True;database=tradeage";
+        string m_connectStr = "server=localhost;User Id=root;Persist Security Info=True;database=anygame";
 
         /// <summary>
         /// 数据库的连接字符串

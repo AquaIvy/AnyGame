@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TradeAge.Server.Database
+namespace AnyGame.Server.Database
 {
     /// <summary>
     /// MongoDB的客户端配置文件

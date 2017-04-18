@@ -4,7 +4,7 @@ using IvyOrm;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace TradeAge.Server.Database.Account
+namespace AnyGame.Server.Database.Account
 {
     /// <summary>
     /// 账号相关的Service

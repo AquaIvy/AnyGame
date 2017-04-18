@@ -67,13 +67,13 @@
       <Project>{be47f005-469c-4ec4-a22e-11cdb8d283c1}</Project>
       <Name>AnyGame.Client.Template</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Client.Controller\TradeAge.Client.Controller.csproj">
+    <ProjectReference Include="..\TradeAge.Client.Controller\AnyGame.Client.Controller.csproj">
       <Project>{69dac743-a6b6-46f7-9c07-1d80f86eb13c}</Project>
-      <Name>TradeAge.Client.Controller</Name>
+      <Name>AnyGame.Client.Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Client.Entity\TradeAge.Client.Entity.csproj">
+    <ProjectReference Include="..\TradeAge.Client.Entity\AnyGame.Client.Entity.csproj">
       <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
-      <Name>TradeAge.Client.Entity</Name>
+      <Name>AnyGame.Client.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

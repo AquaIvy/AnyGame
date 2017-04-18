@@ -151,13 +151,13 @@
       <Project>{be47f005-469c-4ec4-a22e-11cdb8d283c1}</Project>
       <Name>AnyGame.Client.Template</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Client.Controller\TradeAge.Client.Controller.csproj">
+    <ProjectReference Include="..\TradeAge.Client.Controller\AnyGame.Client.Controller.csproj">
       <Project>{69dac743-a6b6-46f7-9c07-1d80f86eb13c}</Project>
-      <Name>TradeAge.Client.Controller</Name>
+      <Name>AnyGame.Client.Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Client.Entity\TradeAge.Client.Entity.csproj">
+    <ProjectReference Include="..\TradeAge.Client.Entity\AnyGame.Client.Entity.csproj">
       <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
-      <Name>TradeAge.Client.Entity</Name>
+      <Name>AnyGame.Client.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +179,11 @@ xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.pdb $(ProjectDir)..\..\..\A
 xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Entity.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Entity.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Controller.dll $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Controller.pdb $(ProjectDir)..\..\..\AnyGame\Assets\vslib\
 
 
 
@@ -192,8 +192,8 @@ xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.dll $(ProjectDir)..\..\..\Res_Android
 xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Library.net35.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
 xcopy /r /y $(ProjectDir)bin\Debug\DogSE.Client.Core.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
 xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Template.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Entity.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
-xcopy /r /y $(ProjectDir)bin\Debug\TradeAge.Client.Controller.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\</PostBuildEvent>
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Entity.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\
+xcopy /r /y $(ProjectDir)bin\Debug\AnyGame.Client.Controller.dll $(ProjectDir)..\..\..\Res_Android\res\assembly\</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

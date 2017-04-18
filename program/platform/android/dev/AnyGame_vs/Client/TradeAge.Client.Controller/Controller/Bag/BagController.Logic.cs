@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TradeAge.Client.Entity.Bags;
+using AnyGame.Client.Entity.Bags;
 
-namespace TradeAge.Client.Controller.Bag
+namespace AnyGame.Client.Controller.Bag
 {
     /// <summary>
     /// 

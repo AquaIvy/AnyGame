@@ -642,8 +642,8 @@ namespace DogSE.Tools.CodeGeneration.Server
 
         void test()
         {
-            CreateCode(@"E:\Project\DogSE\TradeAge\TradeAge.Server.Interface\bin\Debug\TradeAge.Server.Interface.dll",
-                       @"E:\Project\DogSE\TradeAge\Server\TradeAge.Server.Protocol\ClientProxyProtocol.cs");
+            CreateCode(@"E:\Project\DogSE\AnyGame\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                       @"E:\Project\DogSE\AnyGame\Server\AnyGame.Server.Protocol\ClientProxyProtocol.cs");
         }
 
         const string FileCodeBase = @"

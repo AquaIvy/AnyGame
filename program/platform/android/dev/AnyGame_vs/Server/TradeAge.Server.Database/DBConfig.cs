@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DogSE.Server.Core.Config;
 
-namespace TradeAge.Server.Database
+namespace AnyGame.Server.Database
 {
     /// <summary>
     /// 数据库配置

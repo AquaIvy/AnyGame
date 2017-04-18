@@ -1,7 +1,7 @@
 ﻿using DogSE.Common;
 using IvyOrm;
 using System.Collections.Generic;
-using TradeAge.Server.Entity.Common;
+using AnyGame.Server.Entity.Common;
 
 namespace LoginWeb.Entity
 {

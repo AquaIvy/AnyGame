@@ -5,12 +5,12 @@ using DogSE.Library.Log;
 using DogSE.Server.Core;
 using DogSE.Server.Core.Config;
 using DogSE.Server.Core.Protocol.AutoCode;
-using TradeAge.Server.Logic;
-using TradeAge.Server.Database;
+using AnyGame.Server.Logic;
+using AnyGame.Server.Database;
 using AnyGame.Server.Template;
 using System.Diagnostics;
 
-namespace TradeAge.Server.Game
+namespace AnyGame.Server.Game
 {
     /// <summary>
     /// 游戏的启动项目，同时也是一个服务器状态的监视窗口
@@ -24,7 +24,7 @@ namespace TradeAge.Server.Game
         static void Main()
         {
             //添加一个文件日志适配器
-            Logs.ConfigLogFile("tradeage.log");
+            Logs.ConfigLogFile("anygame.log");
             //添加一个控制台日志适配器
             Logs.AddAppender(new ConsoleAppender());
 

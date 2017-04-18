@@ -1,9 +1,9 @@
 ﻿using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using TradeAge.Server.Entity.Login;
-using TradeAge.Server.Entity.NetCode;
+using AnyGame.Server.Entity.Login;
+using AnyGame.Server.Entity.NetCode;
 
-namespace TradeAge.Server.Interface.Client
+namespace AnyGame.Server.Interface.Client
 {
     /// <summary>
     /// 客户端的登陆接口

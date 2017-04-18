@@ -1,23 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E2F65E0-1C97-40C9-BDF8-12008BEDE0CA}</ProjectGuid>
+    <ProjectGuid>{BE1BDE36-B98A-42FF-BF63-611C73186645}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TradeAge.Server.Entity</RootNamespace>
-    <AssemblyName>TradeAge.Server.Entity</AssemblyName>
+    <RootNamespace>AnyGame.Server.Database</RootNamespace>
+    <AssemblyName>AnyGame.Server.Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Server;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -25,50 +26,29 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;Server</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IvyOrm">
+    <Reference Include="IvyOrm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d545510b318c2037, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ServerEngine\Lib\IvyOrm.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\..\ServerEngine\Lib\MangoDB\MongoDB.Bson.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\ServerEngine\Lib\MangoDB\MongoDB.Driver.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ServerEngine\Lib\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.XML" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bags\Bag.cs" />
-    <Compile Include="Bags\BagEnum.cs" />
-    <Compile Include="Character\Account.cs" />
-    <Compile Include="Character\Enum.cs" />
-    <Compile Include="Character\PlatformAccount.cs" />
-    <Compile Include="Character\Player.cs" />
-    <Compile Include="Character\Res.cs" />
-    <Compile Include="Character\SimplePlayer.cs" />
-    <Compile Include="Character\GameAccount.cs" />
-    <Compile Include="Common\GameZone.cs" />
-    <Compile Include="Common\PlatformTypes.cs" />
-    <Compile Include="Common\SequenceGenerator.cs" />
-    <Compile Include="Common\WorldSeqGen.cs" />
-    <Compile Include="GameEvent\PlayerEvents.cs" />
-    <Compile Include="Login\LoginEnum.cs" />
-    <Compile Include="NetCode\OpCode.cs" />
-    <Compile Include="NetCode\OpCodeName.cs" />
+    <Compile Include="Account\AccountService.cs" />
+    <Compile Include="DBConfig.cs" />
+    <Compile Include="DB.cs" />
+    <Compile Include="MongoDBConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldEntityManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Character\Player.ComponentManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.csproj">
@@ -79,8 +59,19 @@
       <Project>{cf95170e-0dc6-46b1-b7d3-8d16dd94106f}</Project>
       <Name>DogSE.Server.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Database.MongoDB\DogSE.Server.Database.MongoDB.csproj">
+      <Project>{5fb84966-cebd-4dbe-82b9-df00e2cff279}</Project>
+      <Name>DogSE.Server.Database.MongoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Database\DogSE.Server.Database.csproj">
+      <Project>{85faf347-7046-408a-9cd8-b5f5eed84301}</Project>
+      <Name>DogSE.Server.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
+      <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
+      <Name>AnyGame.Server.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

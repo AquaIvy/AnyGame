@@ -1,9 +1,9 @@
 ﻿#if Server 
-using TradeAge.Server.Entity.Common;
-namespace TradeAge.Server.Entity.Bags
+using AnyGame.Server.Entity.Common;
+namespace AnyGame.Server.Entity.Bags
 #else
-using TradeAge.Client.Entity.Common;
-namespace TradeAge.Client.Entity.Bags
+using AnyGame.Client.Entity.Common;
+namespace AnyGame.Client.Entity.Bags
 #endif
 {
     public enum UseItemResult
