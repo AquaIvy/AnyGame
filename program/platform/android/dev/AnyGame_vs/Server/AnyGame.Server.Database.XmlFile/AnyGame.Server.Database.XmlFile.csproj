@@ -7,8 +7,8 @@
     <ProjectGuid>{F8E37593-01E5-4F07-8C6A-45251662350B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TradeAge.Server.Database.XmlFile</RootNamespace>
-    <AssemblyName>TradeAge.Server.Database.XmlFile</AssemblyName>
+    <RootNamespace>AnyGame.Server.Database.XmlFile</RootNamespace>
+    <AssemblyName>AnyGame.Server.Database.XmlFile</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -43,15 +43,15 @@
     <Compile Include="XmlFileService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DogSE\DogSE.Library\DogSE.Library.csproj">
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Library\DogSE.Library.csproj">
       <Project>{797943e1-dd93-4363-be95-8a1758d5bae1}</Project>
       <Name>DogSE.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DogSE\DogSE.Server.Core\DogSE.Server.Core.csproj">
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Core\DogSE.Server.Core.csproj">
       <Project>{cf95170e-0dc6-46b1-b7d3-8d16dd94106f}</Project>
       <Name>DogSE.Server.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DogSE\DogSE.Server.Database\DogSE.Server.Database.csproj">
+    <ProjectReference Include="..\..\ServerEngine\DogSE.Server.Database\DogSE.Server.Database.csproj">
       <Project>{85faf347-7046-408a-9cd8-b5f5eed84301}</Project>
       <Name>DogSE.Server.Database</Name>
     </ProjectReference>

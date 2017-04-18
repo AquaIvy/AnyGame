@@ -10,7 +10,7 @@ using DogSE.Common;
 using DogSE.Library.Log;
 using DogSE.Server.Database;
 
-namespace TradeAge.Server.Database.XmlFile
+namespace AnyGame.Server.Database.XmlFile
 {
     /// <summary>
     /// Xml文件系统

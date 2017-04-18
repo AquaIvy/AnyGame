@@ -79,11 +79,11 @@
     <Reference Include="AnyGame.Client.Template">
       <HintPath>Assets\vslib\AnyGame.Client.Template.dll</HintPath>
     </Reference>
-    <Reference Include="TradeAge.Client.Entity">
-      <HintPath>Assets\vslib\TradeAge.Client.Entity.dll</HintPath>
+    <Reference Include="AnyGame.Client.Entity">
+      <HintPath>Assets\vslib\AnyGame.Client.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="TradeAge.Client.Controller">
-      <HintPath>Assets\vslib\TradeAge.Client.Controller.dll</HintPath>
+    <Reference Include="AnyGame.Client.Controller">
+      <HintPath>Assets\vslib\AnyGame.Client.Controller.dll</HintPath>
     </Reference>
     <Reference Include="DogSE.Library.net35">
       <HintPath>Assets\vslib\DogSE.Library.net35.dll</HintPath>

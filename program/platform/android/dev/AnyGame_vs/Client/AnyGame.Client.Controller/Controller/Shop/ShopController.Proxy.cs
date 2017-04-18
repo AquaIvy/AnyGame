@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Client.Core.Net;
 
-namespace TradeAge.Client.Controller.Shop
+namespace AnyGame.Client.Controller.Shop
 {
 
 

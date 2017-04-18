@@ -39,22 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Bags\Bag.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Bags\Bag.cs">
       <Link>Bags\Bag.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Bags\BagEnum.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Bags\BagEnum.cs">
       <Link>Bags\BagEnum.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Character\Enum.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Character\Enum.cs">
       <Link>Character\Enum.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Character\SimplePlayer.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Character\SimplePlayer.cs">
       <Link>Character\SimplePlayer.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Common\PlatformTypes.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Common\PlatformTypes.cs">
       <Link>Common\PlatformTypes.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\TradeAge.Server.Entity\Login\LoginEnum.cs">
+    <Compile Include="..\..\Server\AnyGame.Server.Entity\Login\LoginEnum.cs">
       <Link>Login\LoginEnum.cs</Link>
     </Compile>
     <Compile Include="EntityModel.cs" />

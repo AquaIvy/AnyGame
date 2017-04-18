@@ -38,7 +38,7 @@ internal abstract void OnSyncServerTime(DateTime serverTime,int id);
     
     public abstract class BaseLoginController
     {
-internal abstract void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result,bool isCreatePlayer);
+internal abstract void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result,bool isCreatedPlayer);
 internal abstract void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result);
 internal abstract void OnSyncInitDataFinish();
         

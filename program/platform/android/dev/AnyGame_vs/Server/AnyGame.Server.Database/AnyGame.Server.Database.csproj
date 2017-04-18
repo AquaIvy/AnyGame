@@ -67,10 +67,6 @@
       <Project>{85faf347-7046-408a-9cd8-b5f5eed84301}</Project>
       <Name>DogSE.Server.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
-      <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
-      <Name>AnyGame.Server.Entity</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -61,11 +61,11 @@
       <Project>{79e78eef-5810-4a54-abfa-901bffeab249}</Project>
       <Name>DogSE.Server.Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Database\AnyGame.Server.Database.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Database\AnyGame.Server.Database.csproj">
       <Project>{be1bde36-b98a-42ff-bf63-611c73186645}</Project>
       <Name>AnyGame.Server.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Interface\AnyGame.Server.Interface.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Interface\AnyGame.Server.Interface.csproj">
       <Project>{71dc0ea6-94e6-4348-a86f-636ccd449b3b}</Project>
       <Name>AnyGame.Server.Interface</Name>
     </ProjectReference>
@@ -73,7 +73,7 @@
       <Project>{742391ab-470e-4548-a5ad-f1533bbc7827}</Project>
       <Name>AnyGame.Server.Template</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Entity\AnyGame.Server.Entity.csproj">
       <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
       <Name>AnyGame.Server.Entity</Name>
     </ProjectReference>

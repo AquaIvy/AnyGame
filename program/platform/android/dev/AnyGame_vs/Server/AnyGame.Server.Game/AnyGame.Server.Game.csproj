@@ -85,23 +85,23 @@
       <Project>{742391ab-470e-4548-a5ad-f1533bbc7827}</Project>
       <Name>AnyGame.Server.Template</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Database\AnyGame.Server.Database.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Database\AnyGame.Server.Database.csproj">
       <Project>{be1bde36-b98a-42ff-bf63-611c73186645}</Project>
       <Name>AnyGame.Server.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Entity\AnyGame.Server.Entity.csproj">
       <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
       <Name>AnyGame.Server.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Interface\AnyGame.Server.Interface.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Interface\AnyGame.Server.Interface.csproj">
       <Project>{71dc0ea6-94e6-4348-a86f-636ccd449b3b}</Project>
       <Name>AnyGame.Server.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Logic\AnyGame.Server.Logic.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Logic\AnyGame.Server.Logic.csproj">
       <Project>{c45d9121-12a2-44b4-8274-c5fc5098a780}</Project>
       <Name>AnyGame.Server.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TradeAge.Server.Protocol\AnyGame.Server.Protocol.csproj">
+    <ProjectReference Include="..\AnyGame.Server.Protocol\AnyGame.Server.Protocol.csproj">
       <Project>{6780b91b-af66-4874-810a-0ad67df40841}</Project>
       <Name>AnyGame.Server.Protocol</Name>
     </ProjectReference>
