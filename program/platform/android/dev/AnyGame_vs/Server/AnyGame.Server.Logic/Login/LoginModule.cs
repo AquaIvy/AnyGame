@@ -164,7 +164,6 @@ namespace AnyGame.Server.Logic.Login
 
                 //  创建过角色，这里就发送玩家的数据到客户端
                 PlayerEnterGame(player);
-
             }
         }
 
@@ -221,8 +220,6 @@ namespace AnyGame.Server.Logic.Login
 
             //初始化资源
             var res = new Res { Id = player.Id };
-            res.Gold = 99;
-            res.Gem = 101;
             player.Res = res;
             WorldEntityManager.ResCache.AddOrReplace(res);
             DB.GameDB.SyncInsertEntity(res);
@@ -230,7 +227,6 @@ namespace AnyGame.Server.Logic.Login
 
             //初始化背包
             var bag = new Bag { Id = player.Id };
-            bag.MaxCount = bag.CurCount = 56;
             WorldEntityManager.BagCache.AddOrReplace(bag);
             DB.GameDB.SyncInsertEntity(bag);
 

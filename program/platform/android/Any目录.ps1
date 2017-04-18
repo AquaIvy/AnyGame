@@ -10,7 +10,7 @@ Start-Process ..\..\..\public\data\dev -WindowStyle Maximized
 Start-Sleep -m $waittime
 
 #服务器exe
-Start-Process .\dev\AnyGame_vs\Server\TradeAge.Server.Game\bin\Debug -WindowStyle Maximized
+Start-Process .\dev\AnyGame_vs\Server\AnyGame.Server.Game\bin\Debug -WindowStyle Maximized
 Start-Sleep -m $waittime
 
 #原始图片

@@ -54,6 +54,7 @@ namespace AnyGame.Server.Logic.Bags
 
         private void PlayerEvents_EnterGame(Player player)
         {
+            //玩家进入游戏 同步所有数据
             //var bag = WorldEntityManager.BagCache.GetEntity(player.Id);
 
             //if (bag == null)
@@ -75,12 +76,27 @@ namespace AnyGame.Server.Logic.Bags
             //var bag = player.Bag;
 
             //ClientProxy.Bag.SyncBag(player.NetState, bag.MaxCount, bag.CurCount);
+
+            try
+            {
+                var res = player.Res;
+                ClientProxy.Bag.SyncBag(player.NetState, res.Money, res.Ingot, res.Fragments, res.Statue, res.Strength, res.Detonator, res.MiningToolkit,
+                    res.Ores.ToArray(), res.Foods.ToArray(), res.Badges.ToArray(), res.UnlockResIds.ToArray());
+
+                var bag = player.Bag;
+                ClientProxy.Bag.SyncBag(player.NetState, 0, bag.UnlockLevel, bag.Items.ToArray());
+
+                //同步客户端已使用过的物品列表
+                //SyncPlayerUsedItem(player);
+            }
+            catch (Exception ex)
+            {
+                Logs.Error("Bag Sync data fail.", ex);
+            }
         }
 
         public void OnUseItem(NetState netstate, int itemId, int useCount)
         {
-            Logs.Info("OnUseItem {0} {1}", itemId, useCount);
-
             //  先瞅瞅内存里玩家数据有没有被缓存着
             var bag = WorldEntityManager.BagCache.GetEntity(netstate.BizId);
 
@@ -89,19 +105,12 @@ namespace AnyGame.Server.Logic.Bags
                 bag = DB.GameDB.LoadEntity<Bag>(netstate.BizId);
                 if (bag == null)
                 {
-                    bag = new Bag
-                    {
-                        Id = netstate.BizId,
-                        MaxCount = 100,
-                        CurCount = 100
-                    };
+                    bag = new Bag { Id = netstate.BizId };
                     DB.GameDB.InsertEntity<Bag>(bag);
                 }
                 WorldEntityManager.BagCache.AddOrReplace(bag);
-
             }
 
-            Logs.Info("使用之前：" + WorldEntityManager.BagCache.GetEntity(netstate.BizId).CurCount);
             if (bag.CurCount - useCount < 0)
             {
                 ClientProxy.Bag.UseItemResult(netstate, UseItemResult.Fail, itemId, bag.CurCount);
@@ -110,7 +119,6 @@ namespace AnyGame.Server.Logic.Bags
 
             bag.CurCount -= useCount;
             DB.GameDB.UpdateEntity<Bag>(bag);
-            Logs.Info("使用之后：" + WorldEntityManager.BagCache.GetEntity(netstate.BizId).CurCount);
 
             ClientProxy.Bag.UseItemResult(netstate, UseItemResult.Success, itemId, bag.CurCount);
 

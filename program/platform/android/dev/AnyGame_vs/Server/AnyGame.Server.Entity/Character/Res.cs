@@ -10,6 +10,9 @@ namespace AnyGame.Server.Entity.Character
     /// <summary>
     /// 玩家的资源
     /// </summary>
+    /// <remarks>
+    /// 在背包中看不到的数据，如：金币
+    /// </remarks>
     [BsonIgnoreExtraElements]
     public class Res : IDataEntity
     {
