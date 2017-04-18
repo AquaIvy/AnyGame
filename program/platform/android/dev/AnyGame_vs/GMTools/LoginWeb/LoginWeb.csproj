@@ -150,13 +150,13 @@
       <Project>{742391AB-470E-4548-A5AD-F1533BBC7827}</Project>
       <Name>AnyGame.Server.Template</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Server\TradeAge.Server.Database\AnyGame.Server.Database.csproj">
+    <ProjectReference Include="..\..\Server\AnyGame.Server.Database\AnyGame.Server.Database.csproj">
       <Project>{BE1BDE36-B98A-42FF-BF63-611C73186645}</Project>
-      <Name>TradeAge.Server.Database</Name>
+      <Name>AnyGame.Server.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Server\TradeAge.Server.Entity\AnyGame.Server.Entity.csproj">
+    <ProjectReference Include="..\..\Server\AnyGame.Server.Entity\AnyGame.Server.Entity.csproj">
       <Project>{7e2f65e0-1c97-40c9-bdf8-12008bede0ca}</Project>
-      <Name>TradeAge.Server.Entity</Name>
+      <Name>AnyGame.Server.Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
