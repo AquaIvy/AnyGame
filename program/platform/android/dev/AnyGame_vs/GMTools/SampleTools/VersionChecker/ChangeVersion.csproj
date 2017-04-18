@@ -7,8 +7,8 @@
     <ProjectGuid>{D76A0CD7-1C13-4488-85AA-AB843C89EA06}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VersionChecker</RootNamespace>
-    <AssemblyName>VersionChecker</AssemblyName>
+    <RootNamespace>ChangeVersion</RootNamespace>
+    <AssemblyName>ChangeVersion</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -23,8 +23,6 @@ namespace AnyGame.Client.Controller.Bag
 
         internal override void OnUseItemResult(UseItemResult result, int itemId, int lessCount)
         {
-            Logs.Info("UseItemResult  " + result);
-
             if (result == UseItemResult.Success)
             {
                 controller.Game.SyncTime();
@@ -53,6 +51,7 @@ namespace AnyGame.Client.Controller.Bag
     public class UseItemResultEventArgs : EventArgs
     {
         public UseItemResult Result { get; internal set; }
+
         public int itemId { get; internal set; }
 
         public int curCount { get; internal set; }
