@@ -177,7 +177,7 @@ namespace AnyGame.View.Forms.Login
             if (e.IsConnected)
             {
                 loginState = LoginState.ConnectServerSuccess;
-
+                //test vs git
                 Logs.Info("服务器连接成功");
 
                 GameCenter.Controller.Login.LoginServer(m_accountName, m_accountPwd, 0);
