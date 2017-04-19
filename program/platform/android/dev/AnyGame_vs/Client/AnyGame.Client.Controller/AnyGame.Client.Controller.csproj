@@ -43,6 +43,7 @@
     <Compile Include="Controller\Bag\BagController.Net.cs" />
     <Compile Include="Controller\Bag\BagController.Proxy.cs" />
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\GameSystem\GameSystemController.Logic.cs" />
     <Compile Include="Controller\GameSystem\GameSystemController.Net.cs" />
     <Compile Include="Controller\GameSystem\GameSystemController.Proxy.cs" />
     <Compile Include="Controller\Game\GameController.Logic.cs" />

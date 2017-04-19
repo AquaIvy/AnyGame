@@ -45,7 +45,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         {
             if (readProxySet.Contains(type))
                 return;
-            
+
             readProxySet.Add(type);
 
             StringBuilder readCode = new StringBuilder();
@@ -86,7 +86,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 {
                     readCode.AppendFormat("ret.{0} = reader.ReadUTF8String();\r\n", p.Name);
                 }
-                else if (p.PropertyType == typeof (DateTime))
+                else if (p.PropertyType == typeof(DateTime))
                 {
                     readCode.AppendFormat("ret.{0} = new DateTime(reader.ReadLong64());\r\n", p.Name);
                 }
@@ -350,7 +350,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             if (att.MethodType == NetMethodType.SimpleMethod)
             {
                 #region SimpleMethod
-		
+
                 string methodName = Utils.GetFixBeCallProxyName(methodinfo.Name);
 
                 initCode.AppendFormat("PacketHandlerManager.Register({0}, {1});",
@@ -394,7 +394,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     }
                     else if (p.ParameterType == typeof(DateTime))
                     {
-                        callCode.AppendFormat("var p{0} = new DateTime(reader.ReadLong64());\r\n",i);
+                        callCode.AppendFormat("var p{0} = new DateTime(reader.ReadLong64());\r\n", i);
                     }
                     else if (p.ParameterType.IsEnum)
                     {
@@ -500,7 +500,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 callCode.AppendLine(");");
                 callCode.AppendLine("}");
 
-	#endregion
+                #endregion
             }
         }
 
@@ -602,6 +602,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
 ";
     }
+
 
     #region CreateInterfaceCode
 
@@ -813,6 +814,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
 
     /// <summary>
+    /// 生成客户端的 LogicInterface.cs 以及 .Net.cs 
     /// 客户端逻辑协议代码生成器
     /// 这里主要是生成一个接口对象和一个对接口操作的代理类
     /// </summary>
@@ -868,6 +870,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     }
                 }
             }
+
             var fileContext = InterfaceCodeBase
     .Replace("#code#", interfaceCode.ToString())
     .Replace("#namespace#", nameSpace)

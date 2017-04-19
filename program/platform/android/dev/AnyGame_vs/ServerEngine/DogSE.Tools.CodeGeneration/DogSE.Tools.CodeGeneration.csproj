@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\AS3\ASReturnCodeGeneration.cs" />
+    <Compile Include="Client\Unity3d\ClientEventProtocolGeneration.cs" />
     <Compile Include="Client\Unity3d\ClientLogicProtocolGeneration.cs" />
     <Compile Include="Client\Unity3d\ServerProxyProtocolGeneration.cs" />
     <Compile Include="Client\Unity3d\Utils.cs" />

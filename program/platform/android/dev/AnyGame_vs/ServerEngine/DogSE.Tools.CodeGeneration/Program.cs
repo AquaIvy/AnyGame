@@ -15,8 +15,13 @@ namespace DogSE.Tools.CodeGeneration
     {
         static void Main(string[] args)
         {
-            CreateServerCode();
-            CreateClientCode();
+            //CreateServerCode();
+            //CreateClientCode();
+
+            ClientEventProtocolGeneration.CreateCode(
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Client\AnyGame.Client.Controller\",
+                "AnyGame.Client");
 
             Console.ReadKey();
         }
@@ -27,23 +32,25 @@ namespace DogSE.Tools.CodeGeneration
         static void CreateServerCode()
         {
             //服务端部分的 Client -> Server    收到客户端的请求
-            ServerLogicProtocolGeneration.CreateCode(@"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
-                        @"..\..\..\..\Server\AnyGame.Server.Protocol\ServerLogicProtocol.cs");
+            ServerLogicProtocolGeneration.CreateCode(
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Server\AnyGame.Server.Protocol\ServerLogicProtocol.cs");
 
             //服务端部分的 Server -> Client    将结果下发给客户端
-            ClientProxyProtocolGeneration.CreateCode(@"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
-                        @"..\..\..\..\Server\AnyGame.Server.Protocol\ClientProxyProtocol.cs");
+            ClientProxyProtocolGeneration.CreateCode(
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Server\AnyGame.Server.Protocol\ClientProxyProtocol.cs");
         }
 
         static void CreateClientCode()
         {
-            //客户端部分的 Server -> Client   操作返回
+            //生成客户端的 LogicInterface.cs 以及 .Net.cs 
             ClientLogicProtocolGeneration.CreateCode(
                 @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
                 @"..\..\..\..\Client\AnyGame.Client.Controller\",
                 "AnyGame.Client");
 
-            //客户端部分的 Client -> Server   客户端操作
+            //客户端生成 .Proxy.cs 
             ServerProxyProtocolGeneration.CreateCode(
                 @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
                 @"..\..\..\..\Client\AnyGame.Client.Controller\",
