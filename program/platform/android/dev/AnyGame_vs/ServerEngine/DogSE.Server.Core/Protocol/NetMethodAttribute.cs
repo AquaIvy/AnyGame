@@ -27,7 +27,7 @@ namespace DogSE.Server.Core.Protocol
     [AttributeUsage(AttributeTargets.Interface)]
     public class ClientInterfaceAttribute : Attribute
     {
-        
+
     }
 
     /// <summary>
@@ -36,13 +36,13 @@ namespace DogSE.Server.Core.Protocol
     [AttributeUsage(AttributeTargets.Property)]
     public class IgnoreAttribute : Attribute
     {
-        
+
     }
 
     /// <summary>
     /// 网络回调方法的参数
     /// </summary>
-    public class NetMethodAttribute:Attribute
+    public class NetMethodAttribute : Attribute
     {
         /// <summary>
         /// 网络回调方法
@@ -106,7 +106,7 @@ namespace DogSE.Server.Core.Protocol
         /// 方法里一共2个参数
         /// 第二个参数为使用的是数据流，需要自己来解析数据流内容
         /// </summary>
-        PacketReader  = 0,
+        PacketReader = 0,
 
         /// <summary>
         /// 方法里一共2个参数

@@ -41,10 +41,10 @@ namespace DogSE.Tools.CodeGeneration.Utils
                 item.Name = node.Attributes["name"].Value;
                 var nav = node.CreateNavigator();
                 item.Summary = nav.SelectSingleNode("summary").Value.Trim();
-                
+
                 foreach (XPathNavigator pn in nav.Select("param"))
                 {
-                    
+
                     ParamItem pi = new ParamItem();
                     pi.Name = pn.GetAttribute("name", "");
                     pi.Value = pn.Value.Trim();
@@ -92,10 +92,44 @@ namespace DogSE.Tools.CodeGeneration.Utils
             return item.Summary;
         }
 
-        public static void test()
+        /// <summary>
+        /// 将首字母转成大写
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetInitialCharUpper(this string str)
         {
-            var ret = LoadXmlDocument(@"D:\workspace\wakuang\trunk\program\server\Adventure.Server.Interface\bin\Debug\Adventure.Server.Interface.XML");
-            Console.WriteLine(ret.Count);
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            return str[0].ToString().ToUpper() + str.Substring(1);
+        }
+
+        /// <summary>
+        /// 将首字母转成小写
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetInitialCharLower(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            return str[0].ToString().ToLower() + str.Substring(1);
+        }
+
+        public static string GetBaseTypeName(this Type type)
+        {
+            if (type == typeof(int))
+            {
+                return "int";
+            }
+            else if (type == typeof(byte))
+            {
+                return "byte";
+            }
+
+            return string.Empty;
         }
     }
 
@@ -112,28 +146,28 @@ namespace DogSE.Tools.CodeGeneration.Utils
         public string Name { get; set; }
 
         /// <summary>
-        /// 方法的注解
+        /// 方法的注释
         /// </summary>
         public string Summary { get; set; }
 
         /// <summary>
-        /// 
+        /// 方法的参数
         /// </summary>
         public List<ParamItem> Params { get; private set; }
     }
 
     /// <summary>
-    /// 
+    /// 参数
     /// </summary>
     public class ParamItem
     {
         /// <summary>
-        /// 
+        /// 参数名（不是参数类型）
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// 参数名的注释
         /// </summary>
         public string Value { get; set; }
     }

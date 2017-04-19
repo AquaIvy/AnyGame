@@ -12,23 +12,29 @@ using System.Text;
 namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 {
     /// <summary>
-    /// 创建 .Logic.cs 里的事件代码
+    /// 创建 *.Logic.cs 里的事件代码
     /// </summary>
     public class CreateEventCode
     {
+        /// <summary>
+        /// 系统模块
+        /// </summary>
         private readonly Type classType;
 
-        private List<FunItem> funDoc;
+        /// <summary>
+        /// 该模块的功能文档
+        /// </summary>
+        private List<FunItem> funcDoc;
 
         /// <summary>
-        /// 
+        /// 创建事件代码
         /// </summary>
-        /// <param name="type">要创建的方法的类</param>
-        /// <param name="doc"></param>
+        /// <param name="type">模块</param>
+        /// <param name="doc">文档注释</param>
         public CreateEventCode(Type type, List<FunItem> doc)
         {
             classType = type;
-            funDoc = doc;
+            funcDoc = doc;
         }
 
         private readonly StringBuilder initCode = new StringBuilder();
@@ -37,6 +43,16 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         /// 调用代码
         /// </summary>
         private readonly StringBuilder callCode = new StringBuilder();
+
+        /// <summary>
+        /// 事件代码
+        /// </summary>
+        private readonly StringBuilder eventCode = new StringBuilder();
+
+        /// <summary>
+        /// 事件参数代码
+        /// </summary>
+        private readonly StringBuilder eventArgsCode = new StringBuilder();
 
         /// <summary>
         /// 读取代理类
@@ -230,10 +246,9 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 Logs.Error("客户端代理类暂时不支持这种模式 {0}", att.MethodType.ToString());
                 return;
 
-                /*
-
                 #region ProtocolStruct
 
+                /*
                 Type parameterType = param[1].ParameterType;
 
                 if (!parameterType.IsClass)
@@ -249,68 +264,69 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
                     string methodName = methodinfo.Name;
                     StringBuilder methonNameCode = new StringBuilder();
-                    StringBuilder streamWriterCode = new StringBuilder();
+                    StringBuilder methodBodyCode = new StringBuilder();
                     methonNameCode.AppendFormat("public void {0}({1} obj)",
                         methodName, parameterType.FullName);
 
-                    streamWriterCode.AppendLine("{");
-                    streamWriterCode.AppendFormat("var pw = PacketWriter.AcquireContent({0});", att.OpCode);
-                    streamWriterCode.AppendLine();
-                    streamWriterCode.AppendFormat(
+                    methodBodyCode.AppendLine("{");
+                    methodBodyCode.AppendFormat("var pw = PacketWriter.AcquireContent({0});", att.OpCode);
+                    methodBodyCode.AppendLine();
+                    methodBodyCode.AppendFormat(
                         @"            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( {0} );
             if ( packetProfile != null )
                 packetProfile.RegConstruct();
                 ", att.OpCode);
 
-                    streamWriterCode.AppendFormat("{0}WriteProxy.Write(obj, pw);", parameterType.Name);
+                    methodBodyCode.AppendFormat("{0}WriteProxy.Write(obj, pw);", parameterType.Name);
 
-                    streamWriterCode.AppendLine("NetState.Send(pw);");
-                    streamWriterCode.AppendLine(" if ( packetProfile != null ) packetProfile.Record(pw.Length);");
-                    streamWriterCode.AppendLine("PacketWriter.ReleaseContent(pw);");
+                    methodBodyCode.AppendLine("NetState.Send(pw);");
+                    methodBodyCode.AppendLine(" if ( packetProfile != null ) packetProfile.Record(pw.Length);");
+                    methodBodyCode.AppendLine("PacketWriter.ReleaseContent(pw);");
 
-                    streamWriterCode.AppendLine("}");
+                    methodBodyCode.AppendLine("}");
 
                     methonNameCode.Remove(methonNameCode.Length - 1, 1);
                     methonNameCode.Append(")");
 
                     callCode.AppendLine(methonNameCode.ToString());
-                    callCode.AppendLine(streamWriterCode.ToString());
+                    callCode.AppendLine(methodBodyCode.ToString());
                 }
                 else
                 {
                     //  如果对象实现了 IPacketWriter 接口，则直接使用，否则则自己生成协议代码
                     string methodName = methodinfo.Name;
                     StringBuilder methonNameCode = new StringBuilder();
-                    StringBuilder streamWriterCode = new StringBuilder();
+                    StringBuilder methodBodyCode = new StringBuilder();
                     methonNameCode.AppendFormat("public void {0}({1} obj)",
                         methodName, parameterType.FullName);
 
-                    streamWriterCode.AppendLine("{");
-                    streamWriterCode.AppendFormat("var pw = PacketWriter.AcquireContent({0});", att.OpCode);
-                    streamWriterCode.AppendLine();
-                    streamWriterCode.AppendFormat(
+                    methodBodyCode.AppendLine("{");
+                    methodBodyCode.AppendFormat("var pw = PacketWriter.AcquireContent({0});", att.OpCode);
+                    methodBodyCode.AppendLine();
+                    methodBodyCode.AppendFormat(
                         @"            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( {0} );
             if ( packetProfile != null )
                 packetProfile.RegConstruct();
                 ", att.OpCode);
 
-                    streamWriterCode.AppendLine("obj.Write(pw);");
+                    methodBodyCode.AppendLine("obj.Write(pw);");
 
-                    streamWriterCode.AppendLine("NetState.Send(pw);");
-                    streamWriterCode.AppendLine(" if ( packetProfile != null ) packetProfile.Record(pw.Length);");
-                    streamWriterCode.AppendLine("PacketWriter.ReleaseContent(pw);");
-                    streamWriterCode.AppendLine("}");
+                    methodBodyCode.AppendLine("NetState.Send(pw);");
+                    methodBodyCode.AppendLine(" if ( packetProfile != null ) packetProfile.Record(pw.Length);");
+                    methodBodyCode.AppendLine("PacketWriter.ReleaseContent(pw);");
+                    methodBodyCode.AppendLine("}");
 
                     methonNameCode.Remove(methonNameCode.Length - 1, 1);
                     methonNameCode.Append(")");
 
                     callCode.AppendLine(methonNameCode.ToString());
-                    callCode.AppendLine(streamWriterCode.ToString());
+                    callCode.AppendLine(methodBodyCode.ToString());
                 }
+
+                */
 
                 #endregion
 
-                */
             }
 
             if (att.MethodType == NetMethodType.SimpleMethod)
@@ -319,90 +335,112 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
                 string methodName = Utils.GetFixCallProxyName(methodinfo.Name);
 
-                StringBuilder methonNameCode = new StringBuilder();         //方法名
-                StringBuilder streamWriterCode = new StringBuilder();       //方法体
+                StringBuilder methodNameCode = new StringBuilder();         //方法名
+                StringBuilder methodBodyCode = new StringBuilder();         //方法体
                 StringBuilder commentCode = new StringBuilder();            //xml注释
 
+                StringBuilder argsClassNameCode = new StringBuilder();      //事件xxEventArgs的类名
+                StringBuilder argsClassBodyCode = new StringBuilder();      //事件xxEventArgs的类成员
+
                 Console.WriteLine(classType.FullName + "." + methodinfo.Name);
-                var doc =
-                    funDoc.FirstOrDefault(o => o.Name.IndexOf("M:" + classType.FullName + "." + methodinfo.Name) == 0);
+                var doc = funcDoc.FirstOrDefault(o => o.Name.IndexOf("M:" + classType.FullName + "." + methodinfo.Name) == 0);
                 if (doc == null)
                     doc = new FunItem();
 
-        //        commentCode.AppendFormat(@"        /// <summary>
-        ///// {0}
-        ///// </summary>",
-        //doc.Summary);
 
-                methonNameCode.AppendFormat("internal override void On{0}(", methodName);
 
-                streamWriterCode.AppendLine("{");
-                //streamWriterCode.AppendFormat("var pw = PacketWriter.AcquireContent({0});", att.OpCode);
-                //streamWriterCode.AppendLine();
+                //事件
+                eventCode.AppendFormat(@"        /// <summary>
+                /// {0}
+                /// </summary>",
+                doc.Summary);
 
+                eventCode.AppendLine();
+                eventCode.AppendFormat("public event EventHandler<{0}EventArgs> {0}Event;\r\n", methodName);
+                eventCode.AppendLine();
+
+                //事件方法
+                methodNameCode.AppendFormat("internal override void On{0}(", methodName);
+                methodBodyCode.AppendLine("{");
+
+                if (param.Length > 1)
+                {
+                    methodBodyCode.AppendFormat("{0}Event?.Invoke(this, new {0}EventArgs\r\n", methodName);
+                    methodBodyCode.AppendLine("{");
+                }
+                else
+                {
+                    methodBodyCode.AppendFormat("{0}Event?.Invoke(this, new EventArgs());\r\n", methodName);
+                }
+
+                //事件xxEventArgs
+                if (param.Length > 1)
+                {
+                    eventArgsCode.AppendFormat("public class {0}EventArgs : EventArgs\r\n", methodName);
+                    eventArgsCode.AppendLine("{");
+                }
+
+
+                //参数
                 for (int i = 1; i < param.Length; i++)
                 {
                     var p = param[i];
+
+                    //事件触发
+                    methodBodyCode.AppendFormat("{0} = {1},\r\n", p.Name.GetInitialCharUpper(), p.Name);
+
+                    eventArgsCode.AppendFormat("public {0} {1} {{ get; internal set; }}\r\n", p.ParameterType.Name, p.Name.GetInitialCharUpper());
+
+                    //方法参数
                     if (p.ParameterType == typeof(int))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("int {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("int {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(byte))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("byte {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("byte {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(long))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("long {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("long {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(float))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("float {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("float {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(double))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("double {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("double {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(bool))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("bool {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("bool {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(string))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("string {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.WriteUTF8Null({0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("string {0},", p.Name);
                     }
                     else if (p.ParameterType == typeof(DateTime))
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("DateTime {0},", p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write({0}.Ticks);\r\n", p.Name);
+                        methodNameCode.AppendFormat("DateTime {0},", p.Name);
                     }
                     else if (p.ParameterType.IsEnum)
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-                        //streamWriterCode.AppendFormat("pw.Write((byte){0});\r\n", p.Name);
+                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
                     }
                     else if (p.ParameterType.IsLayoutSequential)
                     {
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-                        //streamWriterCode.AppendFormat("pw.WriteStruct({0});\r\n", p.Name);
-
+                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
                     }
                     else if (p.ParameterType.IsArray)
                     {
@@ -411,54 +449,54 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                         var arrayType = p.ParameterType.GetElementType();
 
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
+                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
 
                         //  先写入长度
-                        //streamWriterCode.AppendFormat("pw.Write((int){0}.Length);\r\n", p.Name);
-                        //streamWriterCode.AppendFormat("for(int i = 0;i < {0}.Length;i++){{\r\n", p.Name);
+                        //methodBodyCode.AppendFormat("pw.Write((int){0}.Length);\r\n", p.Name);
+                        //methodBodyCode.AppendFormat("for(int i = 0;i < {0}.Length;i++){{\r\n", p.Name);
 
                         //if (arrayType == typeof(int))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(byte))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(long))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(float))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(double))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(bool))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType == typeof(string))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.WriteUTF8Null({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.WriteUTF8Null({0}[i]);\r\n", p.Name);
                         //}
                         //else if (p.ParameterType == typeof(DateTime))
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write({0}.Ticks);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write({0}.Ticks);\r\n", p.Name);
                         //}
                         //else if (arrayType.IsEnum)
                         //{
-                        //    streamWriterCode.AppendFormat("pw.Write((byte){0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.Write((byte){0}[i]);\r\n", p.Name);
                         //}
                         //else if (arrayType.IsLayoutSequential)
                         //{
-                        //    streamWriterCode.AppendFormat("pw.WriteStruct({0}[i]);\r\n", p.Name);
+                        //    methodBodyCode.AppendFormat("pw.WriteStruct({0}[i]);\r\n", p.Name);
                         //}
 
-                        //streamWriterCode.AppendLine("}");
+                        //methodBodyCode.AppendLine("}");
 
                         #endregion
                     }
@@ -467,8 +505,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                         //AddWriteProxy(p.ParameterType, doc.GetParamSummary(p.Name));
 
                         //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methonNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-                        //streamWriterCode.AppendFormat("{0}WriteProxy.Write({1}, pw);\r\n", p.ParameterType.Name, p.Name);
+                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
                     }
                     else
                     {
@@ -478,17 +515,22 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
                 }
 
-                //streamWriterCode.AppendLine("NetState.Send(pw);PacketWriter.ReleaseContent(pw);");
-                streamWriterCode.AppendLine("}");
-
                 if (param.Length > 1)
-                    methonNameCode.Remove(methonNameCode.Length - 1, 1);
+                {
+                    methodNameCode.Remove(methodNameCode.Length - 1, 1);
 
-                methonNameCode.Append(")");
+                    methodBodyCode.Remove(methodBodyCode.Length - 1, 1);
+                    methodBodyCode.AppendLine("});");
+
+                    eventArgsCode.AppendLine("}");
+                }
+
+                methodNameCode.Append(")");
+                methodBodyCode.AppendLine("}");
 
                 callCode.AppendLine(commentCode.ToString());
-                callCode.AppendLine(methonNameCode.ToString());
-                callCode.AppendLine(streamWriterCode.ToString());
+                callCode.AppendLine(methodNameCode.ToString());
+                callCode.AppendLine(methodBodyCode.ToString());
 
                 #endregion
             }
@@ -508,6 +550,8 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             ret.Replace("#InitMethod#", initCode.ToString());
             ret.Replace("#CallMethod#", callCode.ToString());
             ret.Replace("#ProxyCode#", writerProxyCode.ToString());
+            ret.Replace("#EventCode#", eventCode.ToString());
+            ret.Replace("#EventArgsCode#", eventArgsCode.ToString());
 
             var nsName = classType.Namespace;
 
@@ -560,9 +604,13 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
 
         #CallMethod#
 
-#ProxyCode#
+        #ProxyCode#
+
+        #EventCode#
+
     }
 
+    #EventArgsCode#
 ";
     }
 
@@ -590,16 +638,16 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     var i = type.GetCustomAttributes(typeof(ClientInterfaceAttribute), true);
                     if (i.Length > 0)
                     {
-                        //把 IBag 转成 Bag
+                        //例：把 IBag 转成 Bag
                         string typeName = Utils.GetFixInterfaceName(type.Name);
 
                         string fileName = Path.Combine(outFolder, string.Format(@"Controller\{0}\{0}Controller.Logic.cs", typeName));
-                        //Logic.cs文件基本上一定会被手工修改，所以这里只是判断没有文件时才生成
+                        // .Logic.cs文件基本上一定会被手工修改，所以这里只是在没有文件时才生成
                         if (!File.Exists(fileName))
                         {
                             Console.WriteLine(typeName);
 
-                            //  生成客户端解包代码并写入对应文件
+                            //  生成客户端【收到服务器的响应事件】代码并写入对应文件
                             var code = new CreateEventCode(type, xmlDoc).CreateCode();
 
                             var context = FileCodeBase
@@ -631,13 +679,7 @@ using DogSE.Client.Core.Task;
 namespace #namespace#.Controller.#ClassName#
 {
 
-
-    
-
 #code#
-
-    
-
 
 }
 ";

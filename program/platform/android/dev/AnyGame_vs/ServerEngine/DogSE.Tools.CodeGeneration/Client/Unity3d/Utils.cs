@@ -9,7 +9,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
     {
 
         /// <summary>
-        /// 给方法名之前加一个On
+        /// 给方法名之前加一个 On
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         }
 
         /// <summary>
-        /// 取消方法名前面的on
+        /// 取消方法名前面的 On
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
