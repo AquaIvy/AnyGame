@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnyGame.Client.Entity.Bags;
+using AnyGame.Client.Entity.Common;
 
 namespace AnyGame.Client.Controller.Bag
 {
@@ -23,25 +24,37 @@ namespace AnyGame.Client.Controller.Bag
 
         internal override void OnUseItemResult(UseItemResult result, int itemId, int lessCount)
         {
-            if (result == UseItemResult.Success)
+            UseItemRet?.Invoke(this, new UseItemResultEventArgs
             {
-                controller.Game.SyncTime();
-            }
-
-            if (UseItemRet != null)
-            {
-                UseItemRet(this, new UseItemResultEventArgs
-                {
-                    itemId = itemId,
-                    curCount = lessCount
-                });
-            }
+                Result = result,
+                ItemId = itemId,
+                LessCount = lessCount
+            });
         }
 
-        internal override void OnSyncBag(int MaxCount, int CurCount)
+        internal override void OnSyncItems(SyncType type, GameItem[] items)
         {
-            controller.Model.Bag.CurCount = CurCount;
-            controller.Model.Bag.MaxCount = MaxCount;
+            throw new NotImplementedException();
+        }
+
+        internal override void OnSyncBag(int maxGridCount, GameItem[] items)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal override void OnSyncAllResouce(int money, int gem)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal override void OnSyncResouce(int resId, int num)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal override void OnUpgradeBagResult(UpgradeBagResult result)
+        {
+            throw new NotImplementedException();
         }
 
         public event EventHandler<UseItemResultEventArgs> UseItemRet;
@@ -52,8 +65,8 @@ namespace AnyGame.Client.Controller.Bag
     {
         public UseItemResult Result { get; internal set; }
 
-        public int itemId { get; internal set; }
+        public int ItemId { get; internal set; }
 
-        public int curCount { get; internal set; }
+        public int LessCount { get; internal set; }
     }
 }

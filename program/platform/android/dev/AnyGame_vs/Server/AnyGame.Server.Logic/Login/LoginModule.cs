@@ -220,6 +220,8 @@ namespace AnyGame.Server.Logic.Login
 
             //初始化资源
             var res = new Res { Id = player.Id };
+            //res.Gold = 0;
+            //res.Gem = 0;
             player.Res = res;
             WorldEntityManager.ResCache.AddOrReplace(res);
             DB.GameDB.SyncInsertEntity(res);
@@ -227,6 +229,8 @@ namespace AnyGame.Server.Logic.Login
 
             //初始化背包
             var bag = new Bag { Id = player.Id };
+            bag.MaxGridCount = 40;
+            bag.Items = new List<GameItem>();
             WorldEntityManager.BagCache.AddOrReplace(bag);
             DB.GameDB.SyncInsertEntity(bag);
 

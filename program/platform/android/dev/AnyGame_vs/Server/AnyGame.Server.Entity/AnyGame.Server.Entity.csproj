@@ -50,7 +50,7 @@
     <Compile Include="Bags\Bag.cs" />
     <Compile Include="Bags\BagEnum.cs" />
     <Compile Include="Character\Account.cs" />
-    <Compile Include="Character\Enum.cs" />
+    <Compile Include="Character\CharacterEnum.cs" />
     <Compile Include="Character\PlatformAccount.cs" />
     <Compile Include="Character\Player.cs" />
     <Compile Include="Character\Res.cs" />
@@ -59,6 +59,7 @@
     <Compile Include="Common\GameZone.cs" />
     <Compile Include="Common\PlatformTypes.cs" />
     <Compile Include="Common\SequenceGenerator.cs" />
+    <Compile Include="Common\SyncType.cs" />
     <Compile Include="Common\WorldSeqGen.cs" />
     <Compile Include="GameEvent\PlayerEvents.cs" />
     <Compile Include="Login\LoginEnum.cs" />

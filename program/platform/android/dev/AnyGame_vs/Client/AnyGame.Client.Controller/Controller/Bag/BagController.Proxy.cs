@@ -28,6 +28,16 @@ pw.Write(useCount);
 NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
+        /// <summary>
+        /// 
+        /// </summary>
+
+public void UpgradeBag()
+{
+var pw = PacketWriter.AcquireContent(1241);
+NetState.Send(pw);PacketWriter.ReleaseContent(pw);
+}
+
 
 
 

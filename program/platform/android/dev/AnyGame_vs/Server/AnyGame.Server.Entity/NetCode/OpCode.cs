@@ -17,6 +17,57 @@
         /// </summary>
         ServerTime = 2,
 
+        /// <summary>
+        /// 客户端请求服务器执行一条GM指令
+        /// 只针对自己的
+        /// </summary>
+        RunGMCommand = 2,
+
+        /// <summary>
+        /// 请求同步服务端时间
+        /// </summary>
+        GetSystemTime = 3,
+
+        /// <summary>
+        /// 请求同步服务端时间结果
+        /// </summary>
+        GetSystemTimeResult = 4,
+
+        /// <summary>
+        /// 客户端日志
+        /// </summary>
+        ClientLog = 7,
+
+        /// <summary>
+        /// 手机信息
+        /// </summary>
+        PhoneInfo = 8,
+
+        /// <summary>
+        /// 客户端异常
+        /// </summary>
+        ClientException = 9,
+
+        /// <summary>
+        /// 公告
+        /// </summary>
+        Notice = 10,
+
+        /// <summary>
+        /// 登陆前的公告
+        /// </summary>
+        ServerStatus = 11,
+
+        /// <summary>
+        /// 客户端的暂停状态
+        /// </summary>
+        ClinetPauseStatus = 12,
+
+        /// <summary>
+        /// 心跳包
+        /// </summary>
+        Heart2 = 13,
+
         #endregion
 
         #region 1000  - 1099 登陆相关消息码
@@ -93,9 +144,55 @@
         UseItemResult = 1201,
 
         /// <summary>
-        /// 同步背包信息
+        /// 同步物品
         /// </summary>
-        SyncBag = 1202,
+        SyncItem = 1202,
+
+        /// <summary>
+        /// 同步背包
+        /// </summary>
+        SyncBag = 1203,
+
+        /// <summary>
+        /// 同步所有的资源
+        /// </summary>
+        SyncAllResouce = 1204,
+
+        /// <summary>
+        /// 同步资源
+        /// </summary>
+        SyncResouce = 1205,
+
+        /// <summary>
+        /// 加物品
+        /// </summary>
+        AddItem = 1206,
+
+        /// <summary>
+        /// 加物品的结果
+        /// </summary>
+        AddItemResult = 1207,
+
+        /// <summary>
+        /// 加资源
+        /// </summary>
+        AddResource = 1208,
+
+        /// <summary>
+        /// 加资源的结果
+        /// </summary>
+        AddResourceResult = 1209,
+
+        /// <summary>
+        /// 升级背包
+        /// </summary>
+        UpgradeBag = 1241,
+
+        /// <summary>
+        /// 开启背包格子结果
+        /// </summary>
+        UpgradeBagResult = 1242,
+
 
         #endregion
     }

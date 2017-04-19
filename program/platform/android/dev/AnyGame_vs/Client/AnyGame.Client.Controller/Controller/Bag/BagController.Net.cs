@@ -45,7 +45,11 @@ namespace AnyGame.Client.Controller.Bag
 
                 module = logic;
 PacketHandlerManager.Register(1201, OnUseItemResult);
-PacketHandlerManager.Register(1202, OnSyncBag);
+PacketHandlerManager.Register(1202, OnSyncItems);
+PacketHandlerManager.Register(1203, OnSyncBag);
+PacketHandlerManager.Register(1204, OnSyncAllResouce);
+PacketHandlerManager.Register(1205, OnSyncResouce);
+PacketHandlerManager.Register(1242, OnUpgradeBagResult);
 
             }
 
@@ -59,13 +63,53 @@ var p2 = reader.ReadInt32();
 var p3 = reader.ReadInt32();
 module.OnUseItemResult(p1,p2,p3);
 }
+void OnSyncItems(NetState netstate, PacketReader reader){
+var p1 = (AnyGame.Client.Entity.Common.SyncType)reader.ReadByte();
+var len2 = reader.ReadInt32();
+var p2 = new AnyGame.Client.Entity.Bags.GameItem[len2];for(int i =0;i< len2;i++){
+p2[i] = GameItemReadProxy.Read(reader);
+}
+module.OnSyncItems(p1,p2);
+}
 void OnSyncBag(NetState netstate, PacketReader reader){
 var p1 = reader.ReadInt32();
-var p2 = reader.ReadInt32();
+var len2 = reader.ReadInt32();
+var p2 = new AnyGame.Client.Entity.Bags.GameItem[len2];for(int i =0;i< len2;i++){
+p2[i] = GameItemReadProxy.Read(reader);
+}
 module.OnSyncBag(p1,p2);
+}
+void OnSyncAllResouce(NetState netstate, PacketReader reader){
+var p1 = reader.ReadInt32();
+var p2 = reader.ReadInt32();
+module.OnSyncAllResouce(p1,p2);
+}
+void OnSyncResouce(NetState netstate, PacketReader reader){
+var p1 = reader.ReadInt32();
+var p2 = reader.ReadInt32();
+module.OnSyncResouce(p1,p2);
+}
+void OnUpgradeBagResult(NetState netstate, PacketReader reader){
+var p1 = (AnyGame.Client.Entity.Bags.UpgradeBagResult)reader.ReadByte();
+module.OnUpgradeBagResult(p1);
 }
 
 
+
+    class GameItemReadProxy
+    {
+        public static AnyGame.Client.Entity.Bags.GameItem Read(PacketReader reader)
+        {
+            AnyGame.Client.Entity.Bags.GameItem ret = new AnyGame.Client.Entity.Bags.GameItem();
+
+ret.Id = reader.ReadInt32();
+ret.TemplateId = reader.ReadInt32();
+ret.Num = reader.ReadInt32();
+
+
+            return ret;
+        }
+    }
 
         }
 

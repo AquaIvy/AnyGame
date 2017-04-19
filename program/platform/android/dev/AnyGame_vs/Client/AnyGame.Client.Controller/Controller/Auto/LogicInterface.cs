@@ -16,7 +16,11 @@ namespace AnyGame.Client.Controller
     public abstract class BaseBagController
     {
 internal abstract void OnUseItemResult(AnyGame.Client.Entity.Bags.UseItemResult result,int itemId,int lessCount);
-internal abstract void OnSyncBag(int MaxCount,int CurCount);
+internal abstract void OnSyncItems(AnyGame.Client.Entity.Common.SyncType type,AnyGame.Client.Entity.Bags.GameItem[] items);
+internal abstract void OnSyncBag(int maxGridCount,AnyGame.Client.Entity.Bags.GameItem[] items);
+internal abstract void OnSyncAllResouce(int money,int gem);
+internal abstract void OnSyncResouce(int resId,int num);
+internal abstract void OnUpgradeBagResult(AnyGame.Client.Entity.Bags.UpgradeBagResult result);
         
     }
 
@@ -28,6 +32,19 @@ internal abstract void OnSyncBag(int MaxCount,int CurCount);
     public abstract class BaseGameController
     {
 internal abstract void OnSyncServerTime(DateTime serverTime,int id);
+        
+    }
+
+
+    /// <summary>
+    /// GameSystem
+    /// </summary>
+    
+    public abstract class BaseGameSystemController
+    {
+internal abstract void OnGetSystemTimeResult(long time);
+internal abstract void OnNotice(string noticeContext);
+internal abstract void OnServerStatus(string title,string context,bool isNoticeOnce,bool isMaintain);
         
     }
 

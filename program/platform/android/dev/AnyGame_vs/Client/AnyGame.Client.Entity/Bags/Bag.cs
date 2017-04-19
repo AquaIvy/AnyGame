@@ -1,14 +1,7 @@
 ﻿using DogSE.Common;
-using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-#if Server 
-using AnyGame.Server.Entity.Common;
-namespace AnyGame.Server.Entity.Bags
-#else
-using AnyGame.Client.Entity.Common;
 namespace AnyGame.Client.Entity.Bags
-#endif
 {
     /// <summary>
     /// 玩家的整个背包数据
@@ -16,7 +9,6 @@ namespace AnyGame.Client.Entity.Bags
     /// <remarks>
     /// 可以在背包中看到的物品
     /// </remarks>
-    [BsonIgnoreExtraElements]
     public class Bag : IDataEntity
     {
         /// <summary>

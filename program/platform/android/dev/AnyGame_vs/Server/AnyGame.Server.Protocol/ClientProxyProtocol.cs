@@ -42,14 +42,71 @@ netstate.Send(pw);
 PacketWriter.ReleaseContent(pw);
 }
 
-public void SyncBag(NetState netstate,int MaxCount,int CurCount)
+public void SyncItems(NetState netstate,AnyGame.Server.Entity.Common.SyncType type,AnyGame.Server.Entity.Bags.GameItem[] items)
 {
 var pw = PacketWriter.AcquireContent(1202);
             PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1202 );
             if ( packetProfile != null )
                 packetProfile.RegConstruct();
-                pw.Write(MaxCount);
-pw.Write(CurCount);
+                pw.Write((byte)type);
+int itemslen = items == null ? 0:items.Length;pw.Write(itemslen);
+for(int i = 0;i < itemslen ;i++){
+GameItemWriteProxy.Write(items[i], pw);
+}
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void SyncBag(NetState netstate,int maxGridCount,AnyGame.Server.Entity.Bags.GameItem[] items)
+{
+var pw = PacketWriter.AcquireContent(1203);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1203 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.Write(maxGridCount);
+int itemslen = items == null ? 0:items.Length;pw.Write(itemslen);
+for(int i = 0;i < itemslen ;i++){
+GameItemWriteProxy.Write(items[i], pw);
+}
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void SyncAllResouce(NetState netstate,int money,int gem)
+{
+var pw = PacketWriter.AcquireContent(1204);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1204 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.Write(money);
+pw.Write(gem);
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void SyncResouce(NetState netstate,int resId,int num)
+{
+var pw = PacketWriter.AcquireContent(1205);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1205 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.Write(resId);
+pw.Write(num);
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void UpgradeBagResult(NetState netstate,AnyGame.Server.Entity.Bags.UpgradeBagResult result)
+{
+var pw = PacketWriter.AcquireContent(1242);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1242 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.Write((byte)result);
 netstate.Send(pw);
  if ( packetProfile != null ) packetProfile.Record(pw.Length);
 PacketWriter.ReleaseContent(pw);
@@ -57,6 +114,18 @@ PacketWriter.ReleaseContent(pw);
 
 
 
+
+    public class GameItemWriteProxy
+    {
+        public static void Write(AnyGame.Server.Entity.Bags.GameItem obj, PacketWriter pw)
+        {
+
+pw.Write(obj.Id);
+pw.Write(obj.TemplateId);
+pw.Write(obj.Num);
+
+        }
+    }
 
     }
 
@@ -71,6 +140,53 @@ var pw = PacketWriter.AcquireContent(2);
                 packetProfile.RegConstruct();
                 pw.Write(serverTime.Ticks);
 pw.Write(id);
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+
+
+
+    }
+
+
+    class IGameSystemProxy1:AnyGame.Server.Interface.Client.IGameSystem
+    {
+        public void GetSystemTimeResult(NetState netstate,long time)
+{
+var pw = PacketWriter.AcquireContent(4);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 4 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.Write(time);
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void Notice(NetState netstate,string noticeContext)
+{
+var pw = PacketWriter.AcquireContent(10);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 10 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.WriteUTF8Null(noticeContext);
+netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void ServerStatus(NetState netstate,string title,string context,bool isNoticeOnce,bool isMaintain)
+{
+var pw = PacketWriter.AcquireContent(11);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 11 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                pw.WriteUTF8Null(title);
+pw.WriteUTF8Null(context);
+pw.Write(isNoticeOnce);
+pw.Write(isMaintain);
 netstate.Send(pw);
  if ( packetProfile != null ) packetProfile.Record(pw.Length);
 PacketWriter.ReleaseContent(pw);
