@@ -620,9 +620,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         }
 
 
-        const string FileCodeBase = @"
-
-using System;
+        const string FileCodeBase = @"using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -642,8 +640,6 @@ namespace #namespace#.Controller.#ClassName#
 
 
 }
-
-
 ";
     }
 

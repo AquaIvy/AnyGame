@@ -8,6 +8,9 @@ using System.Text;
 
 namespace AnyGame.Server.Interface.Client
 {
+    /// <summary>
+    /// GM
+    /// </summary>
     [ClientInterface]
     public interface IGameSystem
     {
