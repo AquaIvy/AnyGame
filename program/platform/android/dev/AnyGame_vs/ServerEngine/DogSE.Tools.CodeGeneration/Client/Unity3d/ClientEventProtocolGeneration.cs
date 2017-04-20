@@ -348,21 +348,22 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     doc = new FunItem();
 
 
-
                 //事件
                 eventCode.AppendFormat(@"        /// <summary>
                 /// {0}
                 /// </summary>",
-                doc.Summary);
+                doc.SummaryWorked);
 
                 eventCode.AppendLine();
-                eventCode.AppendFormat("public event EventHandler<{0}EventArgs> {0}Event;\r\n", methodName);
+                if (param.Length > 1)
+                    eventCode.AppendFormat("public event EventHandler<{0}EventArgs> {0}Event;\r\n", methodName);
+                else
+                    eventCode.AppendFormat("public event EventHandler<EventArgs> {0}Event;\r\n", methodName);
                 eventCode.AppendLine();
 
                 //事件方法
                 methodNameCode.AppendFormat("internal override void On{0}(", methodName);
                 methodBodyCode.AppendLine("{");
-
                 if (param.Length > 1)
                 {
                     methodBodyCode.AppendFormat("{0}Event?.Invoke(this, new {0}EventArgs\r\n", methodName);
@@ -373,9 +374,15 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     methodBodyCode.AppendFormat("{0}Event?.Invoke(this, new EventArgs());\r\n", methodName);
                 }
 
-                //事件xxEventArgs
+                //事件参数xxEventArgs
                 if (param.Length > 1)
                 {
+                    eventArgsCode.AppendFormat(@"        /// <summary>
+                    /// {0} 【参数】
+                    /// </summary>",
+                    doc.SummaryWorked);
+
+                    eventArgsCode.AppendLine();
                     eventArgsCode.AppendFormat("public class {0}EventArgs : EventArgs\r\n", methodName);
                     eventArgsCode.AppendLine("{");
                 }
@@ -386,126 +393,11 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 {
                     var p = param[i];
 
-                    //事件触发
-                    methodBodyCode.AppendFormat("{0} = {1},\r\n", p.Name.GetInitialCharUpper(), p.Name);
-
-                    eventArgsCode.AppendFormat("public {0} {1} {{ get; internal set; }}\r\n", p.ParameterType.Name, p.Name.GetInitialCharUpper());
-
-                    //方法参数
-                    if (p.ParameterType == typeof(int))
+                    //方法 名字
+                    string basetype = Utils.GetBaseTypeName(p.ParameterType, true);
+                    if (!string.IsNullOrEmpty(basetype))
                     {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("int {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(byte))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("byte {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(long))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("long {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(float))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("float {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(double))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("double {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(bool))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("bool {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(string))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("string {0},", p.Name);
-                    }
-                    else if (p.ParameterType == typeof(DateTime))
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("DateTime {0},", p.Name);
-                    }
-                    else if (p.ParameterType.IsEnum)
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-                    }
-                    else if (p.ParameterType.IsLayoutSequential)
-                    {
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-                    }
-                    else if (p.ParameterType.IsArray)
-                    {
-                        #region 数组的处理
-
-                        var arrayType = p.ParameterType.GetElementType();
-
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
-
-                        //  先写入长度
-                        //methodBodyCode.AppendFormat("pw.Write((int){0}.Length);\r\n", p.Name);
-                        //methodBodyCode.AppendFormat("for(int i = 0;i < {0}.Length;i++){{\r\n", p.Name);
-
-                        //if (arrayType == typeof(int))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(byte))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(long))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(float))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(double))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(bool))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType == typeof(string))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.WriteUTF8Null({0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (p.ParameterType == typeof(DateTime))
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write({0}.Ticks);\r\n", p.Name);
-                        //}
-                        //else if (arrayType.IsEnum)
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.Write((byte){0}[i]);\r\n", p.Name);
-                        //}
-                        //else if (arrayType.IsLayoutSequential)
-                        //{
-                        //    methodBodyCode.AppendFormat("pw.WriteStruct({0}[i]);\r\n", p.Name);
-                        //}
-
-                        //methodBodyCode.AppendLine("}");
-
-                        #endregion
-                    }
-                    else if (p.ParameterType.IsClass)
-                    {
-                        //AddWriteProxy(p.ParameterType, doc.GetParamSummary(p.Name));
-
-                        //commentCode.AppendFormat("/// <param name=`{0}`>{1}</param>\r\n", p.Name, doc.GetParamSummary(p.Name));
-                        methodNameCode.AppendFormat("{0} {1},", Utils.GetFixFullTypeName(p.ParameterType.FullName), p.Name);
+                        methodNameCode.AppendFormat("{0} {1},", basetype, p.Name);
                     }
                     else
                     {
@@ -513,6 +405,18 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                             classType.Name, methodinfo.Name, p.Name, p.ParameterType.Name));
                     }
 
+                    //方法体
+                    methodBodyCode.AppendFormat("{0} = {1},\r\n", p.Name.GetInitialCharUpper(), p.Name);
+
+                    //事件参数
+                    eventArgsCode.AppendFormat(@"        /// <summary>
+                    /// {0}
+                    /// </summary>",
+                    doc.GetParamSummary(p.Name));
+
+                    eventArgsCode.AppendLine();
+                    eventArgsCode.AppendFormat("public {0} {1} {{ get; internal set; }}\r\n", basetype, p.Name.GetInitialCharUpper());
+                    eventArgsCode.AppendLine();
                 }
 
                 if (param.Length > 1)
@@ -522,11 +426,13 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     methodBodyCode.Remove(methodBodyCode.Length - 1, 1);
                     methodBodyCode.AppendLine("});");
 
+                    eventArgsCode.Remove(eventArgsCode.Length - 2, 2);      //删掉最后一个空行
                     eventArgsCode.AppendLine("}");
+                    eventArgsCode.AppendLine();
                 }
 
                 methodNameCode.Append(")");
-                methodBodyCode.AppendLine("}");
+                methodBodyCode.Append("}");
 
                 callCode.AppendLine(commentCode.ToString());
                 callCode.AppendLine(methodNameCode.ToString());
@@ -578,7 +484,6 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             }
 
             var code = GetCode();
-            //Console.WriteLine(code);
             return code;
         }
 
@@ -588,9 +493,8 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         public Assembly CompiledAssembly { get; set; }
 
         private const string CodeBase = @"
-
     /// <summary>
-    /// 
+    /// #ClassName#
     /// </summary>
     public partial class #ClassName#Controller : Base#ClassName#Controller
     {
@@ -603,11 +507,8 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         }
 
         #CallMethod#
-
         #ProxyCode#
-
         #EventCode#
-
     }
 
     #EventArgsCode#
@@ -678,9 +579,7 @@ using DogSE.Client.Core.Task;
 
 namespace #namespace#.Controller.#ClassName#
 {
-
-#code#
-
+    #code#
 }
 ";
     }

@@ -49,7 +49,6 @@
     <Compile Include="Controller\Game\GameController.Logic.cs" />
     <Compile Include="Controller\Game\GameController.Net.cs" />
     <Compile Include="Controller\Game\GameController.Proxy.cs" />
-    <Compile Include="Controller\Login\LoginController.Logic.cs" />
     <Compile Include="Controller\Login\LoginController.Net.cs" />
     <Compile Include="Controller\Login\LoginController.Proxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -26,7 +26,7 @@ namespace AnyGame.Server.Interface.Client
         /// 公告
         /// </summary>
         /// <param name="netstate"></param>
-        /// <param name="noticeContext"></param>
+        /// <param name="noticeContext">公告内容</param>
         [NetMethod((ushort)OpCode.Notice, NetMethodType.SimpleMethod)]
         void Notice(NetState netstate, string noticeContext);
 

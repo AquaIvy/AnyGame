@@ -15,9 +15,9 @@ namespace AnyGame.Client.Controller.Bag
     partial class BagController
     {
                 /// <summary>
-        /// 
+        /// 使用物品
         /// </summary>
-/// <param name="itemId"></param>
+/// <param name="itemId">该物品的唯一id，非物品模版id</param>
 /// <param name="useCount"></param>
 
 public void UseItem(int itemId,int useCount)
@@ -29,7 +29,7 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 升级背包
         /// </summary>
 
 public void UpgradeBag()

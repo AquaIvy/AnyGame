@@ -47,7 +47,7 @@ namespace DogSE.Tools.CodeGeneration.Utils
 
                     ParamItem pi = new ParamItem();
                     pi.Name = pn.GetAttribute("name", "");
-                    pi.Value = pn.Value.Trim();
+                    pi.Summary = pn.Value.Trim();
 
                     item.Params.Add(pi);
                 }
@@ -71,7 +71,7 @@ namespace DogSE.Tools.CodeGeneration.Utils
 
             var p = item.Params.FirstOrDefault(o => o.Name == name);
             if (p != null)
-                return p.Value;
+                return p.SummaryWorked;
             return string.Empty;
         }
 
@@ -89,7 +89,7 @@ namespace DogSE.Tools.CodeGeneration.Utils
             var item = items.FirstOrDefault(o => o.Name.IndexOf(name) == 0);
             if (item == null)
                 return string.Empty;
-            return item.Summary;
+            return item.SummaryWorked;
         }
 
         /// <summary>
@@ -118,19 +118,6 @@ namespace DogSE.Tools.CodeGeneration.Utils
             return str[0].ToString().ToLower() + str.Substring(1);
         }
 
-        public static string GetBaseTypeName(this Type type)
-        {
-            if (type == typeof(int))
-            {
-                return "int";
-            }
-            else if (type == typeof(byte))
-            {
-                return "byte";
-            }
-
-            return string.Empty;
-        }
     }
 
     public class FunItem
@@ -151,6 +138,17 @@ namespace DogSE.Tools.CodeGeneration.Utils
         public string Summary { get; set; }
 
         /// <summary>
+        /// 经过处理的Summary，可适应多行文本
+        /// </summary>
+        public string SummaryWorked
+        {
+            get
+            {
+                return Summary.Replace("\r\n", "\r\n/// ").Replace("            ", "");
+            }
+        }
+
+        /// <summary>
         /// 方法的参数
         /// </summary>
         public List<ParamItem> Params { get; private set; }
@@ -169,6 +167,17 @@ namespace DogSE.Tools.CodeGeneration.Utils
         /// <summary>
         /// 参数名的注释
         /// </summary>
-        public string Value { get; set; }
+        public string Summary { get; set; }
+
+        /// <summary>
+        /// 经过处理的Summary，可适应多行文本
+        /// </summary>
+        public string SummaryWorked
+        {
+            get
+            {
+                return Summary.Replace("\r\n", "\r\n/// ").Replace("            ", "");
+            }
+        }
     }
 }

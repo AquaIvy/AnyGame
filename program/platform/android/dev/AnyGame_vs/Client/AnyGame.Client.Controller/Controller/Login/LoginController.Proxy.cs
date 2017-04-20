@@ -15,11 +15,11 @@ namespace AnyGame.Client.Controller.Login
     partial class LoginController
     {
                 /// <summary>
-        /// 
+        /// 登陆服务器
         /// </summary>
 /// <param name="accountName"></param>
 /// <param name="password"></param>
-/// <param name="serverId"></param>
+/// <param name="serverId">服务器id</param>
 
 public void LoginServer(string accountName,string password,int serverId)
 {
@@ -31,10 +31,10 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 创建角色
         /// </summary>
 /// <param name="playerName"></param>
-/// <param name="sex"></param>
+/// <param name="sex">性别</param>
 
 public void CreatePlayer(string playerName,AnyGame.Client.Entity.Character.Sex sex)
 {

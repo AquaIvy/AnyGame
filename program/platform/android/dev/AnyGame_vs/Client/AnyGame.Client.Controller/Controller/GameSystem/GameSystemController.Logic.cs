@@ -9,10 +9,8 @@ using DogSE.Client.Core.Task;
 namespace AnyGame.Client.Controller.GameSystem
 {
 
-
-
     /// <summary>
-    /// 
+    /// GameSystem
     /// </summary>
     public partial class GameSystemController : BaseGameSystemController
     {
@@ -33,7 +31,6 @@ namespace AnyGame.Client.Controller.GameSystem
             });
         }
 
-
         internal override void OnNotice(string noticeContext)
         {
             NoticeEvent?.Invoke(this, new NoticeEventArgs
@@ -41,7 +38,6 @@ namespace AnyGame.Client.Controller.GameSystem
                 NoticeContext = noticeContext,
             });
         }
-
 
         internal override void OnServerStatus(string title, string context, bool isNoticeOnce, bool isMaintain)
         {
@@ -53,9 +49,6 @@ namespace AnyGame.Client.Controller.GameSystem
                 IsMaintain = isMaintain,
             });
         }
-
-
-
 
 
         /// <summary>
@@ -74,23 +67,54 @@ namespace AnyGame.Client.Controller.GameSystem
         public event EventHandler<ServerStatusEventArgs> ServerStatusEvent;
 
 
-
     }
 
+    /// <summary>
+    /// 获取服务端时间结果 【参数】
+    /// </summary>
     public class GetSystemTimeResultEventArgs : EventArgs
     {
-        public Int64 Time { get; internal set; }
+        /// <summary>
+        /// 服务端时间
+        /// </summary>
+        public long Time { get; internal set; }
     }
+
+    /// <summary>
+    /// 公告 【参数】
+    /// </summary>
     public class NoticeEventArgs : EventArgs
     {
-        public String NoticeContext { get; internal set; }
+        /// <summary>
+        /// 公告内容
+        /// </summary>
+        public string NoticeContext { get; internal set; }
     }
+
+    /// <summary>
+    /// 服务器状态 【参数】
+    /// </summary>
     public class ServerStatusEventArgs : EventArgs
     {
-        public String Title { get; internal set; }
-        public String Context { get; internal set; }
-        public Boolean IsNoticeOnce { get; internal set; }
-        public Boolean IsMaintain { get; internal set; }
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string Title { get; internal set; }
+
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string Context { get; internal set; }
+
+        /// <summary>
+        /// 公告是否只播放一次
+        /// </summary>
+        public bool IsNoticeOnce { get; internal set; }
+
+        /// <summary>
+        /// 是否维护中
+        /// </summary>
+        public bool IsMaintain { get; internal set; }
     }
 
 

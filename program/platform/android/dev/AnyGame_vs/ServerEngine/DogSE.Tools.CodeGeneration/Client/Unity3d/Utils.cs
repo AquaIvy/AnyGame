@@ -63,5 +63,97 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             return name.Replace(".Server.", ".Client.");
         }
 
+        /// <summary>
+        /// 返回Type的基础类型关键字，
+        /// 如：int byte
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param isNeedTrans="isNeedTrans">是否需要将 ".Server." 转换为 ".Client."</param>
+        /// <returns></returns>
+        public static string GetBaseTypeName(Type type, bool isNeedTrans = false)
+        {            
+            if (type == typeof(bool))           //4字节   true false
+            {
+                return "bool";
+            }
+            else if (type == typeof(byte))      //2字节   0 ~ 255
+            {
+                return "byte";
+            }
+            else if (type == typeof(sbyte))     //1字节   -128 ~ 127
+            {
+                return "sbyte";
+            }
+            else if (type == typeof(short))     //2字节   -32768 ~ 32767
+            {
+                return "short";
+            }
+            else if (type == typeof(ushort))    //2字节   0 ~ 65535
+            {
+                return "ushort";
+            }
+            else if (type == typeof(int))       //4字节   -2,147,483,648 ~ 2,147,483,647
+            {
+                return "int";
+            }
+            else if (type == typeof(uint))      //4字节   0~4,294,967,295
+            {
+                return "uint";
+            }
+            else if (type == typeof(long))      //8字节   -922万万亿 ~ 922万万亿
+            {
+                return "long";
+            }
+            else if (type == typeof(ulong))     //8字节   0 ~ 1844万万亿
+            {
+                return "ulong";
+            }
+            else if (type == typeof(float))     //4字节
+            {
+                return "float";
+            }
+            else if (type == typeof(double))    //8字节
+            {
+                return "double";
+            }
+            else if (type == typeof(string))
+            {
+                return "string";
+            }
+            else if (type == typeof(DateTime))
+            {
+                return "DateTime";
+            }
+            else if (type.IsEnum)
+            {
+                if (isNeedTrans)
+                    return Utils.GetFixFullTypeName(type.FullName);
+                else
+                    return type.FullName;
+            }
+            else if (type.IsLayoutSequential)
+            {
+                if (isNeedTrans)
+                    return Utils.GetFixFullTypeName(type.FullName);
+                else
+                    return type.FullName;
+            }
+            else if (type.IsArray)
+            {
+                if (isNeedTrans)
+                    return Utils.GetFixFullTypeName(type.FullName);
+                else
+                    return type.FullName;
+            }
+            else if (type.IsClass)
+            {
+                if (isNeedTrans)
+                    return Utils.GetFixFullTypeName(type.FullName);
+                else
+                    return type.FullName;
+            }
+
+            return string.Empty;
+        }
     }
 }

@@ -3,103 +3,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DogSE.Client.Core;
-using DogSE.Library.Log;
-using AnyGame.Client.Entity.Login;
+using DogSE.Client.Core.Net;
+using DogSE.Client.Core.Task;
 
 namespace AnyGame.Client.Controller.Login
 {
+
     /// <summary>
-    /// 登陆控制器
+    /// Login
     /// </summary>
     public partial class LoginController : BaseLoginController
     {
         private readonly GameController controller;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gc"></param>
-        /// <param name="nc"></param>
         public LoginController(GameController gc, NetController nc)
             : this(nc)
         {
             controller = gc;
         }
 
-        internal override void OnLoginServerResult(LoginServerResult result, bool isCreatedPlayer)
-        {
-            if (result == LoginServerResult.Success)
-            {
-                if (isCreatedPlayer)
-                    controller.Game.SyncTime();
-            }
 
-            if (LoginServerRet != null)
-                LoginServerRet(this, new LoginServerResultEventArgs
-                {
-                    Result = result,
-                    IsCreatedPlayer = isCreatedPlayer
-                });
+        internal override void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result, bool isCreatedPlayer)
+        {
+            LoginServerResultEvent?.Invoke(this, new LoginServerResultEventArgs
+            {
+                Result = result,
+                IsCreatedPlayer = isCreatedPlayer,
+            });
         }
 
-
-
-        internal override void OnCreatePlayerResult(CraetePlayerResult result)
+        internal override void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result)
         {
-            if (result == CraetePlayerResult.Success)
-                controller.Game.SyncTime();
-
-            if (CreatePlayerRet != null)
-                CreatePlayerRet(result);
+            CreatePlayerResultEvent?.Invoke(this, new CreatePlayerResultEventArgs
+            {
+                Result = result,
+            });
         }
 
         internal override void OnSyncInitDataFinish()
         {
-            if (SyncDataFinish != null)
-                SyncDataFinish();
+            SyncInitDataFinishEvent?.Invoke(this, new EventArgs());
         }
 
-        /*
-        这里用了2种事件的返回方法，大家可以根据实际需要自己选择
-        第一种，需要声明一个 xxEventArgs 的事件对象
-                好处是今后通知的数据变化的时候，不会导致接口的变化，
-                坏处是需要多一个类对象定义，以及每次调用的时候，会创建一个新对象
-
-        第二种，使用Action来包括返回参数
-                好处是返回值可以直接定义在接口里，不用增加类，触发时，也不会创建新对象
-                坏处是如果参数发生变化，监听这个事件的代码都得修改
-
-        */
 
         /// <summary>
-        /// 登陆服务器返回事件
+        /// 登陆返回
         /// </summary>
-        public event EventHandler<LoginServerResultEventArgs> LoginServerRet;
+        public event EventHandler<LoginServerResultEventArgs> LoginServerResultEvent;
 
         /// <summary>
-        /// 创建玩家返回
+        /// 创建玩家返回结果
         /// </summary>
-        public event Action<CraetePlayerResult> CreatePlayerRet;
+        public event EventHandler<CreatePlayerResultEventArgs> CreatePlayerResultEvent;
 
         /// <summary>
-        /// 同步数据结束
+        /// 登陆游戏时的基本数据已同步完成
+        /// 客户端可以开始进入游戏了
         /// </summary>
-        public event Action SyncDataFinish;
+        public event EventHandler<EventArgs> SyncInitDataFinishEvent;
+
+
     }
 
     /// <summary>
-    /// 登陆服务器返回事件
+    /// 登陆返回 【参数】
     /// </summary>
     public class LoginServerResultEventArgs : EventArgs
     {
         /// <summary>
-        /// 返回值
+        /// 
         /// </summary>
-        public LoginServerResult Result { get; internal set; }
+        public AnyGame.Client.Entity.Login.LoginServerResult Result { get; internal set; }
 
         /// <summary>
-        /// 是否创建了玩家
+        /// 玩家是否创建过角色，如果没有创建过，则客户端需要调用创建角色代码
         /// </summary>
         public bool IsCreatedPlayer { get; internal set; }
     }
+
+    /// <summary>
+    /// 创建玩家返回结果 【参数】
+    /// </summary>
+    public class CreatePlayerResultEventArgs : EventArgs
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public AnyGame.Client.Entity.Login.CraetePlayerResult Result { get; internal set; }
+    }
+
+
+
 }

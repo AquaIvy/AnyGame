@@ -15,7 +15,7 @@ namespace AnyGame.Client.Controller.GameSystem
     partial class GameSystemController
     {
                 /// <summary>
-        /// 
+        /// 执行一个gm方法
         /// </summary>
 /// <param name="command"></param>
 
@@ -27,7 +27,7 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 获取服务端时间请求
         /// </summary>
 
 public void GetSystemTime()
@@ -37,10 +37,10 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 客户端日志数据
         /// </summary>
-/// <param name="type"></param>
-/// <param name="context"></param>
+/// <param name="type">日志类型</param>
+/// <param name="context">日志内容</param>
 
 public void ClientLog(string type,string context)
 {
@@ -51,9 +51,9 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 客户端通知手机的基本信息
         /// </summary>
-/// <param name="context"></param>
+/// <param name="context">内容</param>
 
 public void PhoneInfo(string context)
 {
@@ -63,9 +63,9 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 客户端的异常通知
         /// </summary>
-/// <param name="context"></param>
+/// <param name="context">内容</param>
 
 public void ClientException(string context)
 {
@@ -75,10 +75,10 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 客户端的暂停状态
         /// </summary>
 /// <param name="isPause"></param>
-/// <param name="time"></param>
+/// <param name="time">暂停和恢复的时间</param>
 
 public void ClinetPauseStatus(bool isPause,DateTime time)
 {
@@ -89,7 +89,7 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 }
 
         /// <summary>
-        /// 
+        /// 心跳包
         /// </summary>
 
 public void Heart()

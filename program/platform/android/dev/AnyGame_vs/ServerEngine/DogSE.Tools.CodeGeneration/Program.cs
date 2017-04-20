@@ -15,13 +15,8 @@ namespace DogSE.Tools.CodeGeneration
     {
         static void Main(string[] args)
         {
-            //CreateServerCode();
-            //CreateClientCode();
-
-            ClientEventProtocolGeneration.CreateCode(
-                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
-                @"..\..\..\..\Client\AnyGame.Client.Controller\",
-                "AnyGame.Client");
+            CreateServerCode();
+            CreateClientCode();
 
             Console.ReadKey();
         }
@@ -44,14 +39,20 @@ namespace DogSE.Tools.CodeGeneration
 
         static void CreateClientCode()
         {
-            //生成客户端的 LogicInterface.cs 以及 .Net.cs 
+            //生成客户端的 LogicInterface.cs 以及 *.Net.cs 
             ClientLogicProtocolGeneration.CreateCode(
                 @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
                 @"..\..\..\..\Client\AnyGame.Client.Controller\",
                 "AnyGame.Client");
 
-            //客户端生成 .Proxy.cs 
+            //客户端生成 *.Proxy.cs 
             ServerProxyProtocolGeneration.CreateCode(
+                @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
+                @"..\..\..\..\Client\AnyGame.Client.Controller\",
+                "AnyGame.Client");
+
+            //客户端生成 *.Logic.cs 
+            ClientEventProtocolGeneration.CreateCode(
                 @"..\..\..\..\Server\AnyGame.Server.Interface\bin\Debug\AnyGame.Server.Interface.dll",
                 @"..\..\..\..\Client\AnyGame.Client.Controller\",
                 "AnyGame.Client");

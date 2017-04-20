@@ -16,6 +16,10 @@ namespace AnyGame.Server.Interface.Client
         /// <summary>
         /// 使用背包物品结果
         /// </summary>
+        /// <param name="netstate"></param>
+        /// <param name="result">结果枚举</param>
+        /// <param name="itemId">物品id</param>
+        /// <param name="lessCount">物品剩余数量</param>
         [NetMethod((ushort)OpCode.UseItemResult, NetMethodType.SimpleMethod)]
         void UseItemResult(NetState netstate, UseItemResult result, int itemId, int lessCount);
 
@@ -23,7 +27,7 @@ namespace AnyGame.Server.Interface.Client
         /// 同步物品
         /// </summary>
         /// <param name="netstate"></param>
-        /// <param name="type">同步类型，可参见该枚举定义</param>
+        /// <param name="type">同步类型枚举</param>
         /// <param name="items">物品列表</param>
         [NetMethod((ushort)OpCode.SyncItem, NetMethodType.SimpleMethod)]
         void SyncItems(NetState netstate, SyncType type, params GameItem[] items);
@@ -32,8 +36,8 @@ namespace AnyGame.Server.Interface.Client
         /// 同步背包信息
         /// </summary>
         /// <param name="netstate"></param>
-        /// <param name="maxGridCount"></param>
-        /// <param name="items"></param>
+        /// <param name="maxGridCount">最大格子数量</param>
+        /// <param name="items">物品列表</param>
         [NetMethod((ushort)OpCode.SyncBag, NetMethodType.SimpleMethod)]
         void SyncBag(NetState netstate, int maxGridCount, GameItem[] items);
 
@@ -59,7 +63,7 @@ namespace AnyGame.Server.Interface.Client
         /// 升级背包的结果
         /// </summary>
         /// <param name="netstate"></param>
-        /// <param name="result"></param>
+        /// <param name="result">结果枚举</param>
         [NetMethod((ushort)OpCode.UpgradeBagResult, NetMethodType.SimpleMethod)]
         void UpgradeBagResult(NetState netstate, UpgradeBagResult result);
     }

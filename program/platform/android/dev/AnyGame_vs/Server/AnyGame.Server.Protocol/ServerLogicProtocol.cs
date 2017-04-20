@@ -57,14 +57,6 @@ namespace DogSE.Server.Core.Protocol.AutoCode
                     pac.SetModule(m as AnyGame.Server.Interface.Server.ILogin);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }                if (m is AnyGame.Server.Interface.Server.IShop)
-                {
-                    IProtoclAutoCode pac = new IShopAccess5();
-                    list.Add(pac);
-
-                    pac.SetModule(m as AnyGame.Server.Interface.Server.IShop);
-                    pac.PacketHandlerManager = handlers;
-                    pac.Init();
                 }
             }
         }
@@ -253,40 +245,6 @@ if (!netstate.IsVerifyLogin) return;
 var p1 = reader.ReadUTF8String();
 var p2 = (AnyGame.Server.Entity.Character.Sex)reader.ReadByte();
 module.OnCreatePlayer(netstate,p1,p2);
-}
-
-
-
-    }
-
-
-    class IShopAccess5:IProtoclAutoCode
-    {
-        public PacketHandlersBase PacketHandlerManager {get;set;}
-
-        AnyGame.Server.Interface.Server.IShop module;
-
-        public void SetModule(ILogicModule m)
-        {
-            if (m == null)
-                throw new ArgumentNullException("ILogicModule");
-            module = (AnyGame.Server.Interface.Server.IShop)m;
-            if (module == null)
-            {
-                throw new NullReferenceException(string.Format("{0} not AnyGame.Server.Interface.Server.IShop", m.GetType().FullName));
-            }
-        }
-
-
-        public void Init()
-        {
-PacketHandlerManager.Register(1000, OnBugCard);
-
-        }
-
-void OnBugCard(NetState netstate, PacketReader reader){
-if (!netstate.IsVerifyLogin) return;
-module.OnBugCard(netstate);
 }
 
 

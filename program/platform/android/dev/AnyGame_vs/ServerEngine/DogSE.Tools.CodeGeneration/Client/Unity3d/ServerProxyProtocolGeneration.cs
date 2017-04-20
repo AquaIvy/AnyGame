@@ -326,7 +326,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 commentCode.AppendFormat(@"        /// <summary>
         /// {0}
         /// </summary>
-", doc.Summary);
+", doc.SummaryWorked);
 
                 methonNameCode.AppendFormat("public void {0}(", methodName);
 

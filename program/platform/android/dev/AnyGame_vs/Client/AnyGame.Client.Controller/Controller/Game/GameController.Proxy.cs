@@ -15,9 +15,9 @@ namespace AnyGame.Client.Controller.Game
     partial class GameController
     {
                 /// <summary>
-        /// 
+        /// 客户端过来的心跳包
         /// </summary>
-/// <param name="id"></param>
+/// <param name="id">心跳包id，服务器确认的时候，把这个返回给客户端</param>
 
 public void Heartbeat(int id)
 {
