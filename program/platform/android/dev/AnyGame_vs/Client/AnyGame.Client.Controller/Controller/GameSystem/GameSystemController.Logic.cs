@@ -50,7 +50,6 @@ namespace AnyGame.Client.Controller.GameSystem
             });
         }
 
-
         /// <summary>
         /// 获取服务端时间结果
         /// </summary>

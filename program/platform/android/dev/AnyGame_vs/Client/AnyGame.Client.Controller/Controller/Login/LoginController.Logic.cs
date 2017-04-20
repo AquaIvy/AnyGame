@@ -27,6 +27,12 @@ namespace AnyGame.Client.Controller.Login
 
         internal override void OnLoginServerResult(LoginServerResult result, bool isCreatedPlayer)
         {
+            if (result == LoginServerResult.Success)
+            {
+                if (isCreatedPlayer)
+                    controller.Game.SyncTime();
+            }
+
             LoginServerResultEvent?.Invoke(this, new LoginServerResultEventArgs
             {
                 Result = result,
@@ -36,6 +42,9 @@ namespace AnyGame.Client.Controller.Login
 
         internal override void OnCreatePlayerResult(CraetePlayerResult result)
         {
+            if (result == CraetePlayerResult.Success)
+                controller.Game.SyncTime();
+
             CreatePlayerResultEvent?.Invoke(this, new CreatePlayerResultEventArgs
             {
                 Result = result,

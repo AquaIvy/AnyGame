@@ -5,6 +5,8 @@ using System.Text;
 using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
+using AnyGame.Client.Entity.Bags;
+using AnyGame.Client.Entity.Common;
 
 namespace AnyGame.Client.Controller.Bag
 {
@@ -23,7 +25,7 @@ namespace AnyGame.Client.Controller.Bag
         }
 
 
-        internal override void OnUseItemResult(AnyGame.Client.Entity.Bags.UseItemResult result, int itemId, int lessCount)
+        internal override void OnUseItemResult(UseItemResult result, int itemId, int lessCount)
         {
             UseItemResultEvent?.Invoke(this, new UseItemResultEventArgs
             {
@@ -33,7 +35,7 @@ namespace AnyGame.Client.Controller.Bag
             });
         }
 
-        internal override void OnSyncItems(AnyGame.Client.Entity.Common.SyncType type, AnyGame.Client.Entity.Bags.GameItem[] items)
+        internal override void OnSyncItems(SyncType type, GameItem[] items)
         {
             SyncItemsEvent?.Invoke(this, new SyncItemsEventArgs
             {
@@ -42,7 +44,7 @@ namespace AnyGame.Client.Controller.Bag
             });
         }
 
-        internal override void OnSyncBag(int maxGridCount, AnyGame.Client.Entity.Bags.GameItem[] items)
+        internal override void OnSyncBag(int maxGridCount, GameItem[] items)
         {
             SyncBagEvent?.Invoke(this, new SyncBagEventArgs
             {
@@ -69,14 +71,13 @@ namespace AnyGame.Client.Controller.Bag
             });
         }
 
-        internal override void OnUpgradeBagResult(AnyGame.Client.Entity.Bags.UpgradeBagResult result)
+        internal override void OnUpgradeBagResult(UpgradeBagResult result)
         {
             UpgradeBagResultEvent?.Invoke(this, new UpgradeBagResultEventArgs
             {
                 Result = result,
             });
         }
-
 
         /// <summary>
         /// 使用背包物品结果
@@ -119,7 +120,7 @@ namespace AnyGame.Client.Controller.Bag
         /// <summary>
         /// 结果枚举
         /// </summary>
-        public AnyGame.Client.Entity.Bags.UseItemResult Result { get; internal set; }
+        public UseItemResult Result { get; internal set; }
 
         /// <summary>
         /// 物品id
@@ -140,12 +141,12 @@ namespace AnyGame.Client.Controller.Bag
         /// <summary>
         /// 同步类型枚举
         /// </summary>
-        public AnyGame.Client.Entity.Common.SyncType Type { get; internal set; }
+        public SyncType Type { get; internal set; }
 
         /// <summary>
         /// 物品列表
         /// </summary>
-        public AnyGame.Client.Entity.Bags.GameItem[] Items { get; internal set; }
+        public GameItem[] Items { get; internal set; }
     }
 
     /// <summary>
@@ -161,7 +162,7 @@ namespace AnyGame.Client.Controller.Bag
         /// <summary>
         /// 物品列表
         /// </summary>
-        public AnyGame.Client.Entity.Bags.GameItem[] Items { get; internal set; }
+        public GameItem[] Items { get; internal set; }
     }
 
     /// <summary>
@@ -204,7 +205,7 @@ namespace AnyGame.Client.Controller.Bag
         /// <summary>
         /// 结果枚举
         /// </summary>
-        public AnyGame.Client.Entity.Bags.UpgradeBagResult Result { get; internal set; }
+        public UpgradeBagResult Result { get; internal set; }
     }
 
 

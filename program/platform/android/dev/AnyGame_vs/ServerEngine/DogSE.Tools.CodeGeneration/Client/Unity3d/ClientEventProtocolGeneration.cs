@@ -426,7 +426,6 @@ using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 #using#
-
 namespace #namespace#.Controller.#ClassName#
 {
     #code#
