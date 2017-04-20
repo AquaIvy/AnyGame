@@ -5,6 +5,7 @@ using System.Text;
 using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
+using DogSE.Library.Time;
 
 namespace AnyGame.Client.Controller.GameSystem
 {
@@ -22,6 +23,7 @@ namespace AnyGame.Client.Controller.GameSystem
             controller = gc;
         }
 
+        private DateTime sendTime;
 
         internal override void OnGetSystemTimeResult(long time)
         {

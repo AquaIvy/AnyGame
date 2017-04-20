@@ -390,28 +390,38 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                         string typeName = Utils.GetFixInterfaceName(type.Name);
 
                         string fileName = Path.Combine(outFolder, string.Format(@"Controller\{0}\{0}Controller.Logic.cs", typeName));
-                        // .Logic.cs文件基本上一定会被手工修改，所以这里只是在没有文件时才生成
+
+                        Console.WriteLine(typeName);
+
+                        //  生成客户端【收到服务器的响应事件】代码并写入对应文件
+                        var cec = new CreateEventCode(type, xmlDoc);
+                        var code = cec.CreateCode();
+
+                        var context = FileCodeBase
+                        .Replace("#code#", code)
+                        .Replace("#namespace#", nameSpace)
+                        .Replace("#ClassName#", typeName)
+                        .Replace("#using#", cec.GetUsedNameSpace())
+                        .Replace("`", "\"");
+
+                        var fi = new FileInfo(fileName);
+                        if (!fi.Directory.Exists)
+                            fi.Directory.Create();
+
+                        // *.Logic.cs文件基本上一定会被手工修改，所以这里只是在没有文件时才生成
                         if (!File.Exists(fileName))
                         {
-                            Console.WriteLine(typeName);
-
-                            //  生成客户端【收到服务器的响应事件】代码并写入对应文件
-                            var cec = new CreateEventCode(type, xmlDoc);
-                            var code = cec.CreateCode();
-
-                            var context = FileCodeBase
-                            .Replace("#code#", code)
-                            .Replace("#namespace#", nameSpace)
-                            .Replace("#ClassName#", typeName)
-                            .Replace("#using#", cec.GetUsedNameSpace())
-                            .Replace("`", "\"");
-
-                            var fi = new FileInfo(fileName);
-                            if (!fi.Directory.Exists)
-                                fi.Directory.Create();
-
                             File.WriteAllText(fileName, context, Encoding.UTF8);
                         }
+
+                        //这里在另一个地方刻意再存储一份
+                        //因为有时候改了接口，好用这里的代码来赋值粘贴
+                        fileName = Path.Combine("D:\\生成AnyGame的logic代码", string.Format(@"Controller\{0}\{0}Controller.Logic.cs", typeName));
+                        fi = new FileInfo(fileName);
+                        if (!fi.Directory.Exists)
+                            fi.Directory.Create();
+
+                        File.WriteAllText(fileName, context, Encoding.UTF8);
                     }
                 }
             }

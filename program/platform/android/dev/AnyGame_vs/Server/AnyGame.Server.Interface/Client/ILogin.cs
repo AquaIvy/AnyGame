@@ -35,5 +35,14 @@ namespace AnyGame.Server.Interface.Client
         /// <param name="netstate"></param>
         [NetMethod((ushort)OpCode.SyncInitDataFinish, NetMethodType.SimpleMethod)]
         void SyncInitDataFinish(NetState netstate);
+
+
+        /// <summary>
+        /// 通知玩家被T下线
+        /// </summary>
+        /// <param name="netstate"></param>
+        /// <param name="type">掉线的类型</param>
+        [NetMethod((ushort)OpCode.KickOfServer, NetMethodType.SimpleMethod)]
+        void KickOfServer(NetState netstate, OfflineType type);
     }
 }

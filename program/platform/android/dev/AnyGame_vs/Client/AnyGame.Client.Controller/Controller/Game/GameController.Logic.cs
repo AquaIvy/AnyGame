@@ -29,7 +29,7 @@ namespace AnyGame.Client.Controller.Game
         /// <summary>
         /// 向服务器要求同步时间
         /// 这里会向服务器发送一个心跳包，然后顺便同步时间
-        /// 建议每个1分钟可以向服务器发送一次心跳包
+        /// 建议每隔1分钟可以向服务器发送一次心跳包
         /// </summary>
         public void SyncTime()
         {

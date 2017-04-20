@@ -54,6 +54,8 @@
     <Compile Include="Character\PlatformAccount.cs" />
     <Compile Include="Character\Player.cs" />
     <Compile Include="Character\Res.cs" />
+    <Compile Include="Character\ResouceChangeType.cs" />
+    <Compile Include="Character\ResourceType.cs" />
     <Compile Include="Character\SimplePlayer.cs" />
     <Compile Include="Character\GameAccount.cs" />
     <Compile Include="Common\GameZone.cs" />

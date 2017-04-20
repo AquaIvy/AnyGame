@@ -58,6 +58,12 @@ namespace AnyGame.Server.Entity.Character
         /// </remarks>
         public int OnlineTime { get; set; }
 
+
+        /// <summary>
+        /// 是否是GM账号
+        /// </summary>
+        public bool IsSuperMan { get; set; }
+
         /// <summary>
         /// 性别
         /// </summary>

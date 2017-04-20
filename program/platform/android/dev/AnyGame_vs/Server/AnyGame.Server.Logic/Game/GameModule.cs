@@ -15,6 +15,8 @@ namespace AnyGame.Server.Logic.Game
     /// </summary>
     public class GameModule : IGame
     {
+        #region ILogicModule 成员
+
         /// <summary>
         /// 模块的ID（名字）
         /// </summary>
@@ -52,6 +54,8 @@ namespace AnyGame.Server.Logic.Game
         public void Release()
         {
         }
+
+        #endregion
 
         /// <summary>
         /// 客户端过来的心跳包

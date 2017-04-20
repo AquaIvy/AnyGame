@@ -54,29 +54,6 @@ namespace AnyGame.Server.Logic.Bags
 
         private void PlayerEvents_EnterGame(Player player)
         {
-            //玩家进入游戏 同步所有数据
-            //var bag = WorldEntityManager.BagCache.GetEntity(player.Id);
-
-            //if (bag == null)
-            //{
-            //    bag = DB.GameDB.LoadEntity<Bag>(player.Id);
-            //    if (bag == null)
-            //    {
-            //        bag = new Bag
-            //        {
-            //            Id = player.Id,
-            //            MaxCount = 100,
-            //            CurCount = 100
-            //        };
-            //        DB.GameDB.InsertEntity<Bag>(bag);
-            //    }
-            //    WorldEntityManager.BagCache.AddOrReplace(bag);
-            //}
-
-            //var bag = player.Bag;
-
-            //ClientProxy.Bag.SyncBag(player.NetState, bag.MaxCount, bag.CurCount);
-
             try
             {
                 var res = player.Res;

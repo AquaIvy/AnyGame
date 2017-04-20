@@ -92,11 +92,30 @@
         /// </summary>
         CreatePlayerResult = 1003,
 
+        /// <summary>
+        /// 被服务器踢下线
+        /// </summary>
+        KickOfServer = 1004,
+
+        /// <summary>
+        /// 同步离线奖励信息
+        /// </summary>
+        SyncOfflineReward = 1005,
 
         /// <summary>
         /// 数据同步完成
         /// </summary>
-        SyncInitDataFinish = 1004,
+        SyncInitDataFinish = 1006,
+
+        /// <summary>
+        /// 判断名字是否存在
+        /// </summary>
+        NameExists = 1009,
+
+        /// <summary>
+        /// 判断名字是否存在的返回
+        /// </summary>
+        NameExistsResult = 1010,
 
         #endregion
 
