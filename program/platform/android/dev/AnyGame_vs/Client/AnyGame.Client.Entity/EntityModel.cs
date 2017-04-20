@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnyGame.Client.Entity.Character;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Client.Entity.Bags;
 
 namespace AnyGame.Client.Entity
 {

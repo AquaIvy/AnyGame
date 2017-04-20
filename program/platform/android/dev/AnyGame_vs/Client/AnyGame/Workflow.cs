@@ -17,15 +17,16 @@ namespace AnyGame
 
         public void Init()
         {
-            GameCenter.Controller.Login.LoginServerRet += OnLoginServerRet;
-            GameCenter.Controller.Login.SyncDataFinish += OnSyncDataFinish;
+            GameCenter.Controller.Login.LoginServerResultEvent += Login_LoginServerResultEvent;
+            GameCenter.Controller.Login.SyncInitDataFinishEvent += Login_SyncInitDataFinishEvent;
         }
 
-        private void OnLoginServerRet(object sender, LoginServerResultEventArgs e)
+
+        private void Login_LoginServerResultEvent(object sender, LoginServerResultEventArgs e)
         {
             if (e.Result == LoginServerResult.Success)
             {
-                GameCenter.Controller.Login.LoginServerRet -= OnLoginServerRet;
+                GameCenter.Controller.Login.LoginServerResultEvent -= Login_LoginServerResultEvent;
 
                 if (!e.IsCreatedPlayer)
                 {
@@ -40,9 +41,10 @@ namespace AnyGame
                 Logs.Error("登陆失败 {0}", e.Result.ToString());
             }
         }
-
-        private void OnSyncDataFinish()
+        private void Login_SyncInitDataFinishEvent(object sender, System.EventArgs e)
         {
+            GameCenter.Controller.Login.SyncInitDataFinishEvent -= Login_SyncInitDataFinishEvent;
+
             Logs.Info("同步数据完成，可以进入主界面了   {0}", GameCenter.Entity.Player.Name);
 
             //var shop = new FrmShop();

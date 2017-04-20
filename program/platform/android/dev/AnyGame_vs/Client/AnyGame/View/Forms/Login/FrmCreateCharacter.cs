@@ -5,6 +5,7 @@ using System;
 using AnyGame.Client.Entity.Character;
 using AnyGame.Client.Entity.Login;
 using UnityEngine;
+using AnyGame.Client.Controller.Login;
 
 namespace AnyGame.View.Forms.Login
 {
@@ -16,27 +17,26 @@ namespace AnyGame.View.Forms.Login
         {
             InitForm();
 
-            GameCenter.Controller.Login.CreatePlayerRet += OnCreatePlayerRet;
+            GameCenter.Controller.Login.CreatePlayerResultEvent += Login_CreatePlayerResultEvent;
 
             btnCreate.OnClick += BtnCreate_OnClick;
         }
 
-        private void OnCreatePlayerRet(CraetePlayerResult result)
+        private void Login_CreatePlayerResultEvent(object sender, CreatePlayerResultEventArgs e)
         {
-            if (result == CraetePlayerResult.Success)
+            if (e.Result == CraetePlayerResult.Success)
             {
                 Logs.Info("创建角色成功");
             }
             else
             {
-                Logs.Error("创建角色失败 {0}", result.ToString());
+                Logs.Error("创建角色失败 {0}", e.Result.ToString());
             }
-
         }
 
         protected override void OnClosed()
         {
-            GameCenter.Controller.Login.CreatePlayerRet -= OnCreatePlayerRet;
+            GameCenter.Controller.Login.CreatePlayerResultEvent -= Login_CreatePlayerResultEvent;
 
             base.OnClosed();
         }

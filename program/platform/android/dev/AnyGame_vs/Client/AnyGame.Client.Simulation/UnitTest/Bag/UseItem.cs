@@ -20,7 +20,7 @@ namespace AnyGame.Client.Simulation.UnitTest.Bag
             bool isSuccessUseItem = false;
             
 
-            controller.Bag.UseItemRet += (s, e) =>
+            controller.Bag.UseItemResultEvent += (s, e) =>
             {
                 if (e.Result == UseItemResult.Success)
                 {
