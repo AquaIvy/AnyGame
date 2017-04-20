@@ -5,6 +5,8 @@ using System.Text;
 using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
+using AnyGame.Client.Entity.Login;
+
 
 namespace AnyGame.Client.Controller.Login
 {
@@ -23,7 +25,7 @@ namespace AnyGame.Client.Controller.Login
         }
 
 
-        internal override void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result, bool isCreatedPlayer)
+        internal override void OnLoginServerResult(LoginServerResult result, bool isCreatedPlayer)
         {
             LoginServerResultEvent?.Invoke(this, new LoginServerResultEventArgs
             {
@@ -32,7 +34,7 @@ namespace AnyGame.Client.Controller.Login
             });
         }
 
-        internal override void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result)
+        internal override void OnCreatePlayerResult(CraetePlayerResult result)
         {
             CreatePlayerResultEvent?.Invoke(this, new CreatePlayerResultEventArgs
             {
@@ -44,7 +46,6 @@ namespace AnyGame.Client.Controller.Login
         {
             SyncInitDataFinishEvent?.Invoke(this, new EventArgs());
         }
-
 
         /// <summary>
         /// 登陆返回
@@ -73,7 +74,7 @@ namespace AnyGame.Client.Controller.Login
         /// <summary>
         /// 
         /// </summary>
-        public AnyGame.Client.Entity.Login.LoginServerResult Result { get; internal set; }
+        public LoginServerResult Result { get; internal set; }
 
         /// <summary>
         /// 玩家是否创建过角色，如果没有创建过，则客户端需要调用创建角色代码
@@ -89,7 +90,7 @@ namespace AnyGame.Client.Controller.Login
         /// <summary>
         /// 
         /// </summary>
-        public AnyGame.Client.Entity.Login.CraetePlayerResult Result { get; internal set; }
+        public CraetePlayerResult Result { get; internal set; }
     }
 
 

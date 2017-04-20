@@ -37,7 +37,6 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             funcDoc = doc;
         }
 
-        private readonly StringBuilder initCode = new StringBuilder();
 
         /// <summary>
         /// 调用代码
@@ -54,165 +53,20 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         /// </summary>
         private readonly StringBuilder eventArgsCode = new StringBuilder();
 
-        /// <summary>
-        /// 读取代理类
-        /// </summary>
-        private readonly StringBuilder writerProxyCode = new StringBuilder();
 
+        private HashSet<string> usingCode = new HashSet<string>();
 
-        private HashSet<Type> writerProxySet = new HashSet<Type>();
-
-        /// <summary>
-        /// 添加一个读取代理类
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="doc">文档注解</param>
-        private void AddWriteProxy(Type type, string doc = null)
+        public string GetUsedNameSpace()
         {
-            if (writerProxySet.Contains(type))
-                return;
+            StringBuilder sb = new StringBuilder();
 
-            writerProxySet.Add(type);
-
-            StringBuilder writeCode = new StringBuilder();
-            var typeName = type.Name;
-
-            foreach (var p in type.GetProperties())
+            foreach (var item in usingCode)
             {
-                if (!p.CanRead || !p.CanWrite)
-                    continue;
-
-                if (p.GetCustomAttributes(typeof(IgnoreAttribute), true).Length > 0)
-                    continue;
-
-                if (p.PropertyType == typeof(int))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(byte))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(long))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(float))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(double))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(bool))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(string))
-                {
-                    writeCode.AppendFormat("pw.WriteUTF8Null(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType == typeof(DateTime))
-                {
-                    writeCode.AppendFormat("pw.Write(obj.{0}.Ticks);\r\n", p.Name);
-                }
-                else if (p.PropertyType.IsEnum)
-                {
-                    writeCode.AppendFormat("pw.Write((byte)obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType.IsLayoutSequential)
-                {
-                    writeCode.AppendFormat("pw.WriteStruct(obj.{0});\r\n", p.Name);
-                }
-                else if (p.PropertyType.IsArray)
-                {
-                    //  数组
-                    #region 数组的处理
-
-                    var arrayType = p.PropertyType.GetElementType();
-
-                    //  先写入长度
-                    writeCode.AppendFormat("pw.Write((int)obj.{0}.Length);\r\n", p.Name);
-                    writeCode.AppendFormat("for(int i = 0;i < obj.{0}.Length){{\r\n", p.Name);
-
-                    if (arrayType == typeof(int))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(byte))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(long))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(float))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(double))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(bool))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType == typeof(string))
-                    {
-                        writeCode.AppendFormat("pw.WriteUTF8Null(obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (p.PropertyType == typeof(DateTime))
-                    {
-                        writeCode.AppendFormat("pw.Write(obj.{0}.Ticks);\r\n", p.Name);
-                    }
-                    else if (arrayType.IsEnum)
-                    {
-                        writeCode.AppendFormat("pw.Write((byte)obj.{0}[i]);\r\n", p.Name);
-                    }
-                    else if (arrayType.IsLayoutSequential)
-                    {
-                        writeCode.AppendFormat("pw.WriteStruct(obj.{0}[i]);\r\n", p.Name);
-                    }
-
-                    writeCode.AppendLine("}");
-
-                    #endregion
-                }
-                else
-                {
-                    Logs.Error(string.Format("{0}.{1} 存在不支持的参数 {2}，类型未：{3}",
-                        classType.Name, type.Name, p.Name, p.PropertyType.Name));
-                }
-
+                sb.AppendFormat("using {0};\r\n", item);
             }
 
-            writerProxyCode.AppendLine(
-                readProxyCodeFormatter.Replace("#TypeName#", typeName)
-                .Replace("#TypeFullName#", Utils.GetFixFullTypeName(type.FullName))
-                .Replace("#ReadCode#", writeCode.ToString())
-                .Replace("#doc#", doc)
-                );
+            return sb.ToString();
         }
-
-        private string readProxyCodeFormatter = @"
-
-    /// <summary>
-    /// #doc#
-    /// </summary>
-    public class #TypeName#WriteProxy
-    {
-    /// <summary>
-    /// #doc#
-    /// </summary>
-        public static void Write(#TypeFullName# obj, PacketWriter pw)
-        {
-
-#ReadCode#
-        }
-    }";
 
 
         /// <summary>
@@ -394,7 +248,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     var p = param[i];
 
                     //方法 名字
-                    string basetype = Utils.GetBaseTypeName(p.ParameterType, true);
+                    string basetype = Utils.GetBaseTypeName(p.ParameterType, ref usingCode, true);
                     if (!string.IsNullOrEmpty(basetype))
                     {
                         methodNameCode.AppendFormat("{0} {1},", basetype, p.Name);
@@ -453,15 +307,9 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             ret.Append(CodeBase);
             ret.Replace("#ClassName#", Utils.GetFixInterfaceName(classType.Name));
             ret.Replace("#FullClassName#", classType.FullName);
-            ret.Replace("#InitMethod#", initCode.ToString());
             ret.Replace("#CallMethod#", callCode.ToString());
-            ret.Replace("#ProxyCode#", writerProxyCode.ToString());
             ret.Replace("#EventCode#", eventCode.ToString());
             ret.Replace("#EventArgsCode#", eventArgsCode.ToString());
-
-            var nsName = classType.Namespace;
-
-            ret.Replace("#using#", string.Format("using {0};", nsName));
             ret.Replace("`", "\"");
 
             return ret.ToString();
@@ -507,7 +355,6 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         }
 
         #CallMethod#
-        #ProxyCode#
         #EventCode#
     }
 
@@ -549,12 +396,14 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                             Console.WriteLine(typeName);
 
                             //  生成客户端【收到服务器的响应事件】代码并写入对应文件
-                            var code = new CreateEventCode(type, xmlDoc).CreateCode();
+                            var cec = new CreateEventCode(type, xmlDoc);
+                            var code = cec.CreateCode();
 
                             var context = FileCodeBase
                             .Replace("#code#", code)
                             .Replace("#namespace#", nameSpace)
                             .Replace("#ClassName#", typeName)
+                            .Replace("#using#", cec.GetUsedNameSpace())
                             .Replace("`", "\"");
 
                             var fi = new FileInfo(fileName);
@@ -576,6 +425,7 @@ using System.Text;
 using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
+#using#
 
 namespace #namespace#.Controller.#ClassName#
 {

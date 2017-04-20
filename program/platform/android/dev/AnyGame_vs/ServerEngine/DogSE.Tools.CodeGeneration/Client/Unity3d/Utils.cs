@@ -71,7 +71,21 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
         /// <param isNeedTrans="isNeedTrans">是否需要将 ".Server." 转换为 ".Client."</param>
         /// <returns></returns>
         public static string GetBaseTypeName(Type type, bool isNeedTrans = false)
-        {            
+        {
+            HashSet<string> usingCode = new HashSet<string>();
+            return GetBaseTypeName(type, ref usingCode, isNeedTrans);
+        }
+
+        /// <summary>
+        /// 返回Type的基础类型关键字，
+        /// 如：int byte
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="usingCode">所使用到的命名空间</param>
+        /// <param isNeedTrans="isNeedTrans">是否需要将 ".Server." 转换为 ".Client."</param>
+        /// <returns></returns>
+        public static string GetBaseTypeName(Type type, ref HashSet<string> usingCode, bool isNeedTrans = false)
+        {
             if (type == typeof(bool))           //4字节   true false
             {
                 return "bool";
@@ -124,34 +138,46 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             {
                 return "DateTime";
             }
-            else if (type.IsEnum)
+            else if (type.IsEnum || type.IsLayoutSequential || type.IsArray || type.IsClass)
             {
                 if (isNeedTrans)
-                    return Utils.GetFixFullTypeName(type.FullName);
+                {
+                    string ns = Utils.GetFixFullTypeName(type.Namespace);
+                    if (!usingCode.Contains(ns))
+                        usingCode.Add(ns);
+
+                    return Utils.GetFixFullTypeName(type.Name);
+                }
                 else
-                    return type.FullName;
+                {
+                    string ns = type.Namespace;
+                    if (!usingCode.Contains(ns))
+                        usingCode.Add(ns);
+
+                    return type.Name;
+                }
             }
-            else if (type.IsLayoutSequential)
-            {
-                if (isNeedTrans)
-                    return Utils.GetFixFullTypeName(type.FullName);
-                else
-                    return type.FullName;
-            }
-            else if (type.IsArray)
-            {
-                if (isNeedTrans)
-                    return Utils.GetFixFullTypeName(type.FullName);
-                else
-                    return type.FullName;
-            }
-            else if (type.IsClass)
-            {
-                if (isNeedTrans)
-                    return Utils.GetFixFullTypeName(type.FullName);
-                else
-                    return type.FullName;
-            }
+            //else if (type.IsLayoutSequential)
+            //{
+            //    if (isNeedTrans)
+            //        return Utils.GetFixFullTypeName(type.Name);
+            //    else
+            //        return type.Name;
+            //}
+            //else if (type.IsArray)
+            //{
+            //    if (isNeedTrans)
+            //        return Utils.GetFixFullTypeName(type.Name);
+            //    else
+            //        return type.Name;
+            //}
+            //else if (type.IsClass)
+            //{
+            //    if (isNeedTrans)
+            //        return Utils.GetFixFullTypeName(type.Name);
+            //    else
+            //        return type.Name;
+            //}
 
             return string.Empty;
         }

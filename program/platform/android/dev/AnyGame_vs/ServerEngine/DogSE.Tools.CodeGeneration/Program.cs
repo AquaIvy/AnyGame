@@ -18,7 +18,7 @@ namespace DogSE.Tools.CodeGeneration
             CreateServerCode();
             CreateClientCode();
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         /// <summary>
