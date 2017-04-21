@@ -4,6 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Entity.Common;
+using MongoDB.Bson;
 
 namespace AnyGame.Server.Entity.Character
 {
@@ -12,8 +13,13 @@ namespace AnyGame.Server.Entity.Character
     /// </summary>
     public partial class Player : IDataEntity
     {
+        public Player()
+        {
+            Property = new Property();
+        }
+
         /// <summary>
-        /// 玩家的唯一标示
+        /// 玩家的唯一标识
         /// </summary>
         public int Id { get; set; }
 
@@ -31,16 +37,19 @@ namespace AnyGame.Server.Entity.Character
         /// <summary>
         /// 创建时间
         /// </summary>
+        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 上一次登录时间
         /// </summary>
+        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime LastLoginTime { get; set; }
 
         /// <summary>
         /// 上一次登出时间
         /// </summary>
+        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime LastLogoffTime { get; set; }
 
         /// <summary>
@@ -69,6 +78,25 @@ namespace AnyGame.Server.Entity.Character
         /// </summary>
         public Sex Sex { get; set; }
 
+        /// <summary>
+        /// 属性
+        /// </summary>
+        public Property Property { get; set; }
+
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public int Level { get; set; }
+
+        /// <summary>
+        /// 当前等级的经验
+        /// </summary>
+        public int Exp { get; set; }
+
+        /// <summary>
+        /// 累计经验
+        /// </summary>
+        public long ExpSum { get; set; }
 
         /// <summary>
         /// 网络对象

@@ -53,6 +53,7 @@
     <Compile Include="Character\CharacterEnum.cs" />
     <Compile Include="Character\PlatformAccount.cs" />
     <Compile Include="Character\Player.cs" />
+    <Compile Include="Character\Property.cs" />
     <Compile Include="Character\Res.cs" />
     <Compile Include="Character\ResouceChangeType.cs" />
     <Compile Include="Character\ResourceType.cs" />
