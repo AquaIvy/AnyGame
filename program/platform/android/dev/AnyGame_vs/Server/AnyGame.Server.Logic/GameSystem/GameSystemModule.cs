@@ -28,7 +28,7 @@ namespace AnyGame.Server.Logic.GameSystem
         {
             GMCommand.AddNetCommand("addgold", AddGold);
             GMCommand.AddNetCommand("addgem", AddGem);
-            GMCommand.AddNetCommand("additem", AddItem);
+            //GMCommand.AddNetCommand("additem", AddItem);
         }
 
         public void Initializationed()
@@ -50,7 +50,7 @@ namespace AnyGame.Server.Logic.GameSystem
 
         #region GM 指令的具体操作
 
-        bool AddMoney(NetState netstate, string[] param)
+        bool AddGold(NetState netstate, string[] param)
         {
             var player = (Player)netstate.Player;
 
@@ -60,14 +60,36 @@ namespace AnyGame.Server.Logic.GameSystem
                 return false;
             }
 
-            int money = 0;
-            if (!int.TryParse(param[0], out money))
+            int gold = 0;
+            if (!int.TryParse(param[0], out gold))
             {
                 Logs.Error("addmoney gm command param {0} is not number", param[0]);
                 return false;
             }
 
-            GameController.Bag.MoneyChange(player, money, ResouceChangeType.GM_客户端发送命令行添加资源);
+            GameController.Bag.GoldChange(player, gold, ResouceChangeType.GM_客户端发送命令行添加资源);
+
+            return true;
+        }
+
+        bool AddGem(NetState netstate, string[] param)
+        {
+            var player = (Player)netstate.Player;
+
+            if (param == null || param.Length == 0)
+            {
+                Logs.Error("addgem gm command format is \"addgem 1000\"");
+                return false;
+            }
+
+            int gem = 0;
+            if (!int.TryParse(param[0], out gem))
+            {
+                Logs.Error("addgem gm command param {0} is not number", param[0]);
+                return false;
+            }
+
+            GameController.Bag.GemChange(player, gem, ResouceChangeType.GM_客户端发送命令行添加资源);
 
             return true;
         }
