@@ -1,11 +1,9 @@
-﻿using DogSE.Common;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.Server.Entity.Character
+namespace AnyGame.Client.Entity.Bags
 {
     /// <summary>
     /// 玩家的资源
@@ -13,8 +11,7 @@ namespace AnyGame.Server.Entity.Character
     /// <remarks>
     /// 在背包中看不到的数据，如：金币
     /// </remarks>
-    [BsonIgnoreExtraElements]
-    public class Res : IDataEntity
+    public class Res 
     {
         public Res()
         {

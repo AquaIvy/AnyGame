@@ -1,7 +1,7 @@
 ﻿using AnyGame.Server.Database;
 using AnyGame.Server.Entity;
 using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Entity.Common;
 using AnyGame.Server.Entity.GameEvent;
 using AnyGame.Server.Entity.Login;
@@ -230,7 +230,6 @@ namespace AnyGame.Server.Logic.Login
             //初始化背包
             var bag = new Bag { Id = player.Id };
             bag.MaxGridCount = 40;
-            bag.Items = new List<GameItem>();
             player.Bag = bag;
             WorldEntityManager.BagCache.AddOrReplace(bag);
             DB.GameDB.SyncInsertEntity(bag);

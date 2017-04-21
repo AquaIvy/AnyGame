@@ -7,6 +7,7 @@ using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 using AnyGame.Client.Entity.Bags;
 using AnyGame.Client.Entity.Common;
+using DogSE.Library.Log;
 
 namespace AnyGame.Client.Controller.Bag
 {
@@ -64,6 +65,8 @@ namespace AnyGame.Client.Controller.Bag
 
         internal override void OnSyncResouce(int resId, int num)
         {
+            Logs.Warn("OnSyncResouce");
+
             SyncResouceEvent?.Invoke(this, new SyncResouceEventArgs
             {
                 ResId = resId,

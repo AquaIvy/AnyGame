@@ -1,21 +1,11 @@
-﻿using DogSE.Common;
-using DogSE.Server.Core.Net;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Common;
-using MongoDB.Bson;
+﻿using System;
 
-#if Server 
-namespace AnyGame.Server.Entity.Bags
-#else
-namespace AnyGame.Client.Entity.Character
-#endif
+namespace AnyGame.Client.Entity.Bags
 {
     /// <summary>
     /// 玩家角色（存储数据）
     /// </summary>
-    public partial class Player : IDataEntity
+    public class Player
     {
         public Player()
         {
@@ -41,19 +31,16 @@ namespace AnyGame.Client.Entity.Character
         /// <summary>
         /// 创建时间
         /// </summary>
-        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 上一次登录时间
         /// </summary>
-        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime LastLoginTime { get; set; }
 
         /// <summary>
         /// 上一次登出时间
         /// </summary>
-        [BsonDateTimeOptions(Representation = BsonType.DateTime, Kind = DateTimeKind.Local)]
         public DateTime LastLogoffTime { get; set; }
 
         /// <summary>
@@ -102,22 +89,6 @@ namespace AnyGame.Client.Entity.Character
         /// </summary>
         public long ExpSum { get; set; }
 
-        /// <summary>
-        /// 网络对象
-        /// </summary>
-        [BsonIgnore]
-        public NetState NetState { get; set; }
 
-        /// <summary>
-        /// 玩家的资源
-        /// </summary>
-        [BsonIgnore]
-        public Res Res { get; set; }
-
-        /// <summary>
-        /// 玩家的背包
-        /// </summary>
-        [BsonIgnore]
-        public Bag Bag { get; set; }
     }
 }

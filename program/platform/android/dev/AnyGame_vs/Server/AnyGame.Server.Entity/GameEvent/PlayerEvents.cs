@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 
 namespace AnyGame.Server.Entity.GameEvent
 {

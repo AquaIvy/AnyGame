@@ -45,9 +45,6 @@
     <Compile Include="..\..\Server\AnyGame.Server.Entity\Character\CharacterEnum.cs">
       <Link>Character\CharacterEnum.cs</Link>
     </Compile>
-    <Compile Include="..\..\Server\AnyGame.Server.Entity\Character\SimplePlayer.cs">
-      <Link>Character\SimplePlayer.cs</Link>
-    </Compile>
     <Compile Include="..\..\Server\AnyGame.Server.Entity\Common\PlatformTypes.cs">
       <Link>Common\PlatformTypes.cs</Link>
     </Compile>
@@ -58,6 +55,9 @@
       <Link>Login\LoginEnum.cs</Link>
     </Compile>
     <Compile Include="Bags\Bag.cs" />
+    <Compile Include="Character\Player.cs" />
+    <Compile Include="Character\Property.cs" />
+    <Compile Include="Character\Res.cs" />
     <Compile Include="EntityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

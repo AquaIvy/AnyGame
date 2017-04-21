@@ -38,7 +38,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bag\BagTemplate.cs" />
     <Compile Include="Templates.cs" />
     <Compile Include="Item\ItemTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

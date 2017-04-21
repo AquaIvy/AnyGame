@@ -1,5 +1,6 @@
 ﻿using AnyGame.Client.Simulation.UnitTest;
 using AnyGame.Client.Simulation.UnitTest.Bag;
+using AnyGame.Client.Simulation.UnitTest.Easy;
 using AnyGame.Client.Template;
 using DogSE.Library.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,16 +19,17 @@ namespace AnyGame.Client.Simulation
         private static Random rand = new Random((int)DateTime.Now.Ticks);
 
         static void Main(string[] args)
-        {            
-            Logs.AddConsoleAppender();
-            Logs.SetMessageLevel<ConsoleAppender>(LogMessageType.MSG_ERROR);
-
-            Templates.LoadTemplate();
-
+        {
             //单元测试
-            new UseItem().TestUseItem();
-            
+            new LittleTest().Test();
+            //new UseItem().TestUseItem();
+
             //综合测试
+            //Logs.AddConsoleAppender();
+            //Logs.SetMessageLevel<ConsoleAppender>(LogMessageType.MSG_ERROR);
+
+            //Templates.LoadTemplate();
+
             //RunManageTest();
         }
 

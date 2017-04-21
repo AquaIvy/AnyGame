@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using AnyGame.Client.Controller;
 using AnyGame.Client.Controller.Login;
-using AnyGame.Client.Entity.Character;
+using AnyGame.Client.Entity.Bags;
 using AnyGame.Client.Entity.Login;
 
 namespace AnyGame.Client.Simulation.UnitTest
@@ -47,11 +47,11 @@ namespace AnyGame.Client.Simulation.UnitTest
                     Port = int.Parse(lines[1]);
             }
 
-            Logs.AddAppender(new ConsoleAppender());
+            Logs.AddConsoleAppender();
 
             AccountName = Guid.NewGuid().ToString().Substring(0, 8);
-
-            Templates.LoadTemplate();
+            //var files = Directory.GetFiles(@"..\..\..\..\Server\AnyGame.Server.Game\bin\ConfigData\");
+            Templates.LoadTemplate(@"..\..\..\..\Server\AnyGame.Server.Game\bin\ConfigData\");
         }
 
         /// <summary>

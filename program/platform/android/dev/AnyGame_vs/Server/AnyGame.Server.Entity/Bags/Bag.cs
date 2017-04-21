@@ -19,6 +19,11 @@ namespace AnyGame.Client.Entity.Bags
     [BsonIgnoreExtraElements]
     public class Bag : IDataEntity
     {
+        public Bag()
+        {
+            Items = new List<GameItem>();
+        }
+
         /// <summary>
         /// 玩家的唯一标示
         /// </summary>

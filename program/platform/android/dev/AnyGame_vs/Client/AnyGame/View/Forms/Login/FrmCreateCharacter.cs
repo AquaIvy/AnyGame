@@ -2,7 +2,7 @@
 using AnyGame.View.Components;
 using DogSE.Library.Log;
 using System;
-using AnyGame.Client.Entity.Character;
+using AnyGame.Client.Entity.Bags;
 using AnyGame.Client.Entity.Login;
 using UnityEngine;
 using AnyGame.Client.Controller.Login;

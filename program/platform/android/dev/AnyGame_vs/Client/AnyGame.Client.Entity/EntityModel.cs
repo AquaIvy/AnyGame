@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnyGame.Client.Entity.Character;
 using AnyGame.Client.Entity.Bags;
 
 namespace AnyGame.Client.Entity
@@ -14,18 +13,24 @@ namespace AnyGame.Client.Entity
     {
         public EntityModel()
         {
-            Player = new SimplePlayer();
+            Player = new Player();
             Bag = new Bag();
+            Res = new Res();
         }
 
         /// <summary>
         /// 玩家自己
         /// </summary>
-        public SimplePlayer Player { get; set; }
+        public Player Player { get; set; }
 
         /// <summary>
         /// 背包信息
         /// </summary>
         public Bag Bag { get; set; }
+
+        /// <summary>
+        /// 资源信息
+        /// </summary>
+        public Res Res { get; set; }
     }
 }

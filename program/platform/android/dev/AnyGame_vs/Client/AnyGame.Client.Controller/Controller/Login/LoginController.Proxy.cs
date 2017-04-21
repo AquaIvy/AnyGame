@@ -36,7 +36,7 @@ NetState.Send(pw);PacketWriter.ReleaseContent(pw);
 /// <param name="playerName"></param>
 /// <param name="sex">性别</param>
 
-public void CreatePlayer(string playerName,AnyGame.Client.Entity.Character.Sex sex)
+public void CreatePlayer(string playerName,AnyGame.Client.Entity.Bags.Sex sex)
 {
 var pw = PacketWriter.AcquireContent(1003);
 pw.WriteUTF8Null(playerName);

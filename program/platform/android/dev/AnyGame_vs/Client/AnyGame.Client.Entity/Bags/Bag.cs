@@ -1,5 +1,4 @@
-﻿using DogSE.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AnyGame.Client.Entity.Bags
 {
@@ -9,7 +8,7 @@ namespace AnyGame.Client.Entity.Bags
     /// <remarks>
     /// 可以在背包中看到的物品
     /// </remarks>
-    public class Bag : IDataEntity
+    public class Bag 
     {
         /// <summary>
         /// 玩家的唯一标示

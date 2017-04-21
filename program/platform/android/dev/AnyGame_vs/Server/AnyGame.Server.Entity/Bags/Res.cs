@@ -1,40 +1,43 @@
-﻿using System;
+﻿using DogSE.Common;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DogSE.Common;
 
 #if Server 
-using AnyGame.Server.Entity.Common;
 namespace AnyGame.Server.Entity.Bags
 #else
-using AnyGame.Client.Entity.Common;
 namespace AnyGame.Client.Entity.Bags
 #endif
 {
     /// <summary>
-    /// 简单玩家信息
+    /// 玩家的资源
     /// </summary>
-    public class SimplePlayer
+    /// <remarks>
+    /// 在背包中看不到的数据，如：金币
+    /// </remarks>
+    [BsonIgnoreExtraElements]
+    public class Res : IDataEntity
     {
+        public Res()
+        {
+
+        }
+
         /// <summary>
         /// 玩家的id
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 角色名
+        /// 金币
         /// </summary>
-        public string Name { get; set; }
+        public int Gold { get; set; }
 
         /// <summary>
-        /// 玩家对应的账号id
+        /// 钻石
         /// </summary>
-        public int AccountId { get; set; }
-
-        /// <summary>
-        /// 性别
-        /// </summary>
-        public Sex Sex { get; set; }
+        public int Gem { get; set; }
     }
 }

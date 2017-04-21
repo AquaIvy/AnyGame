@@ -1,7 +1,7 @@
 ﻿using DogSE.Server.Core.LogicModule;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Entity.NetCode;
 
 namespace AnyGame.Server.Interface.Server

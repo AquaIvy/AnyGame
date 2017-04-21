@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.Server.Entity.Character
+namespace AnyGame.Server.Entity.Bags
 {
     public static class ResourceType
     {

@@ -1,5 +1,5 @@
 ﻿using AnyGame.Server.Database;
-using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Interface.Client;
 using System;
 using System.Collections.Generic;

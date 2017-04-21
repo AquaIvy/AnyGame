@@ -53,6 +53,7 @@
     <Compile Include="Simulation\SimulationClient.cs" />
     <Compile Include="UnitTest\Bag\UseItem.cs" />
     <Compile Include="UnitTest\BaseTest.cs" />
+    <Compile Include="UnitTest\Easy\LittleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ServerEngine\DogSE.Client.Core\DogSE.Client.Core.csproj">

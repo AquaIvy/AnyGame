@@ -243,7 +243,7 @@ module.OnLoginServer(netstate,p1,p2,p3);
 void OnCreatePlayer(NetState netstate, PacketReader reader){
 if (!netstate.IsVerifyLogin) return;
 var p1 = reader.ReadUTF8String();
-var p2 = (AnyGame.Server.Entity.Character.Sex)reader.ReadByte();
+var p2 = (AnyGame.Server.Entity.Bags.Sex)reader.ReadByte();
 module.OnCreatePlayer(netstate,p1,p2);
 }
 

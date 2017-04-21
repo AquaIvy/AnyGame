@@ -8,7 +8,7 @@ using System.Text;
 using AnyGame.Server.Database;
 using AnyGame.Server.Entity;
 using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Entity.GameEvent;
 using AnyGame.Server.Interface.Client;
 using IBag = AnyGame.Server.Interface.Server.IBag;
@@ -61,9 +61,6 @@ namespace AnyGame.Server.Logic.Bags
 
                 var bag = player.Bag;
                 ClientProxy.Bag.SyncBag(player.NetState, bag.MaxGridCount, bag.Items.ToArray());
-
-                //同步客户端已使用过的物品列表
-                //SyncPlayerUsedItem(player);
             }
             catch (Exception ex)
             {

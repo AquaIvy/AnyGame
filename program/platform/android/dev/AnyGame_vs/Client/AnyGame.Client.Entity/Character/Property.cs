@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 #if Server 
-namespace AnyGame.Server.Entity.Bags
+namespace AnyGame.Server.Entity.Character
 #else
-namespace AnyGame.Client.Entity.Character
+namespace AnyGame.Client.Entity.Bags
 #endif
 {
     public class Property
