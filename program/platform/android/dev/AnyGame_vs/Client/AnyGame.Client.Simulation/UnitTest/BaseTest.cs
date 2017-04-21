@@ -106,7 +106,7 @@ namespace AnyGame.Client.Simulation.UnitTest
         {
             Assert.IsTrue(e.IsConnected, "服务器连接失败。");
 
-            controller.Login.LoginServerRet += Login_LoginServerRet;
+            controller.Login.LoginServerResultEvent += Login_LoginServerResultEvent;
             controller.Login.LoginServer(AccountName, "123456", 0);
         }
 
@@ -115,27 +115,29 @@ namespace AnyGame.Client.Simulation.UnitTest
 
         }
 
-        private void Login_LoginServerRet(object sender, LoginServerResultEventArgs e)
+        private void Login_LoginServerResultEvent(object sender, LoginServerResultEventArgs e)
         {
             Assert.AreEqual(LoginServerResult.Success, e.Result, "用账号 {0} 登陆游戏失败。");
             Assert.IsFalse(e.IsCreatedPlayer, "新建的账号角色怎么会有？");
 
-            controller.Login.SyncDataFinish += Login_SyncDataFinish;
-            controller.Login.CreatePlayerRet += Login_CreatePlayerRet;
+            controller.Login.SyncInitDataFinishEvent += Login_SyncInitDataFinishEvent;
+            controller.Login.CreatePlayerResultEvent += Login_CreatePlayerResultEvent;
             controller.Login.CreatePlayer(AccountName, Sex.Male);
         }
 
-        private void Login_CreatePlayerRet(CraetePlayerResult e)
+        private void Login_CreatePlayerResultEvent(object sender, CreatePlayerResultEventArgs e)
         {
             Assert.AreEqual(CraetePlayerResult.Success, e, "创建角色失败。这个你懂的");
         }
 
-        private void Login_SyncDataFinish()
+        private void Login_SyncInitDataFinishEvent(object sender, EventArgs e)
         {
             //  登陆成功除了创建成功外，还需要有这个方法才说明玩家数据都初始化好
             //  同步到客户端了
             IsLoginSuccess = true;
         }
+
+
 
         /// <summary>
         /// 等待一个方法返回true

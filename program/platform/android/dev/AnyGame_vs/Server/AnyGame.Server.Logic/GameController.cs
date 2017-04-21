@@ -1,4 +1,4 @@
-﻿using AnyGame.Server.Logic.Bag;
+﻿using AnyGame.Server.Logic.Bags;
 using System;
 using System.Collections.Generic;
 using System.Linq;

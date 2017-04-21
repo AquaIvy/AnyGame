@@ -94,7 +94,7 @@ namespace AnyGame.Client.Simulation.Simulation
         {
             if (e.IsConnected)
             {
-                controller.Login.LoginServerRet += Login_LoginServerRet;
+                controller.Login.LoginServerResultEvent += Login_LoginServerResultEvent;
 
                 controller.Login.LoginServer(AccountName, "123456", 0);
             }
@@ -105,13 +105,13 @@ namespace AnyGame.Client.Simulation.Simulation
             }
         }
 
-        private void Login_LoginServerRet(object sender, LoginServerResultEventArgs e)
+        private void Login_LoginServerResultEvent(object sender, LoginServerResultEventArgs e)
         {
             if (e.Result == LoginServerResult.Success)
             {
                 if (!e.IsCreatedPlayer)
                 {
-                    controller.Login.CreatePlayerRet += Login_CreatePlayerRet;
+                    controller.Login.CreatePlayerResultEvent += Login_CreatePlayerResultEvent;
                     controller.Login.CreatePlayer(AccountName, Sex.Male);
                 }
                 else
@@ -129,9 +129,9 @@ namespace AnyGame.Client.Simulation.Simulation
             }
         }
 
-        private void Login_CreatePlayerRet(CraetePlayerResult e)
+        private void Login_CreatePlayerResultEvent(object sender, CreatePlayerResultEventArgs e)
         {
-            if (e == CraetePlayerResult.Success)
+            if (e.Result == CraetePlayerResult.Success)
             {
                 Logs.Info("{0} 登陆并创建角色完成", AccountName);
                 IsLoginSuccess = true;

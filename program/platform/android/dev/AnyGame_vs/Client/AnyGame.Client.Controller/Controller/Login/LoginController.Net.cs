@@ -46,7 +46,8 @@ namespace AnyGame.Client.Controller.Login
                 module = logic;
 PacketHandlerManager.Register(1001, OnLoginServerResult);
 PacketHandlerManager.Register(1003, OnCreatePlayerResult);
-PacketHandlerManager.Register(1004, OnSyncInitDataFinish);
+PacketHandlerManager.Register(1006, OnSyncInitDataFinish);
+PacketHandlerManager.Register(1004, OnKickOfServer);
 
             }
 
@@ -65,6 +66,10 @@ module.OnCreatePlayerResult(p1);
 }
 void OnSyncInitDataFinish(NetState netstate, PacketReader reader){
 module.OnSyncInitDataFinish();
+}
+void OnKickOfServer(NetState netstate, PacketReader reader){
+var p1 = (AnyGame.Client.Entity.Login.OfflineType)reader.ReadByte();
+module.OnKickOfServer(p1);
 }
 
 

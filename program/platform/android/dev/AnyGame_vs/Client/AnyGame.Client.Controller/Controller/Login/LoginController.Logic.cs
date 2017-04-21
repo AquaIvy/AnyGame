@@ -56,6 +56,14 @@ namespace AnyGame.Client.Controller.Login
             SyncInitDataFinishEvent?.Invoke(this, new EventArgs());
         }
 
+        internal override void OnKickOfServer(OfflineType type)
+        {
+            KickOfServerEvent?.Invoke(this, new KickOfServerEventArgs
+            {
+                Type = type,
+            });
+        }
+
         /// <summary>
         /// 登陆返回
         /// </summary>
@@ -72,7 +80,10 @@ namespace AnyGame.Client.Controller.Login
         /// </summary>
         public event EventHandler<EventArgs> SyncInitDataFinishEvent;
 
-
+        /// <summary>
+        /// 通知玩家被T下线
+        /// </summary>
+        public event EventHandler<KickOfServerEventArgs> KickOfServerEvent;
     }
 
     /// <summary>
@@ -103,5 +114,15 @@ namespace AnyGame.Client.Controller.Login
     }
 
 
+    /// <summary>
+    /// 通知玩家被T下线 【参数】
+    /// </summary>
+    public class KickOfServerEventArgs : EventArgs
+    {
+        /// <summary>
+        /// 掉线的类型
+        /// </summary>
+        public OfflineType Type { get; internal set; }
+    }
 
 }

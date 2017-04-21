@@ -1,5 +1,9 @@
 
---SET FOREIGN_KEY_CHECKS=0;
+-- SET FOREIGN_KEY_CHECKS=0;
+
+DROP DATABASE IF EXISTS AnygameMain;
+CREATE DATABASE AnygameMain;
+USE AnygameMain;
 
 -- ----------------------------
 -- Table structure for PlatformAccount
@@ -57,5 +61,5 @@ CREATE TABLE `Account` (
 -- ----------------------------
 -- Records of Account
 -- ----------------------------
-INSERT INTO `Account` VALUES ('1', 'test001', '111111', '2016-10-30 22:36:01', '1001', '1');
-INSERT INTO `Account` VALUES ('2', 'test002', '111111', '2016-10-30 22:36:44', '1001', null);
+-- INSERT INTO `Account` VALUES ('1', 'test001', '111111', '2016-10-30 22:36:01', '1001', '1');
+-- INSERT INTO `Account` VALUES ('2', 'test002', '111111', '2016-10-30 22:36:44', '1001', null);

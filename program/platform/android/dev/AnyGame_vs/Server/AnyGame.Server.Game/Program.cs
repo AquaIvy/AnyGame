@@ -8,6 +8,7 @@ using DogSE.Server.Core.Protocol.AutoCode;
 using AnyGame.Server.Logic;
 using AnyGame.Server.Database;
 using AnyGame.Server.Template;
+using AnyGame.Server.Entity;
 using System.Diagnostics;
 
 namespace AnyGame.Server.Game
@@ -47,6 +48,7 @@ namespace AnyGame.Server.Game
             //        item.Speed);
             //}
 
+            Logs.Notice("GameConfig.IsEnableGM  " + GameConfig.IsEnableGM);
             Logs.Notice("ServerConfig.ServerId  " + ServerConfig.ServerId);
             foreach (var item in ServerConfig.Tcp)
             {

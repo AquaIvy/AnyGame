@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DogSE.Library.Log;
-using DogSE.Library.Time;
-using DogSE.Server.Core.LogicModule;
-using DogSE.Server.Core.Net;
-using DogSE.Server.Core.Protocol;
+﻿using AnyGame.Server.Database;
 using AnyGame.Server.Entity;
+using AnyGame.Server.Entity.Bags;
 using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Entity.Common;
+using AnyGame.Server.Entity.GameEvent;
 using AnyGame.Server.Entity.Login;
 using AnyGame.Server.Interface.Client;
-using ILogin = AnyGame.Server.Interface.Server.ILogin;
-using System.Linq;
+using DogSE.Library.Log;
+using DogSE.Library.Time;
 using DogSE.Server.Core;
-using AnyGame.Server.Entity.GameEvent;
-using AnyGame.Server.Database;
-using AnyGame.Server.Entity.Bags;
+using DogSE.Server.Core.Net;
+using System.Collections.Generic;
+using System.Linq;
+using ILogin = AnyGame.Server.Interface.Server.ILogin;
 
 namespace AnyGame.Server.Logic.Login
 {
@@ -206,9 +202,15 @@ namespace AnyGame.Server.Logic.Login
                 NetState = netstate
             };
 
-            DB.GameDB.InsertEntity(player);
+            if (GameConfig.IsEnableGM)
+            {
+                player.IsSuperMan = true;
+            }
+
 
             WorldEntityManager.PlayerCache.AddOrReplace(player);
+            DB.GameDB.InsertEntity(player);
+
 
             Logs.Info("角色 {0}({1}) 创建成功", playerName, player.Id);
 
@@ -220,8 +222,6 @@ namespace AnyGame.Server.Logic.Login
 
             //初始化资源
             var res = new Res { Id = player.Id };
-            //res.Gold = 0;
-            //res.Gem = 0;
             player.Res = res;
             WorldEntityManager.ResCache.AddOrReplace(res);
             DB.GameDB.SyncInsertEntity(res);
@@ -231,9 +231,9 @@ namespace AnyGame.Server.Logic.Login
             var bag = new Bag { Id = player.Id };
             bag.MaxGridCount = 40;
             bag.Items = new List<GameItem>();
+            player.Bag = bag;
             WorldEntityManager.BagCache.AddOrReplace(bag);
             DB.GameDB.SyncInsertEntity(bag);
-
 
             #endregion
 

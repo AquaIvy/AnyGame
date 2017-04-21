@@ -2,6 +2,7 @@
 using AnyGame.Client.Controller.Bag;
 using AnyGame.Client.Controller.Login;
 using AnyGame.Client.Entity;
+using AnyGame.Client.Controller.GameSystem;
 
 namespace AnyGame.Client.Controller
 {
@@ -23,7 +24,7 @@ namespace AnyGame.Client.Controller
             Login = new LoginController(this, Net);
             Game = new Game.GameController(Net);
             Bag = new BagController(this, Net);
-
+            System = new GameSystemController(this, Net);
         }
 
         /// <summary>
@@ -50,5 +51,10 @@ namespace AnyGame.Client.Controller
         /// 背包控制器
         /// </summary>
         public BagController Bag { get; private set; }
+
+        /// <summary>
+        /// GM控制器
+        /// </summary>
+        public GameSystemController System { get; private set; }
     }
 }

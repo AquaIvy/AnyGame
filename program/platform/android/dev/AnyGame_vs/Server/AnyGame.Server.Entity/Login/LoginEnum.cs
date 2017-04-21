@@ -1,12 +1,13 @@
-﻿using DogSE.Server.Core.Protocol;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 #if Server 
+using DogSE.Server.Core.Protocol;
 namespace AnyGame.Server.Entity.Login
 #else
+using DogSE.Client.Core.Protocol;
 namespace AnyGame.Client.Entity.Login
 #endif
 {

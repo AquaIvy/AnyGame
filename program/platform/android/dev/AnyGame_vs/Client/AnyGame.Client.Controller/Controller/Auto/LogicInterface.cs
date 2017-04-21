@@ -58,6 +58,7 @@ internal abstract void OnServerStatus(string title,string context,bool isNoticeO
 internal abstract void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServerResult result,bool isCreatedPlayer);
 internal abstract void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result);
 internal abstract void OnSyncInitDataFinish();
+internal abstract void OnKickOfServer(AnyGame.Client.Entity.Login.OfflineType type);
         
     }
 

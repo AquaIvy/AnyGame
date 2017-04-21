@@ -228,11 +228,23 @@ PacketWriter.ReleaseContent(pw);
 
 public void SyncInitDataFinish(NetState netstate)
 {
+var pw = PacketWriter.AcquireContent(1006);
+            PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1006 );
+            if ( packetProfile != null )
+                packetProfile.RegConstruct();
+                netstate.Send(pw);
+ if ( packetProfile != null ) packetProfile.Record(pw.Length);
+PacketWriter.ReleaseContent(pw);
+}
+
+public void KickOfServer(NetState netstate,AnyGame.Server.Entity.Login.OfflineType type)
+{
 var pw = PacketWriter.AcquireContent(1004);
             PacketProfile packetProfile = PacketProfile.GetOutgoingProfile( 1004 );
             if ( packetProfile != null )
                 packetProfile.RegConstruct();
-                netstate.Send(pw);
+                pw.Write((byte)type);
+netstate.Send(pw);
  if ( packetProfile != null ) packetProfile.Record(pw.Length);
 PacketWriter.ReleaseContent(pw);
 }

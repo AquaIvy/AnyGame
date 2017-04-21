@@ -17,9 +17,9 @@ namespace AnyGame.Client.Simulation.UnitTest.Bag
             bool isLogin = await LoginServerUseRandomName();
             Assert.IsTrue(isLogin, "登陆失败");
 
-            bool isSuccessUseItem = false;
-            
+            controller.System.RunGMCommand("addgold 178");
 
+            bool isSuccessUseItem = false;
             controller.Bag.UseItemResultEvent += (s, e) =>
             {
                 if (e.Result == UseItemResult.Success)
@@ -27,6 +27,11 @@ namespace AnyGame.Client.Simulation.UnitTest.Bag
                     Assert.AreEqual(e.Result, UseItemResult.Success);
                     isSuccessUseItem = true;
                 }
+            };
+
+            controller.Bag.SyncResouceEvent += (s, e) =>
+            {
+                Console.WriteLine("id " + e.ResId + "   num " + e.Num);
             };
 
             controller.Bag.UseItem(101, 1);

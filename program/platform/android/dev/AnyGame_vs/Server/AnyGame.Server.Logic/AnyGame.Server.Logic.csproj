@@ -34,10 +34,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bag\BagController.cs" />
-    <Compile Include="Bag\BagModule.cs" />
+    <Compile Include="Bags\BagController.cs" />
+    <Compile Include="Bags\BagModule.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameSystem\GameSystemModule.cs" />
+    <Compile Include="GameConfig.cs" />
     <Compile Include="Game\GameModule.cs" />
     <Compile Include="LogicModule.cs" />
     <Compile Include="Login\LoginModule.cs" />
