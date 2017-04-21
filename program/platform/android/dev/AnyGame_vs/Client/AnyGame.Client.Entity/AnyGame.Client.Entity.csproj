@@ -70,6 +70,10 @@
       <Project>{e7fe81a8-ce39-46c1-8eb2-c1f5d0ad130a}</Project>
       <Name>DogSE.Library.net35</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AnyGame.Client.Template\AnyGame.Client.Template.csproj">
+      <Project>{be47f005-469c-4ec4-a22e-11cdb8d283c1}</Project>
+      <Name>AnyGame.Client.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

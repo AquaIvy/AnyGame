@@ -33,7 +33,7 @@ namespace AnyGame.Server.Interface.Client
         void SyncItems(NetState netstate, SyncType type, params GameItem[] items);
 
         /// <summary>
-        /// 同步背包信息
+        /// 登陆时同步一次背包信息
         /// </summary>
         /// <param name="netstate"></param>
         /// <param name="maxGridCount">最大格子数量</param>

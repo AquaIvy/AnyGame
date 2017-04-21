@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DogSE.Client.Core;
-using DogSE.Client.Core.Net;
-using DogSE.Client.Core.Task;
+﻿using AnyGame.Client.Entity;
 using AnyGame.Client.Entity.Bags;
 using AnyGame.Client.Entity.Common;
+using DogSE.Client.Core;
+using System;
+using System.Collections.Generic;
+using AnyGame.Client.Template.Item;
+using AnyGame.Client.Template;
+using System.Linq;
 using DogSE.Library.Log;
 
 namespace AnyGame.Client.Controller.Bag
@@ -25,6 +25,10 @@ namespace AnyGame.Client.Controller.Bag
             controller = gc;
         }
 
+        private EntityModel Model
+        {
+            get { return controller.Model; }
+        }
 
         internal override void OnUseItemResult(UseItemResult result, int itemId, int lessCount)
         {
@@ -45,8 +49,39 @@ namespace AnyGame.Client.Controller.Bag
             });
         }
 
+        /// <summary>
+        ///     更新物品模板数据
+        ///     注意，如果对应模板不存在，这里为了客户端不出异常，会在的数组里过滤掉错误的物品
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private GameItem[] UpdateItemTemplate(GameItem[] items)
+        {
+            var ret = new List<GameItem>();
+
+            foreach (GameItem item in items)
+            {
+                ItemTemplate template = Templates.ItemTemplate.FirstOrDefault(o => o.Id == item.TemplateId);
+                if (template == null)
+                {
+                    Logs.Error("not find item templateId={0}", item.TemplateId);
+                }
+                else
+                {
+                    item.Template = template;
+                    ret.Add(item);
+                }
+            }
+            return ret.ToArray();
+        }
+
         internal override void OnSyncBag(int maxGridCount, GameItem[] items)
         {
+            Model.Bag.CurBagLevel = 1;
+            Model.Bag.MaxGridCount = maxGridCount;
+            Model.Bag.Items.Clear();
+            Model.Bag.Items.AddRange(UpdateItemTemplate(items));
+
             SyncBagEvent?.Invoke(this, new SyncBagEventArgs
             {
                 MaxGridCount = maxGridCount,
@@ -65,8 +100,6 @@ namespace AnyGame.Client.Controller.Bag
 
         internal override void OnSyncResouce(int resId, int num)
         {
-            Logs.Warn("OnSyncResouce");
-
             SyncResouceEvent?.Invoke(this, new SyncResouceEventArgs
             {
                 ResId = resId,

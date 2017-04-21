@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AnyGame.Client.Template.Item;
 
 namespace AnyGame.Client.Entity.Bags
 {
@@ -53,8 +54,18 @@ namespace AnyGame.Client.Entity.Bags
         public int TemplateId { get; set; }
 
         /// <summary>
+        /// 模板实例
+        /// </summary>
+        public ItemTemplate Template { get; set; }
+
+        /// <summary>
         /// 物品数量
         /// </summary>
         public int Num { get; set; }
+
+        /// <summary>
+        /// 是否是新的物品
+        /// </summary>
+        public bool IsNew { get; set; }
     }
 }

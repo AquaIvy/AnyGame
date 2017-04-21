@@ -67,6 +67,10 @@
       <Project>{82f1aff6-2c00-43ef-b923-bc39311c71a1}</Project>
       <Name>AnyGame.Client.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AnyGame.Client.Template\AnyGame.Client.Template.csproj">
+      <Project>{be47f005-469c-4ec4-a22e-11cdb8d283c1}</Project>
+      <Name>AnyGame.Client.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
