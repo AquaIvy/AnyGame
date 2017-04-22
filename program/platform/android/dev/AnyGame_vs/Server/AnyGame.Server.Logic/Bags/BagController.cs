@@ -1,5 +1,5 @@
 ﻿using AnyGame.Server.Database;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Interface.Client;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace AnyGame.Server.Logic.Bags
         /// <param name="player">玩家</param>
         /// <param name="gold">金币</param>
         /// <param name="changeType">变更类型</param>
-        public void GoldChange(Player player, int gold, ResouceChangeType changeType)
+        public void GoldChange(Player player, int gold, DataChangeType changeType)
         {
             if (gold == 0)
                 return;
@@ -53,7 +53,7 @@ namespace AnyGame.Server.Logic.Bags
         /// <param name="player">玩家</param>
         /// <param name="gem">gem</param>
         /// <param name="changeType">变更类型</param>
-        public void GemChange(Player player, int gem, ResouceChangeType changeType)
+        public void GemChange(Player player, int gem, DataChangeType changeType)
         {
             if (gem == 0)
                 return;

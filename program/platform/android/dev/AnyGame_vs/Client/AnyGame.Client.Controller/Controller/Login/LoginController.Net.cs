@@ -48,6 +48,7 @@ PacketHandlerManager.Register(1001, OnLoginServerResult);
 PacketHandlerManager.Register(1003, OnCreatePlayerResult);
 PacketHandlerManager.Register(1006, OnSyncInitDataFinish);
 PacketHandlerManager.Register(1004, OnKickOfServer);
+PacketHandlerManager.Register(1011, OnSyncPlayerBaseInfo);
 
             }
 
@@ -70,6 +71,13 @@ module.OnSyncInitDataFinish();
 void OnKickOfServer(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Login.OfflineType)reader.ReadByte();
 module.OnKickOfServer(p1);
+}
+void OnSyncPlayerBaseInfo(NetState netstate, PacketReader reader){
+var p1 = reader.ReadInt32();
+var p2 = reader.ReadInt32();
+var p3 = reader.ReadBoolean();
+var p4 = reader.ReadInt32();
+module.OnSyncPlayerBaseInfo(p1,p2,p3,p4);
 }
 
 

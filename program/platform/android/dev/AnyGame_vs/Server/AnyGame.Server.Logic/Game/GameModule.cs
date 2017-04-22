@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Library.Time;
 using DogSE.Server.Core.Net;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Interface.Client;
 using IGame = AnyGame.Server.Interface.Server.IGame;
 

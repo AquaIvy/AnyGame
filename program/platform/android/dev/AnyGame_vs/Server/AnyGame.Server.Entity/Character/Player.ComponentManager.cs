@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DogSE.Library.Component;
 
-namespace AnyGame.Server.Entity.Bags
+namespace AnyGame.Server.Entity.Character
 {
     public partial class Player : IComponentManager
     {

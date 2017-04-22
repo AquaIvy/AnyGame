@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.Server.Entity.Common
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// int序列生成器

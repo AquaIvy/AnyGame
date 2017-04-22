@@ -2,6 +2,7 @@
 using DogSE.Server.Core.Protocol;
 using AnyGame.Server.Entity.Login;
 using AnyGame.Server.Entity.NetCode;
+using AnyGame.Server.Entity.Character;
 
 namespace AnyGame.Server.Interface.Client
 {
@@ -44,5 +45,17 @@ namespace AnyGame.Server.Interface.Client
         /// <param name="type">掉线的类型</param>
         [NetMethod((ushort)OpCode.KickOfServer, NetMethodType.SimpleMethod)]
         void KickOfServer(NetState netstate, OfflineType type);
+
+        /// <summary>
+        ///  同步玩家的一些基本信息，其他信息在PlayerModule中同步
+        /// </summary>
+        /// <param name="netstate"></param>
+        /// <param name="playerId">角色id（不是账号id）</param>
+        /// <param name="gameZoonId">游戏分区id</param>
+        /// <param name="isSupperMan">是否是GM</param>
+        /// <param name="platformType">平台类型</param>
+        /// <param name="vipLevel">vip等级</param>
+        [NetMethod((ushort)OpCode.SyncPlayerBaseInfo, NetMethodType.SimpleMethod)]
+        void SyncPlayerBaseInfo(NetState netstate, int playerId, int gameZoonId, bool isSupperMan, int platformType);
     }
 }

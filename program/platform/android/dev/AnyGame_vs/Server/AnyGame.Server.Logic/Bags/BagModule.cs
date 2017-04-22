@@ -1,16 +1,12 @@
-﻿using AnyGame.Server.Template;
+﻿using AnyGame.Server.Database;
+using AnyGame.Server.Entity;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.GameEvent;
+using AnyGame.Server.Interface.Client;
 using DogSE.Library.Log;
 using DogSE.Server.Core.Net;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using AnyGame.Server.Database;
-using AnyGame.Server.Entity;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.GameEvent;
-using AnyGame.Server.Interface.Client;
 using IBag = AnyGame.Server.Interface.Server.IBag;
 
 namespace AnyGame.Server.Logic.Bags
@@ -47,7 +43,7 @@ namespace AnyGame.Server.Logic.Bags
 
         public void Release()
         {
-
+            PlayerEvents.EnterGame -= PlayerEvents_EnterGame;
         }
 
         #endregion

@@ -10,17 +10,34 @@ namespace AnyGame.Client.Controller
 
 
     /// <summary>
+    /// Player
+    /// </summary>
+    
+    public abstract class BasePlayerController
+    {
+internal abstract void OnUnlockGuideRecordResult(AnyGame.Client.Entity.Guide.GuideTypes type,bool isPass);
+internal abstract void OnSyncGuideRecords(AnyGame.Client.Entity.Guide.GuideTypes[] records);
+internal abstract void OnUnlockMenuResult(AnyGame.Client.Entity.Character.MenuTypes menu,bool isUnlock);
+internal abstract void OnSyncUnlockMenus(AnyGame.Client.Entity.Character.MenuTypes[] menus);
+internal abstract void OnPlayerRenameResult(AnyGame.Client.Entity.Character.RenameResultType result,string newName);
+internal abstract void OnSyncPlayerInfo(string name,int sex,DateTime createTime,DateTime lastLoginTime,DateTime lastLogoffTime,int level,int exp,long expSum,int vipLevel);
+internal abstract void OnSyncPlayerPropertyInfo(AnyGame.Client.Entity.Character.Property property);
+        
+    }
+
+
+    /// <summary>
     /// Bag
     /// </summary>
     
     public abstract class BaseBagController
     {
-internal abstract void OnUseItemResult(AnyGame.Client.Entity.Bags.UseItemResult result,int itemId,int lessCount);
-internal abstract void OnSyncItems(AnyGame.Client.Entity.Common.SyncType type,AnyGame.Client.Entity.Bags.GameItem[] items);
-internal abstract void OnSyncBag(int maxGridCount,AnyGame.Client.Entity.Bags.GameItem[] items);
+internal abstract void OnUseItemResult(AnyGame.Client.Entity.Character.UseItemResult result,int itemId,int lessCount);
+internal abstract void OnSyncItems(AnyGame.Client.Entity.Character.SyncType type,AnyGame.Client.Entity.Character.GameItem[] items);
+internal abstract void OnSyncBag(int maxGridCount,AnyGame.Client.Entity.Character.GameItem[] items);
 internal abstract void OnSyncAllResouce(int money,int gem);
 internal abstract void OnSyncResouce(int resId,int num);
-internal abstract void OnUpgradeBagResult(AnyGame.Client.Entity.Bags.UpgradeBagResult result);
+internal abstract void OnUpgradeBagResult(AnyGame.Client.Entity.Character.UpgradeBagResult result);
         
     }
 
@@ -59,6 +76,7 @@ internal abstract void OnLoginServerResult(AnyGame.Client.Entity.Login.LoginServ
 internal abstract void OnCreatePlayerResult(AnyGame.Client.Entity.Login.CraetePlayerResult result);
 internal abstract void OnSyncInitDataFinish();
 internal abstract void OnKickOfServer(AnyGame.Client.Entity.Login.OfflineType type);
+internal abstract void OnSyncPlayerBaseInfo(int playerId,int gameZoonId,bool isSupperMan,int platformType);
         
     }
 

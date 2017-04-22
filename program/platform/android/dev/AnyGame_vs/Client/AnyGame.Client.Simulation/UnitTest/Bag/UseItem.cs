@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AnyGame.Client.Entity.Bags;
+using AnyGame.Client.Entity.Character;
 
 namespace AnyGame.Client.Simulation.UnitTest.Bag
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AnyGame.Client.Entity.Bags
+namespace AnyGame.Client.Entity.Character
 {
     /// <summary>
     /// 玩家角色（存储数据）
@@ -17,6 +17,15 @@ namespace AnyGame.Client.Entity.Bags
         /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// 理论上【playerid】和【账号id】一一对应，这里的目的是为了单个账号对应多角色做的冗余设计
+        /// </summary>
+        public int AccountId { get; set; }
+
+        /// <summary>
+        /// 游戏分区id
+        /// </summary>
+        public int GameZoneId { get; set; }
 
         /// <summary>
         /// 角色名
@@ -24,9 +33,9 @@ namespace AnyGame.Client.Entity.Bags
         public string Name { get; set; }
 
         /// <summary>
-        /// 理论上id和账号id一一对应，这里的目的是为了单个账号对应多角色做的冗余设计
+        /// 玩家的平台类型
         /// </summary>
-        public int AccountId { get; set; }
+        public PlatformTypes PlatformType { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -89,6 +98,9 @@ namespace AnyGame.Client.Entity.Bags
         /// </summary>
         public long ExpSum { get; set; }
 
-
+        /// <summary>
+        /// Vip等级，0表示非Vip用户
+        /// </summary>
+        public int VipLevel { get; set; }
     }
 }

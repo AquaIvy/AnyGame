@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\ClientProxy.cs" />
+    <Compile Include="Client\IPlayer.cs" />
     <Compile Include="Client\IBag.cs" />
     <Compile Include="Client\IGame.cs" />
     <Compile Include="Client\IGameSystem.cs" />
     <Compile Include="Client\ILogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\IPlayer.cs" />
     <Compile Include="Server\IBag.cs" />
     <Compile Include="Server\IGame.cs" />
     <Compile Include="Server\IGameSystem.cs" />

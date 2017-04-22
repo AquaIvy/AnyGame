@@ -354,6 +354,11 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
             controller = gc;
         }
 
+        private EntityModel Model
+        {
+            get { return controller.Model; }
+        }
+
         #CallMethod#
         #EventCode#
     }
@@ -435,6 +440,7 @@ using System.Text;
 using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
+using AnyGame.Client.Entity;
 #using#
 namespace #namespace#.Controller.#ClassName#
 {

@@ -21,13 +21,19 @@ namespace AnyGame.Server.Interface.Client
         public static IGame Game { get; set; }
 
         /// <summary>
+        /// GM的一些操作
+        /// </summary>
+        public static IGameSystem System { get; set; }
+
+        /// <summary>
+        /// 玩家角色相关接口
+        /// </summary>
+        public static IPlayer Player { get; set; }
+
+        /// <summary>
         /// 背包
         /// </summary>
         public static IBag Bag { get; set; }
 
-        /// <summary>
-        /// GM的一些操作
-        /// </summary>
-        public static IGameSystem System { get; set; }
     }
 }

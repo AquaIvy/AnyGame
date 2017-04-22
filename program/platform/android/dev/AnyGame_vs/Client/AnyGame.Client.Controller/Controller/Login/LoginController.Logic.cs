@@ -6,7 +6,8 @@ using DogSE.Client.Core;
 using DogSE.Client.Core.Net;
 using DogSE.Client.Core.Task;
 using AnyGame.Client.Entity.Login;
-
+using AnyGame.Client.Entity;
+using AnyGame.Client.Entity.Character;
 
 namespace AnyGame.Client.Controller.Login
 {
@@ -24,6 +25,10 @@ namespace AnyGame.Client.Controller.Login
             controller = gc;
         }
 
+        private EntityModel Model
+        {
+            get { return controller.Model; }
+        }
 
         internal override void OnLoginServerResult(LoginServerResult result, bool isCreatedPlayer)
         {
@@ -62,6 +67,15 @@ namespace AnyGame.Client.Controller.Login
             {
                 Type = type,
             });
+        }
+
+        internal override void OnSyncPlayerBaseInfo(int playerId, int gameZoonId, bool isSupperMan, int platformType)
+        {
+            Model.Player.Id = playerId;
+            Model.Player.AccountId = playerId;
+            Model.Player.GameZoneId = gameZoonId;
+            Model.Player.IsSuperMan = isSupperMan;
+            Model.Player.PlatformType = (PlatformTypes)platformType;
         }
 
         /// <summary>

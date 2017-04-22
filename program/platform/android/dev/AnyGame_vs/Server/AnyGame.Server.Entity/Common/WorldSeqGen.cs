@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.Server.Entity.Common
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 游戏世界的唯一序列生成器

@@ -2,8 +2,8 @@
 using System.Linq;
 using DogSE.Library.Log;
 using DogSE.Server.Core.Entity;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Character;
 
 namespace AnyGame.Server.Entity
 {

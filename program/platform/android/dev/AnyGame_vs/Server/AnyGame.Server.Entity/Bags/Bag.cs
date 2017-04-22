@@ -3,8 +3,8 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
 #if Server 
-using AnyGame.Server.Entity.Common;
-namespace AnyGame.Server.Entity.Bags
+using AnyGame.Server.Entity.Character;
+namespace AnyGame.Server.Entity.Character
 #else
 using AnyGame.Client.Entity.Common;
 namespace AnyGame.Client.Entity.Bags

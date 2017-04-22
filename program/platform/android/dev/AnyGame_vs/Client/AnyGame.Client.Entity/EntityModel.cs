@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnyGame.Client.Entity.Bags;
+using AnyGame.Client.Entity.Character;
 
 namespace AnyGame.Client.Entity
 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using AnyGame.Client.Entity.Common;
+using AnyGame.Client.Entity.Character;
 using AnyGame.Content;
 
 namespace AnyGame.LoginPlugin

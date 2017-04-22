@@ -1,8 +1,6 @@
 ﻿using AnyGame.Server.Database;
 using AnyGame.Server.Entity;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Common;
+using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Entity.GameEvent;
 using AnyGame.Server.Entity.Login;
 using AnyGame.Server.Interface.Client;
@@ -10,7 +8,6 @@ using DogSE.Library.Log;
 using DogSE.Library.Time;
 using DogSE.Server.Core;
 using DogSE.Server.Core.Net;
-using System.Collections.Generic;
 using System.Linq;
 using ILogin = AnyGame.Server.Interface.Server.ILogin;
 
@@ -36,6 +33,8 @@ namespace AnyGame.Server.Logic.Login
             LoadAccountFromDB();
             GameServerService.GetWorldInstatnce().NetStateDisconnect += OnNetStateDisconnect;
             GameServerService.GetWorldInstatnce().NetStateConnect += OnNetStateConnect;
+
+            PlayerEvents.EnterGame += PlayerEvents_EnterGame;
         }
 
 
@@ -52,9 +51,15 @@ namespace AnyGame.Server.Logic.Login
         public void Release()
         {
             GameServerService.GetWorldInstatnce().NetStateDisconnect -= OnNetStateDisconnect;
+            PlayerEvents.EnterGame -= PlayerEvents_EnterGame;
         }
 
         #endregion
+
+        private void PlayerEvents_EnterGame(Player player)
+        {
+            //同步玩家数据
+        }
 
         /// <summary>
         /// 服务器启动时，需要加载所有账户数据到内存里，否则无法通过账户名查找到玩家账户信息
@@ -167,6 +172,8 @@ namespace AnyGame.Server.Logic.Login
 
         void PlayerEnterGame(Player player)
         {
+            ClientProxy.Login.SyncPlayerBaseInfo(player.NetState, player.Id, 0, player.IsSuperMan, (int)PlatformTypes.AquaIvy);
+
             Logs.Info("{0}进入游戏", player.Name);
             WorldEntityManager.OnlinePlayers.SetValue(player.Id, player);
 
@@ -201,6 +208,8 @@ namespace AnyGame.Server.Logic.Login
                 Sex = sex,
                 NetState = netstate
             };
+
+            player.Property.HP = 1000;
 
             if (GameConfig.IsEnableGM)
             {

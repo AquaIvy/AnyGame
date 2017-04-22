@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 #if Server
-namespace AnyGame.Server.Entity.Common
+namespace AnyGame.Server.Entity.Character
 #else
-namespace AnyGame.Client.Entity.Common
+namespace AnyGame.Client.Entity.Character
 #endif
 {
     /// <summary>

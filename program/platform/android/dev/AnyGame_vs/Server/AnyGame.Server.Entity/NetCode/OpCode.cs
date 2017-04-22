@@ -117,6 +117,11 @@
         /// </summary>
         NameExistsResult = 1010,
 
+        /// <summary>
+        /// 同步玩家的一些基础信息
+        /// </summary>
+        SyncPlayerBaseInfo = 1011,
+
         #endregion
 
         #region 1100  - 1199 移动相关的代码
@@ -214,5 +219,60 @@
 
 
         #endregion
+
+        #region 1300 - 1399 Player
+
+        /// <summary>
+        /// 解锁新手引导数据
+        /// </summary>
+        UnlockGuideRecord = 1300,
+
+        /// <summary>
+        /// 解锁新手引导数据返回
+        /// </summary>
+        UnlockGuidRecordResult = 1301,
+
+        /// <summary>
+        /// 同步已通过的新手引导数据
+        /// </summary>
+        SyncGuideRecords = 1302,
+
+        /// <summary>
+        /// 解锁功能菜单
+        /// </summary>
+        UnlockMenu = 1303,
+
+        /// <summary>
+        /// 菜单解锁返回
+        /// </summary>
+        UnlockMenuResult = 1304,
+
+        /// <summary>
+        /// 同步已解锁的菜单
+        /// </summary>
+        SyncUnlockMenus = 1305,
+
+        /// <summary>
+        /// 玩家改名
+        /// </summary>
+        PlayerRename = 1306,
+
+        /// <summary>
+        /// 改名返回
+        /// </summary>
+        PlayerRenameResult = 1307,
+
+        /// <summary>
+        /// 同步玩家信息
+        /// </summary>
+        SyncPlayerInfo = 1308,
+
+        /// <summary>
+        /// 同步玩家属性信息
+        /// </summary>
+        SyncPlayerPropertyInfo = 1309,
+
+        #endregion
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿using DogSE.Common;
 using IvyOrm;
 
-namespace AnyGame.Server.Entity.Bags
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 平台账户表

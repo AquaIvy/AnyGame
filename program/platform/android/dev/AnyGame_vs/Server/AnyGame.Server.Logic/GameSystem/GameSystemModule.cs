@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Interface.Client;
 using DogSE.Server.Core.Net;
 using IGameSystem = AnyGame.Server.Interface.Server.IGameSystem;
@@ -67,7 +67,7 @@ namespace AnyGame.Server.Logic.GameSystem
                 return false;
             }
 
-            GameController.Bag.GoldChange(player, gold, ResouceChangeType.GM_客户端发送命令行添加资源);
+            GameController.Bag.GoldChange(player, gold, DataChangeType.GM_客户端发送命令行添加资源);
 
             return true;
         }
@@ -89,7 +89,7 @@ namespace AnyGame.Server.Logic.GameSystem
                 return false;
             }
 
-            GameController.Bag.GemChange(player, gem, ResouceChangeType.GM_客户端发送命令行添加资源);
+            GameController.Bag.GemChange(player, gem, DataChangeType.GM_客户端发送命令行添加资源);
 
             return true;
         }

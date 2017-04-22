@@ -2,7 +2,7 @@
 using IvyOrm;
 using System;
 
-namespace AnyGame.Server.Entity.Bags
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 游戏内的账户表

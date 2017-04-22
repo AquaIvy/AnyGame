@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AnyGame.Client.Template.Item;
 
-namespace AnyGame.Client.Entity.Bags
+namespace AnyGame.Client.Entity.Character
 {
     /// <summary>
     /// 玩家的整个背包数据

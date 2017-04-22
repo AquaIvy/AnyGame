@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnyGame.Client.Entity.Bags
+namespace AnyGame.Client.Entity.Character
 {
     /// <summary>
     /// 玩家的资源
@@ -21,7 +21,7 @@ namespace AnyGame.Client.Entity.Bags
         /// <summary>
         /// 玩家的id
         /// </summary>
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
         /// <summary>
         /// 金币

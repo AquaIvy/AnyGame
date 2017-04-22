@@ -3,6 +3,7 @@ using AnyGame.Client.Controller.Bag;
 using AnyGame.Client.Controller.Login;
 using AnyGame.Client.Entity;
 using AnyGame.Client.Controller.GameSystem;
+using AnyGame.Client.Controller.Player;
 
 namespace AnyGame.Client.Controller
 {
@@ -22,9 +23,11 @@ namespace AnyGame.Client.Controller
             Net.Tag = this;
 
             Login = new LoginController(this, Net);
-            Game = new Game.GameController(Net);
-            Bag = new BagController(this, Net);
             System = new GameSystemController(this, Net);
+            Game = new Game.GameController(Net);
+
+            Player = new PlayerController(this, Net);
+            Bag = new BagController(this, Net);
         }
 
         /// <summary>
@@ -43,18 +46,24 @@ namespace AnyGame.Client.Controller
         public LoginController Login { get; private set; }
 
         /// <summary>
+        /// GM控制器
+        /// </summary>
+        public GameSystemController System { get; private set; }
+
+        /// <summary>
         /// 游戏的控制器
         /// </summary>
         public Game.GameController Game { get; private set; }
+
+        /// <summary>
+        /// 玩家角色的控制器
+        /// </summary>
+        public PlayerController Player { get; private set; }
 
         /// <summary>
         /// 背包控制器
         /// </summary>
         public BagController Bag { get; private set; }
 
-        /// <summary>
-        /// GM控制器
-        /// </summary>
-        public GameSystemController System { get; private set; }
     }
 }

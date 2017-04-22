@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using LoginWeb.Utils;
 using System.Text;
-using AnyGame.Server.Entity.Common;
-using AnyGame.Server.Entity.Bags;
+using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.Character;
 
 namespace LoginWeb.Controller
 {

@@ -50,13 +50,13 @@
     <Compile Include="Bags\Bag.cs" />
     <Compile Include="Bags\BagEnum.cs" />
     <Compile Include="Character\Account.cs" />
-    <Compile Include="Character\CharacterEnum.cs" />
+    <Compile Include="Character\Enum.cs" />
     <Compile Include="Character\PlatformAccount.cs" />
     <Compile Include="Character\Player.cs" />
     <Compile Include="Character\Property.cs" />
     <Compile Include="Bags\Res.cs" />
-    <Compile Include="Character\ResouceChangeType.cs" />
-    <Compile Include="Character\ResourceType.cs" />
+    <Compile Include="Common\DataChangeType.cs" />
+    <Compile Include="Bags\ResourceType.cs" />
     <Compile Include="Character\SimplePlayer.cs" />
     <Compile Include="Character\GameAccount.cs" />
     <Compile Include="Common\GameZone.cs" />
@@ -65,6 +65,8 @@
     <Compile Include="Common\SyncType.cs" />
     <Compile Include="Common\WorldSeqGen.cs" />
     <Compile Include="GameEvent\PlayerEvents.cs" />
+    <Compile Include="Guide\GuideRecord.cs" />
+    <Compile Include="Guide\GuideTypes.cs" />
     <Compile Include="Login\LoginEnum.cs" />
     <Compile Include="NetCode\OpCode.cs" />
     <Compile Include="NetCode\OpCodeName.cs" />

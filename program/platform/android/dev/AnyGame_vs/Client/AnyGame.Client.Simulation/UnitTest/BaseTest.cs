@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using AnyGame.Client.Controller;
 using AnyGame.Client.Controller.Login;
-using AnyGame.Client.Entity.Bags;
+using AnyGame.Client.Entity.Character;
 using AnyGame.Client.Entity.Login;
 
 namespace AnyGame.Client.Simulation.UnitTest

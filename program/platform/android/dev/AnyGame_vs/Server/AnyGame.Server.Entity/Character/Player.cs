@@ -1,16 +1,10 @@
 ﻿using DogSE.Common;
 using DogSE.Server.Core.Net;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-using AnyGame.Server.Entity.Bags;
-using AnyGame.Server.Entity.Common;
-using MongoDB.Bson;
 
-#if Server 
-namespace AnyGame.Server.Entity.Bags
-#else
-namespace AnyGame.Client.Entity.Character
-#endif
+namespace AnyGame.Server.Entity.Character
 {
     /// <summary>
     /// 玩家角色（存储数据）
@@ -27,16 +21,20 @@ namespace AnyGame.Client.Entity.Character
         /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// 理论上id和账号id一一对应，这里的目的是为了单个账号对应多角色做的冗余设计
+        /// </summary>
+        public int AccountId { get; set; }
+
+        /// <summary>
+        /// 游戏分区id
+        /// </summary>
+        public int GameZoneId { get; set; }
 
         /// <summary>
         /// 角色名
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 理论上id和账号id一一对应，这里的目的是为了单个账号对应多角色做的冗余设计
-        /// </summary>
-        public int AccountId { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -101,6 +99,11 @@ namespace AnyGame.Client.Entity.Character
         /// 累计经验
         /// </summary>
         public long ExpSum { get; set; }
+
+        /// <summary>
+        /// Vip等级，0表示非Vip用户
+        /// </summary>
+        public int VipLevel { get; set; }
 
         /// <summary>
         /// 网络对象

@@ -1,11 +1,11 @@
 ﻿using System;
 
 #if Server 
-using AnyGame.Server.Entity.Common;
-namespace AnyGame.Server.Entity.Bags
+using AnyGame.Server.Entity.Character;
+namespace AnyGame.Server.Entity.Character
 #else
-using AnyGame.Client.Entity.Common;
-namespace AnyGame.Client.Entity.Bags
+using AnyGame.Client.Entity.Character;
+namespace AnyGame.Client.Entity.Character
 #endif
 {
     public enum UseItemResult

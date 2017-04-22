@@ -1,6 +1,6 @@
 ﻿using AnyGame.Client.Entity;
-using AnyGame.Client.Entity.Bags;
-using AnyGame.Client.Entity.Common;
+using AnyGame.Client.Entity.Character;
+using AnyGame.Client.Entity.Character;
 using DogSE.Client.Core;
 using System;
 using System.Collections.Generic;
@@ -100,6 +100,16 @@ namespace AnyGame.Client.Controller.Bag
 
         internal override void OnSyncResouce(int resId, int num)
         {
+            if (resId == ResourceType.Gold)
+            {
+                Model.Res.Gold = num;
+            }
+            else if (resId == ResourceType.Gem)
+            {
+                Model.Res.Gem = num;
+            }
+
+
             SyncResouceEvent?.Invoke(this, new SyncResouceEventArgs
             {
                 ResId = resId,
