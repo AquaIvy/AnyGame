@@ -56,22 +56,27 @@ PacketHandlerManager.Register(1011, OnSyncPlayerBaseInfo);
 
         BaseLoginController module;
 
+
 void OnLoginServerResult(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Login.LoginServerResult)reader.ReadByte();
 var p2 = reader.ReadBoolean();
 module.OnLoginServerResult(p1,p2);
 }
+
 void OnCreatePlayerResult(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Login.CraetePlayerResult)reader.ReadByte();
 module.OnCreatePlayerResult(p1);
 }
+
 void OnSyncInitDataFinish(NetState netstate, PacketReader reader){
 module.OnSyncInitDataFinish();
 }
+
 void OnKickOfServer(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Login.OfflineType)reader.ReadByte();
 module.OnKickOfServer(p1);
 }
+
 void OnSyncPlayerBaseInfo(NetState netstate, PacketReader reader){
 var p1 = reader.ReadInt32();
 var p2 = reader.ReadInt32();

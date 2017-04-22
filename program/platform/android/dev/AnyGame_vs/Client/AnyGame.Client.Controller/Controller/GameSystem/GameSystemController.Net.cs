@@ -54,14 +54,17 @@ PacketHandlerManager.Register(11, OnServerStatus);
 
         BaseGameSystemController module;
 
+
 void OnGetSystemTimeResult(NetState netstate, PacketReader reader){
 var p1 = reader.ReadLong64();
 module.OnGetSystemTimeResult(p1);
 }
+
 void OnNotice(NetState netstate, PacketReader reader){
 var p1 = reader.ReadUTF8String();
 module.OnNotice(p1);
 }
+
 void OnServerStatus(NetState netstate, PacketReader reader){
 var p1 = reader.ReadUTF8String();
 var p2 = reader.ReadUTF8String();

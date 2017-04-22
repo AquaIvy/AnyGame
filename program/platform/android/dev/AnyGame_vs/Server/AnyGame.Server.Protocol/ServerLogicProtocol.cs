@@ -33,8 +33,7 @@ namespace DogSE.Server.Core.Protocol.AutoCode
                     pac.SetModule(m as AnyGame.Server.Interface.Server.IPlayer);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }
-                if (m is AnyGame.Server.Interface.Server.IBag)
+                }                if (m is AnyGame.Server.Interface.Server.IBag)
                 {
                     IProtoclAutoCode pac = new IBagAccess2();
                     list.Add(pac);
@@ -42,8 +41,7 @@ namespace DogSE.Server.Core.Protocol.AutoCode
                     pac.SetModule(m as AnyGame.Server.Interface.Server.IBag);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }
-                if (m is AnyGame.Server.Interface.Server.IGame)
+                }                if (m is AnyGame.Server.Interface.Server.IGame)
                 {
                     IProtoclAutoCode pac = new IGameAccess3();
                     list.Add(pac);
@@ -51,8 +49,7 @@ namespace DogSE.Server.Core.Protocol.AutoCode
                     pac.SetModule(m as AnyGame.Server.Interface.Server.IGame);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }
-                if (m is AnyGame.Server.Interface.Server.IGameSystem)
+                }                if (m is AnyGame.Server.Interface.Server.IGameSystem)
                 {
                     IProtoclAutoCode pac = new IGameSystemAccess4();
                     list.Add(pac);
@@ -60,8 +57,7 @@ namespace DogSE.Server.Core.Protocol.AutoCode
                     pac.SetModule(m as AnyGame.Server.Interface.Server.IGameSystem);
                     pac.PacketHandlerManager = handlers;
                     pac.Init();
-                }
-                if (m is AnyGame.Server.Interface.Server.ILogin)
+                }                if (m is AnyGame.Server.Interface.Server.ILogin)
                 {
                     IProtoclAutoCode pac = new ILoginAccess5();
                     list.Add(pac);
@@ -76,9 +72,9 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
 
 
-    class IPlayerAccess1 : IProtoclAutoCode
+    class IPlayerAccess1:IProtoclAutoCode
     {
-        public PacketHandlersBase PacketHandlerManager { get; set; }
+        public PacketHandlersBase PacketHandlerManager {get;set;}
 
         AnyGame.Server.Interface.Server.IPlayer module;
 
@@ -96,39 +92,36 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
         public void Init()
         {
-            PacketHandlerManager.Register(1300, UnlockGuideRecord);
-            PacketHandlerManager.Register(1303, UnlockMenu);
-            PacketHandlerManager.Register(1306, PlayerRename);
+PacketHandlerManager.Register(1300, UnlockGuideRecord);
+PacketHandlerManager.Register(1303, UnlockMenu);
+PacketHandlerManager.Register(1306, PlayerRename);
 
         }
 
-        void UnlockGuideRecord(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = (AnyGame.Server.Entity.Guide.GuideTypes)reader.ReadByte();
-            module.UnlockGuideRecord(netstate, p1);
-        }
-        void UnlockMenu(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = (AnyGame.Server.Entity.Character.MenuTypes)reader.ReadByte();
-            module.UnlockMenu(netstate, p1);
-        }
-        void PlayerRename(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadUTF8String();
-            module.PlayerRename(netstate, p1);
-        }
+void UnlockGuideRecord(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = (AnyGame.Server.Entity.Guide.GuideTypes)reader.ReadByte();
+module.UnlockGuideRecord(netstate,p1);
+}
+void UnlockMenu(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = (AnyGame.Server.Entity.Character.MenuTypes)reader.ReadByte();
+module.UnlockMenu(netstate,p1);
+}
+void PlayerRename(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadUTF8String();
+module.PlayerRename(netstate,p1);
+}
 
 
 
     }
 
 
-    class IBagAccess2 : IProtoclAutoCode
+    class IBagAccess2:IProtoclAutoCode
     {
-        public PacketHandlersBase PacketHandlerManager { get; set; }
+        public PacketHandlersBase PacketHandlerManager {get;set;}
 
         AnyGame.Server.Interface.Server.IBag module;
 
@@ -146,32 +139,30 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
         public void Init()
         {
-            PacketHandlerManager.Register(1200, OnUseItem);
-            PacketHandlerManager.Register(1241, OnUpgradeBag);
+PacketHandlerManager.Register(1200, OnUseItem);
+PacketHandlerManager.Register(1241, OnUpgradeBag);
 
         }
 
-        void OnUseItem(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadInt32();
-            var p2 = reader.ReadInt32();
-            module.OnUseItem(netstate, p1, p2);
-        }
-        void OnUpgradeBag(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            module.OnUpgradeBag(netstate);
-        }
+void OnUseItem(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadInt32();
+var p2 = reader.ReadInt32();
+module.OnUseItem(netstate,p1,p2);
+}
+void OnUpgradeBag(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+module.OnUpgradeBag(netstate);
+}
 
 
 
     }
 
 
-    class IGameAccess3 : IProtoclAutoCode
+    class IGameAccess3:IProtoclAutoCode
     {
-        public PacketHandlersBase PacketHandlerManager { get; set; }
+        public PacketHandlersBase PacketHandlerManager {get;set;}
 
         AnyGame.Server.Interface.Server.IGame module;
 
@@ -189,25 +180,24 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
         public void Init()
         {
-            PacketHandlerManager.Register(1, TaskType.Low, Heartbeat);
+PacketHandlerManager.Register(1, TaskType.Low, Heartbeat);
 
         }
 
-        void Heartbeat(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadInt32();
-            module.Heartbeat(netstate, p1);
-        }
+void Heartbeat(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadInt32();
+module.Heartbeat(netstate,p1);
+}
 
 
 
     }
 
 
-    class IGameSystemAccess4 : IProtoclAutoCode
+    class IGameSystemAccess4:IProtoclAutoCode
     {
-        public PacketHandlersBase PacketHandlerManager { get; set; }
+        public PacketHandlersBase PacketHandlerManager {get;set;}
 
         AnyGame.Server.Interface.Server.IGameSystem module;
 
@@ -225,65 +215,58 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
         public void Init()
         {
-            PacketHandlerManager.Register(2, RunGMCommand);
-            PacketHandlerManager.Register(3, TaskType.Low, GetSystemTime);
-            PacketHandlerManager.Register(7, TaskType.Low, ClientLog);
-            PacketHandlerManager.Register(8, TaskType.Low, PhoneInfo);
-            PacketHandlerManager.Register(9, TaskType.Low, ClientException);
-            PacketHandlerManager.Register(12, TaskType.Low, ClinetPauseStatus);
-            PacketHandlerManager.Register(13, TaskType.Low, Heart);
+PacketHandlerManager.Register(2, RunGMCommand);
+PacketHandlerManager.Register(3, TaskType.Low, GetSystemTime);
+PacketHandlerManager.Register(7, TaskType.Low, ClientLog);
+PacketHandlerManager.Register(8, TaskType.Low, PhoneInfo);
+PacketHandlerManager.Register(9, TaskType.Low, ClientException);
+PacketHandlerManager.Register(12, TaskType.Low, ClinetPauseStatus);
+PacketHandlerManager.Register(13, TaskType.Low, Heart);
 
         }
 
-        void RunGMCommand(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadUTF8String();
-            module.RunGMCommand(netstate, p1);
-        }
-        void GetSystemTime(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            module.GetSystemTime(netstate);
-        }
-        void ClientLog(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadUTF8String();
-            var p2 = reader.ReadUTF8String();
-            module.ClientLog(netstate, p1, p2);
-        }
-        void PhoneInfo(NetState netstate, PacketReader reader)
-        {
-            var p1 = reader.ReadUTF8String();
-            module.PhoneInfo(netstate, p1);
-        }
-        void ClientException(NetState netstate, PacketReader reader)
-        {
-            var p1 = reader.ReadUTF8String();
-            module.ClientException(netstate, p1);
-        }
-        void ClinetPauseStatus(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadBoolean();
-            var p2 = new DateTime(reader.ReadLong64());
-            module.ClinetPauseStatus(netstate, p1, p2);
-        }
-        void Heart(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            module.Heart(netstate);
-        }
+void RunGMCommand(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadUTF8String();
+module.RunGMCommand(netstate,p1);
+}
+void GetSystemTime(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+module.GetSystemTime(netstate);
+}
+void ClientLog(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadUTF8String();
+var p2 = reader.ReadUTF8String();
+module.ClientLog(netstate,p1,p2);
+}
+void PhoneInfo(NetState netstate, PacketReader reader){
+var p1 = reader.ReadUTF8String();
+module.PhoneInfo(netstate,p1);
+}
+void ClientException(NetState netstate, PacketReader reader){
+var p1 = reader.ReadUTF8String();
+module.ClientException(netstate,p1);
+}
+void ClinetPauseStatus(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadBoolean();
+var p2 = new DateTime(reader.ReadLong64());
+module.ClinetPauseStatus(netstate,p1,p2);
+}
+void Heart(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+module.Heart(netstate);
+}
 
 
 
     }
 
 
-    class ILoginAccess5 : IProtoclAutoCode
+    class ILoginAccess5:IProtoclAutoCode
     {
-        public PacketHandlersBase PacketHandlerManager { get; set; }
+        public PacketHandlersBase PacketHandlerManager {get;set;}
 
         AnyGame.Server.Interface.Server.ILogin module;
 
@@ -301,25 +284,23 @@ namespace DogSE.Server.Core.Protocol.AutoCode
 
         public void Init()
         {
-            PacketHandlerManager.Register(1000, OnLoginServer);
-            PacketHandlerManager.Register(1003, OnCreatePlayer);
+PacketHandlerManager.Register(1000, OnLoginServer);
+PacketHandlerManager.Register(1003, OnCreatePlayer);
 
         }
 
-        void OnLoginServer(NetState netstate, PacketReader reader)
-        {
-            var p1 = reader.ReadUTF8String();
-            var p2 = reader.ReadUTF8String();
-            var p3 = reader.ReadInt32();
-            module.OnLoginServer(netstate, p1, p2, p3);
-        }
-        void OnCreatePlayer(NetState netstate, PacketReader reader)
-        {
-            if (!netstate.IsVerifyLogin) return;
-            var p1 = reader.ReadUTF8String();
-            var p2 = (AnyGame.Server.Entity.Character.Sex)reader.ReadByte();
-            module.OnCreatePlayer(netstate, p1, p2);
-        }
+void OnLoginServer(NetState netstate, PacketReader reader){
+var p1 = reader.ReadUTF8String();
+var p2 = reader.ReadUTF8String();
+var p3 = reader.ReadInt32();
+module.OnLoginServer(netstate,p1,p2,p3);
+}
+void OnCreatePlayer(NetState netstate, PacketReader reader){
+if (!netstate.IsVerifyLogin) return;
+var p1 = reader.ReadUTF8String();
+var p2 = (AnyGame.Server.Entity.Character.Sex)reader.ReadByte();
+module.OnCreatePlayer(netstate,p1,p2);
+}
 
 
 

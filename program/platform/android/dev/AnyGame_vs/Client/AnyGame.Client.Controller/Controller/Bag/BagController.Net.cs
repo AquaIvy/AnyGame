@@ -57,38 +57,46 @@ PacketHandlerManager.Register(1242, OnUpgradeBagResult);
 
         BaseBagController module;
 
+
 void OnUseItemResult(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Character.UseItemResult)reader.ReadByte();
 var p2 = reader.ReadInt32();
 var p3 = reader.ReadInt32();
 module.OnUseItemResult(p1,p2,p3);
 }
+
 void OnSyncItems(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Character.SyncType)reader.ReadByte();
 var len2 = reader.ReadInt32();
-var p2 = new AnyGame.Client.Entity.Character.GameItem[len2];for(int i =0;i< len2;i++){
+var p2 = new AnyGame.Client.Entity.Character.GameItem[len2];
+for(int i =0;i< len2;i++){
 p2[i] = GameItemReadProxy.Read(reader);
 }
 module.OnSyncItems(p1,p2);
 }
+
 void OnSyncBag(NetState netstate, PacketReader reader){
 var p1 = reader.ReadInt32();
 var len2 = reader.ReadInt32();
-var p2 = new AnyGame.Client.Entity.Character.GameItem[len2];for(int i =0;i< len2;i++){
+var p2 = new AnyGame.Client.Entity.Character.GameItem[len2];
+for(int i =0;i< len2;i++){
 p2[i] = GameItemReadProxy.Read(reader);
 }
 module.OnSyncBag(p1,p2);
 }
+
 void OnSyncAllResouce(NetState netstate, PacketReader reader){
 var p1 = reader.ReadInt32();
 var p2 = reader.ReadInt32();
 module.OnSyncAllResouce(p1,p2);
 }
+
 void OnSyncResouce(NetState netstate, PacketReader reader){
 var p1 = reader.ReadInt32();
 var p2 = reader.ReadInt32();
 module.OnSyncResouce(p1,p2);
 }
+
 void OnUpgradeBagResult(NetState netstate, PacketReader reader){
 var p1 = (AnyGame.Client.Entity.Character.UpgradeBagResult)reader.ReadByte();
 module.OnUpgradeBagResult(p1);

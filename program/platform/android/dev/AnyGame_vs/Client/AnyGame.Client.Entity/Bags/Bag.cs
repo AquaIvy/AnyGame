@@ -11,6 +11,11 @@ namespace AnyGame.Client.Entity.Character
     /// </remarks>
     public class Bag 
     {
+        public Bag()
+        {
+            Items = new List<GameItem>();
+        }
+
         /// <summary>
         /// 玩家的唯一标示
         /// </summary>

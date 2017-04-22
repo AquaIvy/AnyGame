@@ -21,8 +21,9 @@ namespace DogSE.Server.Core.Protocol.AutoCode
         {
 AnyGame.Server.Interface.Client.ClientProxy.Login = new ILoginProxy1();
 AnyGame.Server.Interface.Client.ClientProxy.Game = new IGameProxy1();
-AnyGame.Server.Interface.Client.ClientProxy.Bag = new IBagProxy1();
 AnyGame.Server.Interface.Client.ClientProxy.System = new IGameSystemProxy1();
+AnyGame.Server.Interface.Client.ClientProxy.Player = new IPlayerProxy1();
+AnyGame.Server.Interface.Client.ClientProxy.Bag = new IBagProxy1();
 
         }
     }

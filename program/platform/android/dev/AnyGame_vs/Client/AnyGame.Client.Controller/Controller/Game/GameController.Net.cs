@@ -52,6 +52,7 @@ PacketHandlerManager.Register(2, OnSyncServerTime);
 
         BaseGameController module;
 
+
 void OnSyncServerTime(NetState netstate, PacketReader reader){
 var p1 = new DateTime(reader.ReadLong64());
 var p2 = reader.ReadInt32();

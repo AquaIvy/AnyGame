@@ -107,7 +107,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                     var arrayType = p.PropertyType.GetElementType();
 
                     readCode.AppendFormat("var len{0} = reader.ReadInt32();\r\n", i);
-                    readCode.AppendFormat("var p{0} = new {1}[len{0}];", i, Utils.GetFixFullTypeName(arrayType.FullName));   //  这里只创建值类型
+                    readCode.AppendFormat("var p{0} = new {1}[len{0}];\r\n", i, Utils.GetFixFullTypeName(arrayType.FullName));   //  这里只创建值类型
 
                     readCode.AppendFormat("for(int i =0;i< len{0};i++){{\r\n", i);
                     if (arrayType == typeof(int))
@@ -320,6 +320,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                                           att.OpCode, methodName);
                     initCode.AppendLine();
 
+                    callCode.AppendLine();
                     callCode.AppendFormat("void {0}(NetState netstate, PacketReader reader)", methodName);
                     callCode.AppendLine("{");
                     callCode.AppendFormat(" var obj = {0}ReadProxy.Read(reader);\r\n", param[1].ParameterType.Name);
@@ -334,6 +335,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                                           att.OpCode, methodName);
                     initCode.AppendLine();
 
+                    callCode.AppendLine();
                     callCode.AppendFormat("void {0}(NetState netstate, PacketReader reader)", methodName);
                     callCode.AppendLine("{");
                     callCode.AppendFormat(" var package = DogSE.Library.Common.StaticObjectPool<{0}>.AcquireContent();", param[1].ParameterType.FullName);
@@ -357,7 +359,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                                       att.OpCode, methodName);
                 initCode.AppendLine();
 
-
+                callCode.AppendLine();
                 callCode.AppendFormat("void {0}(NetState netstate, PacketReader reader)", methodName);
                 callCode.AppendLine("{");
 
@@ -411,7 +413,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                         var arrayType = p.ParameterType.GetElementType();
 
                         callCode.AppendFormat("var len{0} = reader.ReadInt32();\r\n", i);
-                        callCode.AppendFormat("var p{0} = new {1}[len{0}];", i, Utils.GetFixFullTypeName(arrayType.FullName));   //  这里只创建值类型
+                        callCode.AppendFormat("var p{0} = new {1}[len{0}];\r\n", i, Utils.GetFixFullTypeName(arrayType.FullName));   //  这里只创建值类型
 
                         callCode.AppendFormat("for(int i =0;i< len{0};i++){{\r\n", i);
                         if (arrayType == typeof(int))
