@@ -1,9 +1,7 @@
-﻿using DogSE.Server.Core.LogicModule;
+﻿using AnyGame.Server.Entity.Character;
+using AnyGame.Server.Entity.NetCode;
 using DogSE.Server.Core.Net;
 using DogSE.Server.Core.Protocol;
-using AnyGame.Server.Entity.Character;
-using AnyGame.Server.Entity.NetCode;
-using AnyGame.Server.Entity.Character;
 
 namespace AnyGame.Server.Interface.Client
 {
@@ -45,10 +43,10 @@ namespace AnyGame.Server.Interface.Client
         /// 同步所有的资源
         /// </summary>
         /// <param name="netstate"></param>
-        /// <param name="money">金币</param>
+        /// <param name="gold">金币</param>
         /// <param name="gem">钻石</param>
         [NetMethod((ushort)OpCode.SyncAllResouce, NetMethodType.SimpleMethod)]
-        void SyncAllResouce(NetState netstate, int money, int gem);
+        void SyncAllResouce(NetState netstate, int gold, int gem);
 
         /// <summary>
         /// 同步资源

@@ -89,11 +89,11 @@ namespace AnyGame.Client.Controller.Bag
             });
         }
 
-        internal override void OnSyncAllResouce(int money, int gem)
+        internal override void OnSyncAllResouce(int gold, int gem)
         {
             SyncAllResouceEvent?.Invoke(this, new SyncAllResouceEventArgs
             {
-                Money = money,
+                Gold = gold,
                 Gem = gem,
             });
         }
@@ -219,7 +219,7 @@ namespace AnyGame.Client.Controller.Bag
         /// <summary>
         /// 金币
         /// </summary>
-        public int Money { get; internal set; }
+        public int Gold { get; internal set; }
 
         /// <summary>
         /// 钻石

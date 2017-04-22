@@ -277,7 +277,7 @@ namespace DogSE.Tools.CodeGeneration.Client.Unity3d
                 {
                     methodNameCode.Remove(methodNameCode.Length - 1, 1);
 
-                    methodBodyCode.Remove(methodBodyCode.Length - 1, 1);
+                    //methodBodyCode.Remove(methodBodyCode.Length - 1, 1);
                     methodBodyCode.AppendLine("});");
 
                     eventArgsCode.Remove(eventArgsCode.Length - 2, 2);      //删掉最后一个空行
