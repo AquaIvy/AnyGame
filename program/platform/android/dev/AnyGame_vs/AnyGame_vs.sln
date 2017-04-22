@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.Game", "Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeVersion", "GMTools\SampleTools\ChangeVersion\ChangeVersion.csproj", "{D76A0CD7-1C13-4488-85AA-AB843C89EA06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyGame.Server.DataRecord", "Server\AnyGame.Server.DataRecord\AnyGame.Server.DataRecord.csproj", "{38FA7EEC-77DC-41D4-AA14-564A8B835CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{D76A0CD7-1C13-4488-85AA-AB843C89EA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76A0CD7-1C13-4488-85AA-AB843C89EA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D76A0CD7-1C13-4488-85AA-AB843C89EA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38FA7EEC-77DC-41D4-AA14-564A8B835CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38FA7EEC-77DC-41D4-AA14-564A8B835CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38FA7EEC-77DC-41D4-AA14-564A8B835CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38FA7EEC-77DC-41D4-AA14-564A8B835CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -207,5 +213,6 @@ Global
 		{C45D9121-12A2-44B4-8274-C5FC5098A780} = {E2DB4A74-3C3A-4AE7-96BC-F902B9FC0D41}
 		{1CEBAA71-7742-4AA6-857E-81BFC81EAF84} = {E2DB4A74-3C3A-4AE7-96BC-F902B9FC0D41}
 		{D76A0CD7-1C13-4488-85AA-AB843C89EA06} = {428D8E9D-D692-4FD3-B0AE-F0929FF5C02B}
+		{38FA7EEC-77DC-41D4-AA14-564A8B835CB6} = {E2DB4A74-3C3A-4AE7-96BC-F902B9FC0D41}
 	EndGlobalSection
 EndGlobal
