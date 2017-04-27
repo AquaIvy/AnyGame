@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DogSE.Common;
-
-#if Server 
 using AnyGame.Server.Entity.Character;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace AnyGame.Server.Entity.Character
-#else
-using AnyGame.Client.Entity.Common;
-namespace AnyGame.Client.Entity.Bags
-#endif
 {
     /// <summary>
     /// 简单玩家信息
     /// </summary>
-    public class SimplePlayer
+    [BsonIgnoreExtraElements]
+    public class SimplePlayer : IDataEntity
     {
         /// <summary>
         /// 玩家的id
@@ -36,5 +33,10 @@ namespace AnyGame.Client.Entity.Bags
         /// 性别
         /// </summary>
         public Sex Sex { get; set; }
+
+        /// <summary>
+        /// 最后一次登录时间
+        /// </summary>
+        public DateTime LastLoginTime { get; set; }
     }
 }

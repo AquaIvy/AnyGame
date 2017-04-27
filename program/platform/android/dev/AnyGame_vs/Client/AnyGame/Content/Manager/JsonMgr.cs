@@ -61,34 +61,34 @@ namespace AnyGame.Content.Manager
 
 
 
-        public static List<JsonData> LoadUI(string name)
-        {
-            if (uiJsonData.ContainsKey(name))
-            {
-                return uiJsonData[name];
-            }
+        //public static List<JsonData> LoadUI(string name)
+        //{
+        //    if (uiJsonData.ContainsKey(name))
+        //    {
+        //        return uiJsonData[name];
+        //    }
 
-            string relativeMap = SceneMgr.RelativeMap(name + "_ab");
-            relativeMap = relativeMap == "" ? "" : relativeMap + "/";
-            string path = GlobalInfo.RES_GAME_UI + relativeMap + name + ".uiconfig";
-            var config = Load(path);
-            uiJsonData[name] = config;
+        //    string relativeMap = SceneMgr.RelativeMap(name + "_ab");
+        //    relativeMap = relativeMap == "" ? "" : relativeMap + "/";
+        //    string path = GlobalInfo.RES_GAME_UI + relativeMap + name + ".uiconfig";
+        //    var config = Load(path);
+        //    uiJsonData[name] = config;
 
-            return uiJsonData[name];
-        }
+        //    return uiJsonData[name];
+        //}
 
-        public static List<JsonData> LoadGameWorld(string name)
-        {
-            if (gameworldJsonData.ContainsKey(name))
-            {
-                return gameworldJsonData[name];
-            }
+        //public static List<JsonData> LoadGameWorld(string name)
+        //{
+        //    if (gameworldJsonData.ContainsKey(name))
+        //    {
+        //        return gameworldJsonData[name];
+        //    }
 
-            string path = GlobalInfo.RES_GAME_WORLD + name + ".txt";
-            var config = Load(path);
-            gameworldJsonData[name] = config;
+        //    string path = GlobalInfo.RES_GAME_WORLD + name + ".txt";
+        //    var config = Load(path);
+        //    gameworldJsonData[name] = config;
 
-            return gameworldJsonData[name];
-        }
+        //    return gameworldJsonData[name];
+        //}
     }
 }

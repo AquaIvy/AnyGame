@@ -11,36 +11,15 @@ namespace Assets.Scripts.Update
     /// <summary>
     /// 更新管理器
     /// </summary>
-    public partial class UpdateController
+    public class UpdateController
     {
-
         //IIS服务端 需要加入相关MIME映射
         //< mimeMap fileExtension = ".apk" mimeType = "application/octet-stream" />
         //< mimeMap fileExtension = ".assetbundle" mimeType = "application/octet-stream" />
         //< mimeMap fileExtension = ".pkm" mimeType = "application/octet-stream" />
         //< mimeMap fileExtension = ".pvr" mimeType = "application/octet-stream" />
         //< mimeMap fileExtension = ".tpsheet" mimeType = "text/xml" />
-        //< mimeMap fileExtension = ".uiconfig" mimeType = "text/xml" />
-        //< mimeMap fileExtension = ".ctrlconfig" mimeType = "text/xml" />
 
-        private static UpdateController m_instance = null;
-        public static UpdateController Instance
-        {
-            get
-            {
-                if (m_instance == null)
-                {
-                    m_instance = new UpdateController();
-                }
-                return m_instance;
-            }
-        }
-
-        /// <summary>
-        /// 下载时触发的各种事件
-        /// </summary>
-        //public DownloadEvent Evt = null;
-        private Loader loader = null;
 
         private int curUpdateCount = 0;                         //当前已经更新的文件数量
         private int maxUpdateCount = 0;                         //需要更新的文件总数量
@@ -49,12 +28,8 @@ namespace Assets.Scripts.Update
         private List<FileUpdateItem> newList = null;            //需要更新的  文件列表
         private List<FileUpdateItem> errorList = null;          //出错的  文件列表
 
-        //private Action onFinish = null;     //当下载完成时执行的逻辑
-
         public UpdateController()
         {
-            //Evt = new DownloadEvent();
-            loader = Loader.Instance;
             errorList = new List<FileUpdateItem>();
         }
 
@@ -67,7 +42,7 @@ namespace Assets.Scripts.Update
         /// </summary>
         public void Start()
         {
-            //是否清除本地缓存
+            //是否清除本地缓存，用于测试阶段使用
             if (Directory.Exists(LGlobalInfo.CLIENT_ROOT_PATH)
                 && LGlobalInfo.IsAlwaysClearStream)
             {
@@ -78,13 +53,14 @@ namespace Assets.Scripts.Update
             if (!Directory.Exists(LGlobalInfo.CLIENT_ROOT_PATH))
             {
                 //从StreamingAssets中拷贝数据到沙盒中
-                FireLog(LogLevel.Info, string.Format("首次运行，创建目录： {0}", LGlobalInfo.CLIENT_ROOT_PATH));
+                LoaderCenter.Event.Log(LogLevel.Info, string.Format("首次运行，创建目录： {0}", LGlobalInfo.CLIENT_ROOT_PATH));
+
                 Directory.CreateDirectory(LGlobalInfo.CLIENT_ROOT_PATH);
                 CopyStreamingFiles();
             }
             else
             {
-                VersionAuthenticate();
+                DownloadFiles();
             }
         }
 
@@ -93,56 +69,7 @@ namespace Assets.Scripts.Update
         /// </summary>
         private void DownloadFinish()
         {
-            FireDownloadFinish();
-        }
-
-        /// <summary>
-        /// 版本验证
-        /// </summary>
-        private void VersionAuthenticate()
-        {
-            FireLog(LogLevel.Info, "开始版本验证");
-
-            string channel = Loader.LoginProxy.Name;
-            string phoneType = Application.platform.ToString();
-            string version = LGlobalInfo.EngineVersion.ToString();
-
-            var ver_auth_url = string.Format(LGlobalInfo.VERSION_AUTH_PATH, channel, phoneType, version);
-            DownloadTask authTask = null;
-            Task.Invoke(k =>
-            {
-                if (authTask == null)
-                {
-                    authTask = new DownloadTask(ver_auth_url);
-                }
-
-                if (authTask.IsDone)
-                {
-                    if (string.IsNullOrEmpty(authTask.ErrorMessage))
-                    {
-                        var result = Encoding.UTF8.GetString(authTask.Bytes);
-                        Debug.LogWarning("版本验证 " + result);
-
-                        if (result == "sucess")
-                        {
-                            DownloadFiles();
-                        }
-                        else
-                        {
-                            FireDownloadError(OpState.VersionAuth, result, null);
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError("版本验证 " + authTask.ErrorMessage);
-                        FireDownloadError(OpState.VersionAuth, authTask.ErrorMessage, null);
-                    }
-
-                    return true;
-                }
-
-                return false;
-            });
+            LoaderCenter.Event.DownloadFinish();
         }
 
         /// <summary>
@@ -150,13 +77,14 @@ namespace Assets.Scripts.Update
         /// </summary>
         public void CopyStreamingFiles()
         {
-            loader.StartCoroutine(DownloadMatchList(LGlobalInfo.STREAM_MATCHLIST_PATH,
-            true,
-            () =>
-            {
-                loader.StartCoroutine(DownloadFiles(OpState.CopyStream));
-            },
-            null));
+            LoaderCenter.Loader.StartCoroutine(DownloadMatchList(LGlobalInfo.STREAM_MATCHLIST_PATH,
+                true,
+                () =>
+                {
+                    LoaderCenter.Loader.StartCoroutine(DownloadFiles(OpState.CopyStream));
+                },
+                null)
+            );
         }
 
         /// <summary>
@@ -164,16 +92,17 @@ namespace Assets.Scripts.Update
         /// </summary>
         public void DownloadFiles()
         {
-            loader.StartCoroutine(DownloadMatchList(LGlobalInfo.SERVER_MATCHLIST_PATH,
-            false,
-            () =>
-            {
-                loader.StartCoroutine(DownloadFiles(OpState.Download));
-            },
-            (error) =>
-            {
-                FireDownloadError(OpState.Matchlist, error, DownloadFiles);
-            }));
+            LoaderCenter.Loader.StartCoroutine(DownloadMatchList(LGlobalInfo.SERVER_MATCHLIST_PATH,
+                false,
+                () =>
+                {
+                    LoaderCenter.Loader.StartCoroutine(DownloadFiles(OpState.Download));
+                },
+                (error) =>
+                {
+                    LoaderCenter.Event.DownloadError(OpState.Matchlist, error, DownloadFiles);
+                })
+            );
         }
 
         /// <summary>
@@ -196,7 +125,7 @@ namespace Assets.Scripts.Update
 
                 if (www.error != null)
                 {
-                    FireLog(LogLevel.Error, string.Format("下载 【{0}】 错误， {1}", url, www.error));
+                    LoaderCenter.Event.Log(LogLevel.Error, string.Format("下载 【{0}】 错误， {1}", url, www.error));
 
                     if (ignoreError)
                     {
@@ -220,7 +149,7 @@ namespace Assets.Scripts.Update
 
                     newList = LoadUpdateList(sr);
 
-                    FireLog(LogLevel.Debug, string.Format("matchlist.txt 下载成功, 共{0}个文件", newList.Count));
+                    LoaderCenter.Event.Log(LogLevel.Debug, string.Format("matchlist.txt 下载成功, 共{0}个文件", newList.Count));
 
                     sr.Close();
                     sr.Dispose();
@@ -235,6 +164,8 @@ namespace Assets.Scripts.Update
         /// <summary>
         /// 对比新旧文件列表，下载所需资源
         /// </summary>
+        /// <param name="state">操作阶段</param>
+        /// <returns></returns>
         private IEnumerator<int> DownloadFiles(OpState state)
         {
             if (newList == null)
@@ -306,7 +237,7 @@ namespace Assets.Scripts.Update
             curUpdateCount = 0;
             maxUpdateCount = lstNeedUpdate.Count;
 
-            FireLog(LogLevel.Notice, string.Format("{0} 更新{1} ,删除{2}", state, maxUpdateCount, lstNeedDelete.Count));
+            LoaderCenter.Event.Log(LogLevel.Notice, string.Format("{0} 更新{1} ,删除{2}", state, maxUpdateCount, lstNeedDelete.Count));
 
             if (oldList == null)
             {
@@ -317,7 +248,7 @@ namespace Assets.Scripts.Update
             {
                 FileUtils.DeleteFile(LGlobalInfo.CLIENT_ROOT_PATH + item.path);
 
-                FireLog(LogLevel.Info, string.Format("{0}时删除无用文件：{1}", state, item.path));
+                LoaderCenter.Event.Log(LogLevel.Info, string.Format("{0} 删除无用文件：{1}", state, item.path));
 
                 oldList.Remove(item);
 
@@ -326,7 +257,7 @@ namespace Assets.Scripts.Update
 
             SaveUpdateList(oldListPath, oldList);
 
-            FireLog(LogLevel.Notice, string.Format("准备开始{0}文件：{1}个", state, maxUpdateCount));
+            LoaderCenter.Event.Log(LogLevel.Notice, string.Format("准备开始{0}文件：{1}个", state, maxUpdateCount));
 
             string root_path = state == OpState.CopyStream ? LGlobalInfo.STREAM_ROOT_PATH : LGlobalInfo.SERVER_ROOT_PATH;
             foreach (var updateItem in lstNeedUpdate)
@@ -335,32 +266,36 @@ namespace Assets.Scripts.Update
                 if (state == OpState.CopyStream && LGlobalInfo.IsHexBinDecOct)
                 {
                     var pathSplit = updateItem.path.Split('/');     //把正常目录分割出来
-                    string asciiPath = "";
+
+                    StringBuilder asciiPath = new StringBuilder();
                     for (int i = 0; i < pathSplit.Length - 1; i++)
                     {
-                        asciiPath += string_to_ascii(pathSplit[i]) + "/";
+                        asciiPath.Append(string_to_ascii(pathSplit[i]));
+                        asciiPath.Append("/");
                     }
-                    asciiPath += string_to_ascii(Path.GetFileNameWithoutExtension(updateItem.path)) + Path.GetExtension(updateItem.path);
+                    asciiPath.AppendFormat("{0}{1}",
+                        string_to_ascii(Path.GetFileNameWithoutExtension(updateItem.path)),
+                        Path.GetExtension(updateItem.path));
 
-                    loader.StartCoroutine(DownloadAndSaveToLocal(
-                        root_path + asciiPath,
+                    LoaderCenter.Loader.StartCoroutine(DownloadAndSaveToLocal(
+                        root_path + asciiPath.ToString(),
                         LGlobalInfo.CLIENT_ROOT_PATH + updateItem.path,
                         updateItem,
                         state,
                         OnWriteFile
-                        ));
+                    ));
 
                 }
                 else
                 {
                     //不需要进制转换，直接下载
-                    loader.StartCoroutine(DownloadAndSaveToLocal(
+                    LoaderCenter.Loader.StartCoroutine(DownloadAndSaveToLocal(
                         root_path + updateItem.path,
                         LGlobalInfo.CLIENT_ROOT_PATH + updateItem.path,
                         updateItem,
                         state,
                         OnWriteFile
-                        ));
+                    ));
                 }
 
                 yield return 1;
@@ -368,7 +303,7 @@ namespace Assets.Scripts.Update
 
             if (maxUpdateCount <= 0)
             {
-                if (state == OpState.CopyStream) { VersionAuthenticate(); }
+                if (state == OpState.CopyStream) { DownloadFiles(); }
                 else if (state == OpState.Download) { DownloadFinish(); }
             }
         }
@@ -415,17 +350,16 @@ namespace Assets.Scripts.Update
             //保存matchlist.txt
             SaveUpdateList(LGlobalInfo.CLIENT_MATCHLIST_PATH, oldList);
             //打印日志
-            FireLog(LogLevel.Info, string.Format("{0}完成：{1}", state, fileUpdateItem.path));
+            LoaderCenter.Event.Log(LogLevel.Info, string.Format("{0}完成：{1}", state, fileUpdateItem.path));
             //触发下载完成事件，通知View层展现
-            if (state == OpState.CopyStream) { FireCopyOneItem(curUpdateCount, maxUpdateCount); }
-            else if (state == OpState.Download) { FireDownloadOneItem(curUpdateCount, maxUpdateCount); }
+            LoaderCenter.Event.DownloadOneItem(state, curUpdateCount, maxUpdateCount);
 
             //检测是否有下载失败
             CheckDownloadError(state, retry);
 
             if (curUpdateCount >= maxUpdateCount)
             {
-                if (state == OpState.CopyStream) { VersionAuthenticate(); }
+                if (state == OpState.CopyStream) { DownloadFiles(); }
                 else if (state == OpState.Download) { DownloadFinish(); }
             }
         }
@@ -438,7 +372,7 @@ namespace Assets.Scripts.Update
             if (curUpdateCount + errorUpdateCount >= maxUpdateCount
                 && errorUpdateCount > 0)
             {
-                FireDownloadError(state, "", retryAction);
+                LoaderCenter.Event.DownloadError(state, string.Empty, retryAction);
 
                 //这里似乎不能赋值给newList
                 newList = errorList;
@@ -535,7 +469,7 @@ namespace Assets.Scripts.Update
 
                 if (w.error != null)
                 {
-                    FireLog(LogLevel.Error, string.Format("下载 [{0}] 错误， {1}", url, w.error));
+                    LoaderCenter.Event.Log(LogLevel.Error, string.Format("下载 [{0}] 错误， {1}", url, w.error));
                     if (callback != null)
                     {
                         callback(false, state, item);
@@ -564,13 +498,13 @@ namespace Assets.Scripts.Update
         }
 
         /// <summary>
-        /// 字符串转ascii码
+        /// string转ascii
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public static string string_to_ascii(string name)
         {
-            string ascii = "";
+            string ascii = string.Empty;
 
             for (int i = 0; i < name.Length; i++)
             {
@@ -584,20 +518,19 @@ namespace Assets.Scripts.Update
         /// <summary>
         /// ascii转string
         /// </summary>
-        /// <param name="asc"></param>
+        /// <param name="ascii"></param>
         /// <returns></returns>
-        public static string ascii_to_string(string asc)
+        public static string ascii_to_string(string ascii)
         {
-            if (asc.Length % 4 != 0)
+            if (ascii.Length % 4 != 0)
             {
-                Debug.LogError("ASC长度错误 " + asc);
-
-                return asc;
+                Debug.LogError("ascii长度错误 " + ascii);
+                return ascii;
             }
 
-            string str = "";
+            string str = string.Empty;
 
-            var chararray = SplitByLen(asc, 4);
+            var chararray = SplitByLen(ascii, 4);
             for (int i = 0; i < chararray.Length; i++)
             {
                 char c = (char)(Convert.ToInt32((chararray[i]), 16));
@@ -607,23 +540,23 @@ namespace Assets.Scripts.Update
             return str;
         }
 
-        /// <summary>  
-        /// 按长度切分字符串成数组  
-        /// </summary>  
-        /// <param name="str">原字符串</param>  
-        /// <param name="separatorCharNum">切分长度</param>  
-        /// <returns>字符串数组</returns>  
+        /// <summary>
+        /// 按长度切分字符串成数组
+        /// http://blog.csdn.net/yenange/article/details/39637211
+        /// </summary>
+        /// <param name="str">原字符串</param>
+        /// <param name="separatorCharNum">切分长度</param>
+        /// <returns>字符串数组</returns>
         public static string[] SplitByLen(string str, int separatorCharNum)
         {
-            //http://blog.csdn.net/yenange/article/details/39637211
-
             if (string.IsNullOrEmpty(str) || str.Length <= separatorCharNum)
             {
                 return new string[] { str };
             }
+
             string tempStr = str;
             List<string> strList = new List<string>();
-            int iMax = Convert.ToInt32(Math.Ceiling(str.Length / (separatorCharNum * 1.0)));//获取循环次数  
+            int iMax = Convert.ToInt32(Math.Ceiling(str.Length / (separatorCharNum * 1.0)));//获取循环次数
             for (int i = 1; i <= iMax; i++)
             {
                 string currMsg = tempStr.Substring(0, tempStr.Length > separatorCharNum ? separatorCharNum : tempStr.Length);

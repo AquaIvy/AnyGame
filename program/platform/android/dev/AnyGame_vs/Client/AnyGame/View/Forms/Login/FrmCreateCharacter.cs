@@ -64,7 +64,7 @@ namespace AnyGame.View.Forms.Login
             var characters = new UIButton[3];
             for (int i = 0; i < characters.Length; i++)
             {
-                characters[i] = new UIButton("card/" + (1204 + i) + ".png", 350 + 150 * i, 200);
+                characters[i] = new UIButton("ui/common/base_01.png", 350 + 150 * i, 200);
                 AddChild(characters[i]);
             }
 

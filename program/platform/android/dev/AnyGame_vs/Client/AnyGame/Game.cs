@@ -5,7 +5,7 @@ using AnyGame.Utils.TweenLite;
 using AnyGame.View.Components;
 using AnyGame.View.Forms;
 using AnyGame.View.Forms.Login;
-using AnyGame.View.Forms.Shop;
+using AnyGame.View.Forms.Main;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
 using System;
@@ -18,9 +18,7 @@ public class Game : MonoBehaviour
 {
     #region 窗体注册
     internal FrmLogin FrmLogin { get; set; }
-    //internal FrmMain FrmMain { get; private set; }
-    //internal FrmBanner FrmBanner { get; private set; }
-    internal FrmShop FrmShop { get; set; }
+    internal FrmMain FrmMain { get; private set; }
 
 
     #endregion
@@ -30,11 +28,8 @@ public class Game : MonoBehaviour
     private void InitFroms()
     {
         FrmLogin = null;
-        //FrmMain = new FrmMain(this);
-        FrmShop = null;
-
-
-        //FrmBanner = new FrmBanner(this);
+        FrmMain = null;
+        
     }
 
     #endregion
@@ -94,7 +89,6 @@ public class Game : MonoBehaviour
         AddForms();
 
         Logs.Warn("好啦   都运行完啦");
-        //Logs.Warn(Lang.Trans("卡牌.品质.3"));
 
         EnterMainScene();
     }
@@ -157,7 +151,6 @@ public class Game : MonoBehaviour
     void Update()
     {
         elapseTime = (int)(Time.smoothDeltaTime * 1000);
-        Logs.Debug("elapseTime " + elapseTime);
 
         TweenLite.Update(elapseTime);
 

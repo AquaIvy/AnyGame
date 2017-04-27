@@ -282,21 +282,17 @@ public class ExportTools : EditorWindow
     [MenuItem("Assets/Build AssetBundles")]
     static void BuildAssetBundles()
     {
-        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-        {
-            //return;
-        }
-        
-        //if (Dns.GetHostName()== "LvJunxiao")
+        //if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         //{
-        //    BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, @"D:\WebSite\ClientRescources\AnyGame\");
+        //    return;
         //}
-        //else if (Dns.GetHostName() == "Ivy")
-        {
-            BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, @"D:\Unity\AnyGame\program\platform\android\dev\Res_Android\");
-        }
 
-        //BuildAssetBundles(BuildTarget.iOS, @"D:\WebSite\ClientRescources\RoyalWar_ios\");
+        string targetPath = Path.GetFullPath(Path.Combine(Application.dataPath, @"../../Res_Android/"));
+        Debug.Log(targetPath);
+
+        BuildAssetBundles(EditorUserBuildSettings.activeBuildTarget, targetPath);
+
+        //BuildAssetBundles(BuildTarget.iOS,targetPath);
     }
 
     static void BuildAssetBundles(BuildTarget targetPlatform, string movePath)
@@ -313,85 +309,49 @@ public class ExportTools : EditorWindow
         var uiMapDic = FileUtils.LoadDictionary(uiMapPath, "uiName", "relativePath");
 
         //是否有未知文件没有移动，若没有，则最后打开该目录方便操作
-        bool sthNoMove = false;
+        bool sthNotMove = false;
 
         foreach (var item in assetbundleMap)
         {
-            //资源包会被改名成小写，这里再改回原样，不然会被Android系统坑死
+            //资源包会被改名成小写，这里再改回原样
             string abName = Path.GetFileNameWithoutExtension(item);
             string bundlePath = Path.GetFullPath(Application.dataPath + "/../Export/AssetBundle/" + abName + ".assetbundle");
             string tmpPath = Path.GetFullPath(Application.dataPath + "/../Export/AssetBundle/" + abName + "_tmp.assetbundle");
-            //if (!File.Exists(bundlePath))
-            //{
-            //    Debug.LogError("改名错误，未找到文件：" + bundlePath);
-            //    continue;
-            //}
+
             File.Move(bundlePath, tmpPath);
             File.Move(tmpPath, bundlePath);
 
             //根据映射文件的扩展名来决定打包后的文件移动到哪里
             string extension = Path.GetExtension(item);
-            string targetMovePath = "";
+            string targetMovePath = string.Empty;
 
             if (extension == ".png")
             {
-                targetMovePath = movePath + "res/Atlas/" + Path.GetFileName(bundlePath);
+                targetMovePath = movePath + "res/images/" + Path.GetFileName(bundlePath);
             }
             else if (extension == ".prefab")
             {
-                if (item.StartsWith("Assets/Prefabs/UI/"))
-                {
-                    string relativePath = "";
-                    string calcRelativePath = Path.GetDirectoryName(item).Replace("Assets/Prefabs/UI/", "");
-                    if (uiMapDic.ContainsKey(abName))
-                    {
-                        relativePath = uiMapDic[abName];
-                    }
-                    else
-                    {
-                        relativePath = calcRelativePath;
-                        uiMapDic[abName] = relativePath;
-                    }
-
-                    if (relativePath != calcRelativePath)
-                    {
-                        Debug.LogErrorFormat("已经存在其他uiName  {0}   {1}", abName, relativePath);
-                        relativePath = calcRelativePath;
-                    }
-
-                    targetMovePath = movePath + "res/GameUI/" + relativePath + "/" + Path.GetFileName(bundlePath);
-                    //targetMovePath = movePath + "res/GameUI/" + item.Replace("Assets/Prefabs/UI/", "");
-                }
-                else if (item.StartsWith("Assets/Prefabs/Model/"))
-                {
-                    targetMovePath = movePath + "res/GameWorld/" + Path.GetFileName(bundlePath);
-                    //targetMovePath = movePath + "res/GameWorld/" + item.Replace("Assets/Prefabs/Model/", "");
-                }
-                else
-                {
-                    sthNoMove = true;
-                    Debug.LogFormat("不知移动到何处： {0}", bundlePath);
-                }
+                targetMovePath = movePath + "res/prefabs/" + Path.GetFileName(bundlePath);
             }
             else if (extension == ".unity")
             {
-                targetMovePath = movePath + "res/Scene/" + Path.GetFileName(bundlePath);
+                targetMovePath = movePath + "res/scenes/" + Path.GetFileName(bundlePath);
             }
             else if (extension == ".shader")
             {
-                targetMovePath = movePath + "res/Shader/" + Path.GetFileName(bundlePath);
+                targetMovePath = movePath + "res/shaders/" + Path.GetFileName(bundlePath);
             }
             else if (extension == ".mat")
             {
-                targetMovePath = movePath + "res/Material/" + Path.GetFileName(bundlePath);
+                targetMovePath = movePath + "res/materials/" + Path.GetFileName(bundlePath);
             }
-            else if (extension == ".mp3" || extension == ".wav")
+            else if (extension == ".mp3" || extension == ".wav" || extension == ".ogg")
             {
-                targetMovePath = movePath + "res/Audio/" + Path.GetFileName(bundlePath);
+                targetMovePath = movePath + "res/audios/" + Path.GetFileName(bundlePath);
             }
             else
             {
-                sthNoMove = true;
+                sthNotMove = true;
                 Debug.LogFormat("不知移动到何处： {0}", bundlePath);
             }
 
@@ -405,17 +365,16 @@ public class ExportTools : EditorWindow
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(targetMovePath));
                 File.Move(bundlePath, targetMovePath);
+                Debug.LogFormat("移动文件 {0}    {1}", item, targetMovePath);
             }
-
 #endif
+
         }
 
         FileUtils.SaveDictionary(uiMapPath, uiMapDic, "uiName", "relativePath");
 
-
         //删除掉导出目录下的 *.manifest 文件
         var files = Directory.GetFiles(Application.dataPath + "/../Export/AssetBundle/", "*.manifest");
-        //Debug.Log("delete  " + files.Length);
         foreach (var item in files)
         {
             File.Delete(item);
@@ -427,7 +386,7 @@ public class ExportTools : EditorWindow
         }
 
 
-        if (sthNoMove)
+        if (sthNotMove)
         {
 #if UNITY_EDITOR_WIN
             System.Diagnostics.Process.Start(Application.dataPath + "/../Export/AssetBundle/");

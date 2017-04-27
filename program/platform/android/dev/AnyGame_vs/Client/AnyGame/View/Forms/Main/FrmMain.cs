@@ -12,6 +12,9 @@ using UnityEngine.UI;
 
 namespace AnyGame.View.Forms.Main
 {
+    /// <summary>
+    /// 主界面UI
+    /// </summary>
     partial class FrmMain : FrmBase
     {
         public override FrmType Type { get { return FrmType.Background; } }
@@ -19,14 +22,14 @@ namespace AnyGame.View.Forms.Main
         public FrmMain()
             : base("FrmMain")
         {
+            InitForm();
+
+            btnBag.OnClick += BtnBag_OnClick;
         }
 
-
-
-        private void BtnFight_OnClick(UIElement sender, EventArgs e)
+        private void BtnBag_OnClick(UIElement sender, EventArgs e)
         {
-            Game.FrmLogin.Show();
+            Logs.Error("i am click");
         }
-
     }
 }

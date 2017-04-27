@@ -29,38 +29,29 @@ namespace Assets.Scripts
         /// </summary>
         public static readonly bool IsDecompression = false;
 
-        /// <summary>
-        /// 客户端大版本号（不重新出包不会改变）
-        /// </summary>
-        //public static readonly int StaticVersion = 1;
 
         #endregion
 
         #region 路径
 
         //Server
-        public static string SERVER_ROOT_PATH = "未设置";
-        public static string SERVER_MATCHLIST_PATH = "未设置";
-
-        //版本验证地址
-        public static string VERSION_AUTH_PATH = "未设置";
+        public static string SERVER_ROOT_PATH;
+        public static string SERVER_MATCHLIST_PATH;
 
         //StreamingAssets
-        public static string STREAM_ROOT_PATH = "未设置";
-        public static string STREAM_MATCHLIST_PATH = "未设置";
+        public static string STREAM_ROOT_PATH;
+        public static string STREAM_MATCHLIST_PATH;
 
         //Client
-        public static string CLIENT_ROOT_PATH = "未设置";
-        public static string CLIENT_MATCHLIST_PATH = "未设置";
+        public static string CLIENT_ROOT_PATH;
+        public static string CLIENT_MATCHLIST_PATH;
 
-
+        //常用资源路径
         public static string RES_ASSEMBLY;
-        public static string RES_SCENE;
-        public static string RES_IMAGE;
-        public static string RES_DATA;
-        public static string RES_GAME_UI;
-        public static string RES_GAME_WORLD;
-        public static string RES_AUDIO;
+        //public static string RES_SCENE;
+        //public static string RES_IMAGE;
+        //public static string RES_DATA;
+        //public static string RES_AUDIO;
 
         #endregion
 
@@ -69,16 +60,24 @@ namespace Assets.Scripts
 
         public static void Init()
         {
-            //资源下载地址 本地
+            //客户端资源地址 本地
             //LGlobalInfo.SERVER_ROOT_PATH = "file://" + Path.GetFullPath(Application.dataPath + @"\..\..\SERVER_ROOT_PATH\");
 
-            //资源下载地址 网站
+            //端口号
+            //Client    201
+            //LoginWeb  202
+            //GMTools   9001起
+            //Server    4601起
+
+
+            //客户端资源地址
             if (Application.platform == RuntimePlatform.Android
                 || Application.platform == RuntimePlatform.WindowsEditor)
             {
+                //LGlobalInfo.SERVER_ROOT_PATH = "http://www.aquaivy.com:201/AnyGame/";         //Aliyun ECS
                 LGlobalInfo.SERVER_ROOT_PATH = "http://192.168.2.84:100/AnyGame/";         //公司
 
-                if (System.Net.Dns.GetHostName() == "Ivy")
+                if (System.Net.Dns.GetHostName() == "Aqua")
                 {
                     LGlobalInfo.SERVER_ROOT_PATH = "http://192.168.249.204/AnyGame/";           //家里
                 }
@@ -86,19 +85,10 @@ namespace Assets.Scripts
             else if (Application.platform == RuntimePlatform.IPhonePlayer
                 || Application.platform == RuntimePlatform.OSXEditor)
             {
-                LGlobalInfo.SERVER_ROOT_PATH = "http://192.168.2.84:100/RoyalWar_ios/";
+                LGlobalInfo.SERVER_ROOT_PATH = "http://www.aquaivy.com:201/AnyGame/";
             }
 
             LGlobalInfo.SERVER_MATCHLIST_PATH = LGlobalInfo.SERVER_ROOT_PATH + @"matchlist.txt";
-
-            //版本验证地址
-            LGlobalInfo.VERSION_AUTH_PATH = "http://192.168.2.84:200/AnyGame/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";       //公司
-
-            if (System.Net.Dns.GetHostName() == "Ivy")
-            {
-                LGlobalInfo.VERSION_AUTH_PATH = "http://192.168.249.204:200/LoginWeb/VerAuth.aspx?channel={0}&phonePlatformTypes={1}&cver={2}";       //家里
-            }
-
 
             //StreamingAssets
             //if (Application.platform == RuntimePlatform.Android)
@@ -114,35 +104,32 @@ namespace Assets.Scripts
             //    LGlobalInfo.STREAM_ROOT_PATH = "file://" + Application.streamingAssetsPath + "/";
             //}
 
+            //安装包中Stream流地址
             LGlobalInfo.STREAM_ROOT_PATH = Application.streamingAssetsPath + "/";
             LGlobalInfo.STREAM_MATCHLIST_PATH = LGlobalInfo.STREAM_ROOT_PATH + "matchlist.txt";
-
 
 
             //本地数据地址
             if (Application.platform == RuntimePlatform.WindowsEditor
                 || Application.platform == RuntimePlatform.OSXEditor)
             {
-                //PC 编辑器
                 LGlobalInfo.CLIENT_ROOT_PATH = Path.GetFullPath(Application.dataPath + "/../../AnyGame_persistentDataPath/");
             }
             else if (Application.platform == RuntimePlatform.Android
                 || Application.platform == RuntimePlatform.IPhonePlayer
                 || Application.platform == RuntimePlatform.WP8Player)
             {
-                //手机 真机
                 LGlobalInfo.CLIENT_ROOT_PATH = Path.GetFullPath(Application.persistentDataPath + "/AnyGame_persistentDataPath/");
             }
 
             LGlobalInfo.CLIENT_MATCHLIST_PATH = LGlobalInfo.CLIENT_ROOT_PATH + @"matchlist.txt";
 
+            //常用资源路径
             LGlobalInfo.RES_ASSEMBLY = LGlobalInfo.CLIENT_ROOT_PATH + "res/assembly/";
-            LGlobalInfo.RES_SCENE = LGlobalInfo.CLIENT_ROOT_PATH + "res/scene/";
-            LGlobalInfo.RES_IMAGE = LGlobalInfo.CLIENT_ROOT_PATH + "res/image/";
-            LGlobalInfo.RES_DATA = LGlobalInfo.CLIENT_ROOT_PATH + "res/data/";
-            LGlobalInfo.RES_GAME_UI = LGlobalInfo.CLIENT_ROOT_PATH + "res/gameUI/";
-            LGlobalInfo.RES_GAME_WORLD = LGlobalInfo.CLIENT_ROOT_PATH + "res/gameWorld/";
-            LGlobalInfo.RES_AUDIO = LGlobalInfo.CLIENT_ROOT_PATH + "res/audio/";
+            //LGlobalInfo.RES_SCENE = LGlobalInfo.CLIENT_ROOT_PATH + "res/scenes/";
+            //LGlobalInfo.RES_IMAGE = LGlobalInfo.CLIENT_ROOT_PATH + "res/images/";
+            //LGlobalInfo.RES_DATA = LGlobalInfo.CLIENT_ROOT_PATH + "res/data/";
+            //LGlobalInfo.RES_AUDIO = LGlobalInfo.CLIENT_ROOT_PATH + "res/audios/";
         }
 
         #endregion

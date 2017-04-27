@@ -1,9 +1,7 @@
-﻿using System.Collections.Concurrent;
-using System.Linq;
-using DogSE.Library.Log;
+﻿using AnyGame.Server.Entity.Character;
 using DogSE.Server.Core.Entity;
-using AnyGame.Server.Entity.Character;
-using AnyGame.Server.Entity.Character;
+using System.Collections.Concurrent;
+using System.Linq;
 
 namespace AnyGame.Server.Entity
 {
@@ -20,13 +18,13 @@ namespace AnyGame.Server.Entity
             AccountNames = new EntityMap<string, Account>();
 
             //用于排行榜查询
-            Players = new EntityMap<int, SimplePlayer>();
-            PlayerNames = new EntityMap<string, SimplePlayer>();
+            SimplePlayers = new EntityMap<int, SimplePlayer>();
+            SimplePlayerNames = new EntityMap<string, SimplePlayer>();
 
             //真正的玩家角色信息
-            PlayerCache = new HotDataManager<Player>();
-            ResCache = new HotDataManager<Res>();
-            BagCache = new HotDataManager<Bag>();
+            Players = new HotDataManager<Player>();
+            Res = new HotDataManager<Res>();
+            Bag = new HotDataManager<Bag>();
         }
 
         #region 实体静态数据
@@ -49,12 +47,12 @@ namespace AnyGame.Server.Entity
         /// <summary>
         /// 全局的玩家列表
         /// </summary>
-        public static EntityMap<int, SimplePlayer> Players { get; private set; }
+        public static EntityMap<int, SimplePlayer> SimplePlayers { get; private set; }
 
         /// <summary>
         /// 全局的玩家名字对应的列表
         /// </summary>
-        public static EntityMap<string, SimplePlayer> PlayerNames { get; private set; }
+        public static EntityMap<string, SimplePlayer> SimplePlayerNames { get; private set; }
 
         #endregion
 
@@ -63,17 +61,17 @@ namespace AnyGame.Server.Entity
         /// <summary>
         /// 玩家数据的缓存
         /// </summary>
-        public static HotDataManager<Player> PlayerCache { get; private set; }
+        public static HotDataManager<Player> Players { get; private set; }
 
         /// <summary>
         /// 资源数据
         /// </summary>
-        public static HotDataManager<Res> ResCache { get; private set; }
+        public static HotDataManager<Res> Res { get; private set; }
 
         /// <summary>
         /// 背包数据
         /// </summary>
-        public static HotDataManager<Bag> BagCache { get; private set; }
+        public static HotDataManager<Bag> Bag { get; private set; }
 
         #endregion
 

@@ -40,8 +40,6 @@ namespace AnyGame.View.Forms.Login
             btnLogoff = new UIButton("ui/button/button_09.png", 1148, 70, "注销", 30);
             AddChild(btnLogoff);
 
-            //AddChild(new UIImage("ui/kabao/mofa_00.png", 0, 0));
-            //AddChild(new UIImage("ui/kabao/mofa_0.png", GlobalInfo.width, 0, UIUtils.MiddleCenter));
         }
 
         /// <summary>
