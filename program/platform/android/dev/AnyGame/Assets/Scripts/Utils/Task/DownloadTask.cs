@@ -30,7 +30,7 @@ namespace Assets.Scripts.Utils
         public DownloadTask(string path, int timeout = 0)
         {
             Timeout = timeout;
-            Loader.Instance.StartCoroutine(DownloadFile(path));
+            LoaderCenter.Loader.StartCoroutine(DownloadFile(path));
         }
 
         IEnumerator DownloadFile(string path)

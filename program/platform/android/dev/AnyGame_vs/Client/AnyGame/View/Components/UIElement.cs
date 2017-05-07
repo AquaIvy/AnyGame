@@ -1,4 +1,4 @@
-﻿using AnyGame.UI;
+﻿using AnyGame.View;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
@@ -9,16 +9,12 @@ using UnityEngine.UI;
 
 namespace AnyGame.View.Components
 {
-    abstract class UIElement
+    public abstract class UIElement
     {
         public Game Game { get; internal set; }
 
-        public string name
-        {
-            get { return go.name; }
-            set { go.name = value; }
-        }
-
+        private string _name;
+        public string Name { get { return _name; } set { _name = value; go.name = value; } }
 
         public GameObject go { get; set; }
 
@@ -35,31 +31,41 @@ namespace AnyGame.View.Components
 
                 if (_rt == null)
                 {
-                    _rt = go.GetComponent<RectTransform>();
+                    //_rt = go.GetComponent<RectTransform>();
 
-                    anchorMin = UIUtils.UpperLeft;
-                    anchorMax = UIUtils.UpperLeft;
+                    //_rt.anchorMin = UIUtils.UpperLeft;
+                    //_rt.anchorMax = UIUtils.UpperLeft;
                     //pivot = UIUtils.UpperLeft;
 
-                    //Debug.LogError("RectTransform is null.");
+                    Debug.LogError("RectTransform is null.");
                 }
 
                 return _rt;
+            }
+
+            set
+            {
+                _rt = value;
             }
         }
 
 
         public object tag { get; set; }
 
-
-        public virtual Vector2 pivot
+        /// <summary>
+        /// 中心点（影响旋转）
+        /// </summary>
+        public virtual Vector2 Pivot
         {
             get { return rt.pivot; }
             set { rt.pivot = value; }
         }
 
+        //private Vector2 _anchorMin = UIUtils.UpperLeft;
+        //private Vector2 _anchorMax = UIUtils.UpperLeft;
+
         /// <summary>
-        /// 相对于父物体计算(0,0)点的锚点   [0,1]
+        /// 相对于父物体的哪一个位置，标记为自己的(0,0)点   [0,1]
         /// </summary>
         public Vector2 anchorMin
         {
@@ -68,7 +74,7 @@ namespace AnyGame.View.Components
         }
 
         /// <summary>
-        /// 相对于父物体计算(0,0)点的锚点   [0,1]
+        /// 相对于父物体的哪一个位置，标记为自己的(0,0)点   [0,1]
         /// </summary>
         public Vector2 anchorMax
         {
@@ -79,26 +85,28 @@ namespace AnyGame.View.Components
 
         public float x
         {
-            get { return position.x; }
-            set { SetXY(value, position.y); }
-        }
-        public float y
-        {
-            get { return position.y; }
-            set { SetXY(position.x, value); }
+            get { return Position.x; }
+            set { SetXY(value, Position.y); }
         }
 
+        public float y
+        {
+            get { return Position.y; }
+            set { SetXY(Position.x, value); }
+        }
+
+        public virtual float Alpha { get; set; }
 
         public UIElement SetXY(float x, float y)
         {
-            position = new Vector3(x, y, position.z);
+            Position = new Vector3(x, y, Position.z);
 
             return this;
         }
 
 
         private Vector3 _position = Vector3.zero;
-        public Vector3 position
+        public Vector3 Position
         {
             get { return _position; }
             set
@@ -114,32 +122,32 @@ namespace AnyGame.View.Components
         }
 
 
-        public virtual float width
+        public virtual float Width
         {
-            get { return size.x; }
-            set { size = new Vector2(value, size.y); }
+            get { return Size.x; }
+            set { Size = new Vector2(value, Size.y); }
         }
 
-        public virtual float height
+        public virtual float Height
         {
-            get { return size.y; }
-            set { size = new Vector2(size.x, value); }
+            get { return Size.y; }
+            set { Size = new Vector2(Size.x, value); }
         }
 
-        public Vector2 size
+        public Vector2 Size
         {
             get { return rt.sizeDelta; }
             set { rt.sizeDelta = value; }
         }
 
 
-        public virtual float harfWidth { get { return width / 2f; } }
-        public virtual float harfHeight { get { return height / 2f; } }
+        public virtual float HarfWidth { get { return Width / 2f; } }
+        public virtual float HarfHeight { get { return Height / 2f; } }
 
 
 
         private Vector3 _scale = Vector3.one;
-        public Vector3 scale
+        public Vector3 Scale
         {
             get { return rt.localScale; }
             set { rt.localScale = value; _scale = value; }
@@ -149,53 +157,69 @@ namespace AnyGame.View.Components
         public UIElement()
         {
             go = new GameObject();
-            //_rt = go.AddComponent<RectTransform>();
+
+            _rt = go.AddComponent<RectTransform>();
+
+            _rt.anchorMin = UIUtils.UpperLeft;
+            _rt.anchorMax = UIUtils.UpperLeft;
         }
 
 
+        private List<UIElement> lstChild = new List<UIElement>();
         public int childCount { get { return lstChild.Count; } }
 
 
-        private List<UIElement> lstChild = new List<UIElement>();
-
-
         private UIElement _parent;
-        public UIElement parent
+        public UIElement Parent
         {
             get { return _parent; }
             set
             {
+                if (_parent == value)
+                    return;
+
+
                 //1.移除原先parent的计数
-                if (_parent != value && _parent != null) { _parent.lstChild.Remove(this); }
-                if (rt == null) return;
+                if (_parent != value && _parent != null)
+                {
+                    _parent.lstChild.Remove(this);
+                }
+                if (rt == null)
+                    return;
 
                 //2.设置新parent
                 if (value != null)
                 {
+                    this.rt.SetParent(value.rt);
+                    value.lstChild.Add(this);
                     _parent = value;
-                    rt.SetParent(parent.rt);
-                    parent.lstChild.Add(this);
                 }
                 else
                 {
+                    this.rt.SetParent(null);
                     _parent = null;
-                    rt.SetParent(null);
                 }
 
                 //3.重新设定transform信息
                 rt.localScale = _scale;
-                position = _position;
+                this.Position = _position;
             }
         }
 
 
         private bool _visible = true;
-        public bool visible
+        /// <summary>
+        /// 获取或设置Element的显示状态
+        /// </summary>
+        public bool Visible
         {
             get { return _visible; }
             set { go.SetActive(value); _visible = go.activeSelf; }
         }
 
+        /// <summary>
+        /// 获取gameObject的显示状态
+        /// </summary>
         public bool gameobjectVisible { get { return go.activeSelf; } }
 
 
@@ -205,32 +229,25 @@ namespace AnyGame.View.Components
 
         public virtual UIElement AddChild(UIElement element)
         {
-            if (element.parent != null)
+            if (element.Parent != null)
             {
-                throw new InvalidOperationException(element.name + "对象已被AddChild到其他节点上");
+                throw new InvalidOperationException(element.Name + "对象已被AddChild到其他节点上");
             }
 
-            element.parent = this;
-            //if (this.pivot == UIUtils.MiddleCenter)
-            //{
-            //    element.anchorMin = element.anchorMax = UIUtils.MiddleCenter;
-            //}
+            element.Parent = this;
 
-            element.anchorMin = element.anchorMax = this.pivot;
+            element.anchorMin = element.anchorMax = this.Pivot;
 
-            element.SetXY(element.position.x, element.position.y);
+            element.SetXY(element.Position.x, element.Position.y);
 
             return element;
         }
 
         public virtual void RemoveChild(UIElement element)
         {
-            if (element.parent != this)
-            {
-                return;
-            }
+            if (element.Parent != this) return;
 
-            element.parent = null;
+            element.Parent = null;
         }
 
 
@@ -244,7 +261,7 @@ namespace AnyGame.View.Components
         {
             ElapseMilliseconds += milliseconds;
 
-            //这里才用倒序更新   是正确逻辑么？
+            //这里用倒序更新   是正确逻辑么？
             for (int i = lstChild.Count - 1; i >= 0; i--)
             {
                 lstChild[i].Update(milliseconds);
@@ -263,16 +280,15 @@ namespace AnyGame.View.Components
                 }
             }
 
-            if (parent != null)
+            if (Parent != null)
             {
-                parent.RemoveChild(this);
+                Parent.RemoveChild(this);
             }
 
             if (go != null)
             {
                 //Logs.Error("destroy 1  " + name);
                 GameObject.Destroy(go);
-                //GameObject.DestroyImmediate(go, true);
                 go = null;
             }
 
@@ -295,7 +311,7 @@ namespace AnyGame.View.Components
                 {
                     if (go != null)
                     {
-                        Logs.Error("destroy 2  " + name);
+                        Logs.Error("destroy 2  " + Name);
                         GameObject.DestroyImmediate(go, true);
                         go = null;
                     }
@@ -307,18 +323,27 @@ namespace AnyGame.View.Components
         /// <summary>
         /// 将pivot和anchor都设置为中心
         /// </summary>
-        public void Center()
+        public void SetCenter()
         {
-            pivot = UIUtils.MiddleCenter;
+            Pivot = UIUtils.MiddleCenter;
             anchorMax = anchorMin = UIUtils.MiddleCenter;
         }
 
         /// <summary>
-        /// 将锚点设置为左上角
+        /// 将anchor锚点设置为左上角
         /// </summary>
-        public void UpperLeft()
+        public void SetUpperLeft()
         {
             anchorMax = anchorMin = UIUtils.UpperLeft;
+        }
+
+        /// <summary>
+        /// 设置渲染顺序
+        /// </summary>
+        /// <param name="index"></param>
+        public void SetSiblingIndex(int index)
+        {
+            rt.SetSiblingIndex(index);
         }
     }
 }

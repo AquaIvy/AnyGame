@@ -1,5 +1,5 @@
 ﻿using AnyGame.LoginPlugin;
-using AnyGame.UI;
+using AnyGame.View;
 using AnyGame.View.Components;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace AnyGame.View.Forms.Login
         GameServer data = null;
 
         public CGameServer(GameServer data, float x, float y)
-            : base("ui/common/base_01.png", x, y, UIUtils.MiddleCenter, UIUtils.Border10, null, 0)
+            : base("aztec/common/base_01.png", x, y, UIUtils.MiddleCenter, UIUtils.Border10, null, 0)
         {
             this.data = data;
 
@@ -29,7 +29,7 @@ namespace AnyGame.View.Forms.Login
 
         private void InitForm()
         {
-            this.size = new Vector2(250, 50);
+            this.Size = new Vector2(250, 50);
 
             txtServerName = new UIText(data.Name, 10, 15, 20, Color.white);
             AddChild(txtServerName);

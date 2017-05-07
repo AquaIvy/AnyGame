@@ -9,7 +9,7 @@ namespace Assets.Scripts.View
 {
     public class FrmUpdate : FrmBase
     {
-        public string Name { get { return "FrmUpdate- -"; } }
+        public string Name { get { return "FrmUpdate"; } }
 
         private Transform PanelBase = null;
         private Transform PanelTemplate = null;
@@ -21,11 +21,10 @@ namespace Assets.Scripts.View
 
         public FrmUpdate()
         {
-            UpdateController.Instance.OnLog += Instance_OnLog;
-            UpdateController.Instance.OnCopyOneItem += Instance_OnCopyOneItem;
-            UpdateController.Instance.OnDownloadOneItem += Instance_OnDownloadOneItem;
-            UpdateController.Instance.OnDownloadError += Instance_OnDownloadError;
-            UpdateController.Instance.OnDownloadFinish += Instance_OnDownloadFinish;
+            LoaderCenter.Event.OnLog += Event_OnLog;
+            LoaderCenter.Event.OnDownloadOneItem += Event_OnDownloadOneItem;
+            LoaderCenter.Event.OnDownloadError += Event_OnDownloadError;
+            LoaderCenter.Event.OnDownloadFinish += Event_OnDownloadFinish;
 
             InitForm();
         }
@@ -34,7 +33,7 @@ namespace Assets.Scripts.View
         {
             base.Show();
 
-            UpdateController.Instance.Start();
+            LoaderCenter.Update.Start();
         }
 
         private void InitForm()
@@ -53,39 +52,34 @@ namespace Assets.Scripts.View
 
             process = PanelBase.Find("Slider/Process").GetComponent<Image>();
             txtNotice = PanelBase.Find("txtNotice").GetComponent<Text>();
-
-
         }
 
         public override void Dispose()
         {
-            Loader.Instance.FrmUpdate = null;
+            LoaderCenter.Loader.FrmUpdate = null;
 
             base.Dispose();
         }
 
 
-        private void Instance_OnCopyOneItem(object sender, ComplateOneItemArgs e)
-        {
-            txtNotice.text = string.Format("正在复制 {0}/{1}", e.curNum, e.totalNum);
-            process.fillAmount = e.curNum * 1.0f / e.totalNum;
-        }
 
-        private void Instance_OnDownloadOneItem(object sender, ComplateOneItemArgs e)
+        private void Event_OnDownloadOneItem(object sender, ComplateOneItemArgs e)
         {
-            txtNotice.text = string.Format("正在下载 {0}/{1}", e.curNum, e.totalNum);
-            process.fillAmount = e.curNum * 1.0f / e.totalNum;
+            txtNotice.text = string.Format("正在{0}  {1}/{2}", e.State, e.CurNum, e.TotalNum);
+            process.fillAmount = e.CurNum * 1.0f / e.TotalNum;
         }
 
 
-        private void Instance_OnDownloadFinish(object sender, EventArgs e)
+        private void Event_OnDownloadFinish(object sender, EventArgs e)
         {
-            Loader.Instance.StartGame();
+            LoaderCenter.Event.Log(LogLevel.Notice, "所有下载结束，准备ReflectionAssembly");
+
+            LoaderCenter.Loader.StartGame();
         }
 
-        private void Instance_OnDownloadError(object sender, DownloadErrorArgs e)
+        private void Event_OnDownloadError(object sender, DownloadErrorArgs e)
         {
-            string content = string.Format("{0} 出错 {1}，\n是否重试", e.State, e.Msg);
+            string content = string.Format("{0} 出错 {1}，\n是否重试", e.State, e.Message);
             FrmPopup popup = new FrmPopup();
             popup.Show(content, () =>
             {
@@ -98,14 +92,14 @@ namespace Assets.Scripts.View
             });
         }
 
-        private void Instance_OnLog(object sender, LogArgs e)
+        private void Event_OnLog(object sender, LogArgs e)
         {
-            DisplayLog(e.level, e.text);
+            DisplayLog(e.Level, e.Text);
         }
 
         public void DisplayLog(LogLevel level, string text)
         {
-            string color = "";
+            string color = string.Empty;
             switch (level)
             {
                 case LogLevel.None:

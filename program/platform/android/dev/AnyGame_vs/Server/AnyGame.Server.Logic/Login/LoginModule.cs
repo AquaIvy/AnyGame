@@ -131,17 +131,8 @@ namespace AnyGame.Server.Logic.Login
             netstate.IsVerifyLogin = true;
 
             //  先瞅瞅内存里玩家数据有没有被缓存着
-            var player = WorldEntityManager.PlayerCache.GetEntity(account.Id);
-
-            if (player == null)
-            {
-                player = DB.GameDB.LoadEntity<Player>(account.Id);
-                if (player != null)
-                {
-                    player.LastLoginTime = OneServer.NowTime;
-                    WorldEntityManager.PlayerCache.AddOrReplace(player);
-                }
-            }
+            var player = DataProxy.GetPlayerAllData(account.Id);
+            
 
             //是否创建过角色
             var isCreatedPlayer = player != null;
@@ -191,7 +182,7 @@ namespace AnyGame.Server.Logic.Login
         public void OnCreatePlayer(NetState netstate, string playerName, Sex sex)
         {
             //  如果已经创建过（例如玩家连续点了两次创建角色）
-            var player = WorldEntityManager.PlayerCache.GetEntity(netstate.BizId);
+            var player = WorldEntityManager.Players.GetEntity(netstate.BizId);
             if (player != null)
             {
                 ClientProxy.Login.CreatePlayerResult(netstate, CraetePlayerResult.Fail);
@@ -217,7 +208,7 @@ namespace AnyGame.Server.Logic.Login
             }
 
 
-            WorldEntityManager.PlayerCache.AddOrReplace(player);
+            WorldEntityManager.Players.AddOrReplace(player);
             DB.GameDB.InsertEntity(player);
 
 
@@ -232,7 +223,7 @@ namespace AnyGame.Server.Logic.Login
             //初始化资源
             var res = new Res { Id = player.Id };
             player.Res = res;
-            WorldEntityManager.ResCache.AddOrReplace(res);
+            WorldEntityManager.Res.AddOrReplace(res);
             DB.GameDB.SyncInsertEntity(res);
 
 
@@ -240,7 +231,7 @@ namespace AnyGame.Server.Logic.Login
             var bag = new Bag { Id = player.Id };
             bag.MaxGridCount = 40;
             player.Bag = bag;
-            WorldEntityManager.BagCache.AddOrReplace(bag);
+            WorldEntityManager.Bag.AddOrReplace(bag);
             DB.GameDB.SyncInsertEntity(bag);
 
             #endregion

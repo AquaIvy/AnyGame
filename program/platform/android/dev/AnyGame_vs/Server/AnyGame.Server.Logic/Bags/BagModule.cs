@@ -67,7 +67,7 @@ namespace AnyGame.Server.Logic.Bags
         public void OnUseItem(NetState netstate, int itemId, int useCount)
         {
             //  先瞅瞅内存里玩家数据有没有被缓存着
-            var bag = WorldEntityManager.BagCache.GetEntity(netstate.BizId);
+            var bag = WorldEntityManager.Bag.GetEntity(netstate.BizId);
             GameItem item = null;
 
             if (bag == null)

@@ -26,56 +26,38 @@ public class GlobalInfo
 
     //Client
     public static string CLIENT_ROOT_PATH;
-    public static string CLIENT_UPDATELIST_PATH;
 
+    //常用资源路径
     public static string RES_ASSEMBLY;
     public static string RES_SCENE;
     public static string RES_IMAGE;
     public static string RES_MATERIAL;
     public static string RES_SHADER;
     public static string RES_DATA;
-    public static string RES_GAME_UI;
-    public static string RES_GAME_WORLD;
     public static string RES_AUDIO;
 
     #endregion
 
 
     /// <summary>
-    /// 每次跳转场景，先跳转到empty场景，然后根据配置加载游戏世界和UI
-    /// 该值用于存储即将加载的配置信息（新场景的配置信息）
-    /// </summary>
-    //public static string WAIT_CREATE_UI_WORLD = string.Empty;
-
-
-    /// <summary>
     /// 游戏的设计width    1280
     /// </summary>
-    public const float width = 1280f;
+    public const float Width = 1280f;
 
     /// <summary>
     /// 游戏的设计height   720
     /// </summary>
-    public const float height = 720f;
-
-    /// <summary>
-    /// 360
-    /// </summary>
-    public const float harfWidth = width / 2f;
+    public const float Height = 720f;
 
     /// <summary>
     /// 640
     /// </summary>
-    public const float harfHeight = height / 2f;
+    public const float HarfWidth = Width / 2f;
 
     /// <summary>
-    /// 屏幕自适应 0是以宽为基准，1是已高为基准
+    /// 360
     /// </summary>
-    //public static float CanvasMatch = 1.0f;
-    /// <summary>
-    /// 屏幕适应后，画布下第一个子孩子宽高
-    /// </summary>
-    //public static Vector2 CanvasParentRect = new Vector2(width, height);
+    public const float HarfHeight = Height / 2f;
 
 
     public static void Init()
@@ -133,23 +115,20 @@ public class GlobalInfo
             GlobalInfo.CLIENT_ROOT_PATH = Path.GetFullPath(Application.persistentDataPath + "/AnyGame_persistentDataPath/");
         }
 
-        //GlobalInfo.CLIENT_UPDATELIST_PATH = GlobalInfo.CLIENT_ROOT_PATH + @"matchlist.txt";
-
+        //常用资源路径
         GlobalInfo.RES_ASSEMBLY = GlobalInfo.CLIENT_ROOT_PATH + "res/assembly/";
-        GlobalInfo.RES_SCENE = GlobalInfo.CLIENT_ROOT_PATH + "res/scene/";
-        GlobalInfo.RES_IMAGE = GlobalInfo.CLIENT_ROOT_PATH + "res/image/";
-        GlobalInfo.RES_SHADER = GlobalInfo.CLIENT_ROOT_PATH + "res/shader/";
-        GlobalInfo.RES_MATERIAL = GlobalInfo.CLIENT_ROOT_PATH + "res/material/";
+        GlobalInfo.RES_SCENE = GlobalInfo.CLIENT_ROOT_PATH + "res/scenes/";
+        GlobalInfo.RES_IMAGE = GlobalInfo.CLIENT_ROOT_PATH + "res/images/";
+        GlobalInfo.RES_SHADER = GlobalInfo.CLIENT_ROOT_PATH + "res/shaders/";
+        GlobalInfo.RES_MATERIAL = GlobalInfo.CLIENT_ROOT_PATH + "res/materials/";
         GlobalInfo.RES_DATA = GlobalInfo.CLIENT_ROOT_PATH + "res/data/";
-        GlobalInfo.RES_GAME_UI = GlobalInfo.CLIENT_ROOT_PATH + "res/gameUI/";
-        GlobalInfo.RES_GAME_WORLD = GlobalInfo.CLIENT_ROOT_PATH + "res/gameWorld/";
-        GlobalInfo.RES_AUDIO = GlobalInfo.CLIENT_ROOT_PATH + "res/audio/";
+        GlobalInfo.RES_AUDIO = GlobalInfo.CLIENT_ROOT_PATH + "res/audios/";
 
         //如果是PC   图片使用本地目录
         if (Application.platform == RuntimePlatform.WindowsEditor
             || Application.platform == RuntimePlatform.OSXEditor)
         {
-            GlobalInfo.RES_IMAGE = Application.dataPath + "/../../Res_PC/res/image/";
+            GlobalInfo.RES_IMAGE = Application.dataPath + "/../../Res_PC/res/images/";
         }
     }
 }

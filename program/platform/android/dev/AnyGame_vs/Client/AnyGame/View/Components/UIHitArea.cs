@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DG.Tweening;
 using DogSE.Library.Log;
 using System;
@@ -25,7 +25,7 @@ namespace AnyGame.View.Components
         public UIHitArea(float x, float y, float width, float height, bool isShowArea = false)
             : base(null, x, y, UIUtils.UpperLeft, Vector4.zero)
         {
-            name = "hitarea";
+            Name = "hitarea";
 
             if (!isShowArea)
             {
@@ -33,7 +33,7 @@ namespace AnyGame.View.Components
             }
 
 
-            size = new Vector2(width, height);
+            Size = new Vector2(width, height);
 
             SetXY(x, y);
 

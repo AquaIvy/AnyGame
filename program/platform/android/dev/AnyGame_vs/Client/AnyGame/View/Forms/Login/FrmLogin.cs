@@ -1,5 +1,8 @@
-﻿using AnyGame.LoginPlugin;
+﻿using AnyGame.Client.Controller.Login;
+using AnyGame.Client.Entity.Login;
+using AnyGame.LoginPlugin;
 using AnyGame.View.Components;
+using AnyGame.View.Forms.Main;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
 using System;
@@ -34,8 +37,8 @@ namespace AnyGame.View.Forms.Login
             LoginServerSuccess = 3
         }
 
-
-        public override FrmType Type { get { return FrmType.Background; } }
+        public override FrmType Type { get { return FrmType.Login; } }
+        public override FrmLayer Layer { get { return FrmLayer.Background; } }
 
         private LoginState loginState = LoginState.WaitWebLogin;
 
@@ -47,10 +50,15 @@ namespace AnyGame.View.Forms.Login
         public FrmLogin() : base("FrmLogin")
         {
             InitForm();
-            //WebLogin返回事件
+
+            //WebLogin
             Game.LoginProxy.LoginResult += LoginProxy_LoginResult;
-            //网络连接（在WebLogin之后）
+            //连接服务器
             GameCenter.Controller.Net.NetStateConnect += Net_NetStateConnect;
+            //登录上服务器
+            GameCenter.Controller.Login.LoginServerResultEvent += Login_LoginServerResultEvent;
+            //数据同步完成
+            GameCenter.Controller.Login.SyncInitDataFinishEvent += Login_SyncInitDataFinishEvent;
 
             btnLogin.OnClick += BtnLogin_OnClick;
             btnLogoff.OnClick += BtnLogoff_OnClick;
@@ -64,15 +72,48 @@ namespace AnyGame.View.Forms.Login
             //Game.LoginProxy.AutoLogin(m_accountName);
         }
 
+        private void Login_LoginServerResultEvent(object sender, LoginServerResultEventArgs e)
+        {
+            if (e.Result == LoginServerResult.Success)
+            {
+                GameCenter.Controller.Login.LoginServerResultEvent -= Login_LoginServerResultEvent;
+
+                if (!e.IsCreatedPlayer)
+                {
+                    Logs.Info("未创建过角色，准备创建");
+
+                    var createCharacter = new FrmCreateCharacter();
+                    UIRoot.Show(createCharacter);
+                }
+            }
+            else
+            {
+                Logs.Error("登陆失败 {0}", e.Result.ToString());
+            }
+        }
+        private void Login_SyncInitDataFinishEvent(object sender, System.EventArgs e)
+        {
+            GameCenter.Controller.Login.SyncInitDataFinishEvent -= Login_SyncInitDataFinishEvent;
+
+            Logs.Info("同步数据完成，可以进入主界面了   {0}", GameCenter.Entity.Player.Name);
+
+            GameCenter.Controller.System.RunGMCommand("addgold 123");
+
+            var main = new FrmMain();
+            Game.FrmMain = main;
+            UIRoot.Show(main);
+        }
+
+
         private void BtnLogoff_OnClick(UIElement sender, EventArgs e)
         {
             loginState = LoginState.WaitWebLogin;
 
-            node1.visible = true;
-            if (node2 != null) node2.visible = false;
-            if (node3 != null) node3.visible = false;
+            node1.Visible = true;
+            if (node2 != null) node2.Visible = false;
+            if (node3 != null) node3.Visible = false;
 
-            btnLogoff.visible = false;
+            btnLogoff.Visible = false;
         }
 
         public void SetLoginSuccess()
@@ -124,8 +165,8 @@ namespace AnyGame.View.Forms.Login
         private void LastLoginServer_OnClick(UIElement sender, System.EventArgs e)
         {
             InitNode3();
-            node2.visible = false;
-            node3.visible = true;
+            node2.Visible = false;
+            node3.Visible = true;
         }
 
         List<GameServer> allServers = null;
@@ -143,8 +184,8 @@ namespace AnyGame.View.Forms.Login
 
                 Logs.Info("webLogin success");
 
-                node1.visible = false;
-                btnLogoff.visible = true;
+                node1.Visible = false;
+                btnLogoff.Visible = true;
 
                 allServers = e.Status.GameServers;
                 var find = allServers.FirstOrDefault(o => o.Recommend);
@@ -155,7 +196,7 @@ namespace AnyGame.View.Forms.Login
 
                 curServer = find;
                 InitNode2();
-                node2.visible = true;
+                node2.Visible = true;
             }
             else
             {

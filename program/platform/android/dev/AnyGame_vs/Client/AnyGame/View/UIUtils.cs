@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnyGame.UI
+namespace AnyGame.View
 {
     /// <summary>
     /// 常用数据
@@ -16,7 +16,7 @@ namespace AnyGame.UI
     class UIUtils
     {
         //设计屏幕分辨率
-        public static readonly Vector2 Screen = new Vector2(GlobalInfo.width, GlobalInfo.height);
+        public static readonly Vector2 Screen = new Vector2(GlobalInfo.Width, GlobalInfo.Height);
 
         //常用pivot
         public static readonly Vector2 UpperLeft = new Vector2(0f, 1f);

@@ -54,8 +54,8 @@ namespace DogSE.Client.Core.Net
         /// </summary>
         ~DogBuffer()
         {
-            if (!string.IsNullOrEmpty(UseName))
-                Logs.Info("buff {0} not resleae from {1}",BuffSizeType, UseName);
+            //if (!string.IsNullOrEmpty(UseName))
+            //    Logs.Info("buff {0} not resleae from {1}",BuffSizeType, UseName);
         }
 #endif
 

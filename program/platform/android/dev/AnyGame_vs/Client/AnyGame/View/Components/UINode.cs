@@ -17,22 +17,27 @@ namespace AnyGame.View.Components
     {
         private static string gameObjectName = "Node";
 
-        public UINode() : this(0, 0)
+        public UINode()
+            : this(gameObjectName, 0, 0)
         {
 
         }
 
-        public UINode(string name) : this(0, 0)
+        public UINode(string name)
+            : this(name, 0, 0)
         {
-            this.name = name;
-        }
 
+        }
 
         public UINode(float x, float y)
+            : this(gameObjectName, x, y)
         {
-            name = gameObjectName;
-            var img = go.AddComponent<Image>();
-            GameObject.Destroy(img);
+
+        }
+
+        public UINode(string name, float x, float y)
+        {
+            this.Name = name;
 
             SetXY(x, y);
         }

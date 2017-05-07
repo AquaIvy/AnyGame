@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
@@ -11,15 +11,16 @@ using UnityEngine.UI;
 
 namespace AnyGame.View.Components
 {
-    abstract class UIImageBase : UIElement
+    public abstract class UIImageBase : UIElement
     {
         private static string gameObjectName = "Image";
 
         protected SpriteWrap spriteWrap;
         public Image image { get; set; }
+        public Image Background { get { return image; } set { image = value; } }
 
         private Vector4 _border;
-        public Vector4 border
+        public Vector4 Border
         {
             get { return _border; }
             set
@@ -41,7 +42,7 @@ namespace AnyGame.View.Components
 
         public UIImageBase(string imgPath, float x, float y, Vector2 pivot, Vector4 border)
         {
-            name = gameObjectName;
+            Name = gameObjectName;
             image = go.AddComponent<Image>();
             _border = border;
             if (border != Vector4.zero)
@@ -51,7 +52,7 @@ namespace AnyGame.View.Components
 
             SetImage(imgPath);
 
-            this.pivot = pivot;
+            this.Pivot = pivot;
 
             SetXY(x, y);
             SetNativeSize();
@@ -70,7 +71,7 @@ namespace AnyGame.View.Components
         }
 
         private Vector2 _pivot = UIUtils.UpperLeft;
-        public override Vector2 pivot
+        public override Vector2 Pivot
         {
             get { return _pivot; }
             set
@@ -79,7 +80,7 @@ namespace AnyGame.View.Components
 
                 if (spriteWrap == null || spriteWrap.sample == null)
                 {
-                    base.pivot = value;
+                    base.Pivot = value;
                     return;
                 }
 
@@ -93,7 +94,7 @@ namespace AnyGame.View.Components
 
                 //_pivot = new Vector2(pivot_x, pivot_y);
                 //rt.pivot = _pivot;
-                base.pivot = new Vector2(pivot_x, pivot_y);
+                base.Pivot = new Vector2(pivot_x, pivot_y);
             }
         }
 
@@ -105,6 +106,23 @@ namespace AnyGame.View.Components
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// 图片透明度  [0,1]
+        /// </summary>
+        public override float Alpha
+        {
+            get
+            {
+                return image.color.a;
+            }
+
+            set
+            {
+                var c = image.color;
+                image.color = new Color(c.r, c.g, c.b, value);
+            }
         }
 
 

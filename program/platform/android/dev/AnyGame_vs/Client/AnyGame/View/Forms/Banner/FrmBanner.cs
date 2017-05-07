@@ -8,12 +8,13 @@ namespace AnyGame.View.Banner
 {
     class FrmBanner : FrmBase
     {
-        public override FrmType Type { get { return FrmType.Banner; } }
+        public override FrmType Type { get { return FrmType.Bag; } }
+        public override FrmLayer Layer { get { return FrmLayer.Banner; } }
 
         public FrmBanner()
             : base("FrmBanner")
         {
-            name = "FrmBanner";
+            Name = "FrmBanner";
         }
 
 
@@ -34,7 +35,7 @@ namespace AnyGame.View.Banner
 
         protected void InitForm()
         {
-            this.size = new Vector2(GlobalInfo.width, GlobalInfo.height);
+            this.Size = new Vector2(GlobalInfo.Width, GlobalInfo.Height);
 
             float w = 187 / 2f;
             float h = 49 / 2f;
@@ -43,17 +44,17 @@ namespace AnyGame.View.Banner
 
             #region 顶部
             //等级
-            btnLevel = new UIButton("ui/common/EXP_A_base.png", 120, 35);
+            btnLevel = new UIButton("aztec/common/EXP_A_base.png", 120, 35);
             AddChild(btnLevel);
 
-            var imgLvIcon = new UIImage("ui/icon/icon_exp.png", -11 - w, -11 - h);
+            var imgLvIcon = new UIImage("aztec/icon/icon_exp.png", -11 - w, -11 - h);
             btnLevel.AddChild(imgLvIcon);
 
             txtLevel = new UIText("12", 32, 35, 22, Color.red, TextAnchor.MiddleCenter);
-            txtLevel.Center();
+            txtLevel.SetCenter();
             imgLvIcon.AddChild(txtLevel);
 
-            imgExpProcess = new UIImage("ui/common/EXP_A.png", 66.8f - w, 5.5f - h);
+            imgExpProcess = new UIImage("aztec/common/EXP_A.png", 66.8f - w, 5.5f - h);
             imgExpProcess.image.type = Image.Type.Filled;
             imgExpProcess.image.fillMethod = Image.FillMethod.Horizontal;
             imgExpProcess.image.fillAmount = 0.6f;
@@ -63,30 +64,30 @@ namespace AnyGame.View.Banner
             btnLevel.AddChild(txtExp);
 
             //金币
-            btnGold = new UIButton("ui/common/base_04.png", btnLevel.x + 235, btnLevel.y);
+            btnGold = new UIButton("aztec/common/base_04.png", btnLevel.x + 235, btnLevel.y);
             AddChild(btnGold);
 
-            var imgGoldIcon = new UIImage("ui/icon/icon_gold.png", 162.5f - w, 0 - h);
+            var imgGoldIcon = new UIImage("aztec/icon/icon_gold.png", 162.5f - w, 0 - h);
             btnGold.AddChild(imgGoldIcon);
 
             txtGold = new UIText("10002000", 164 - w, 23 - h, 24, Color.black, TextAnchor.MiddleRight);
             btnGold.AddChild(txtGold);
 
-            btnAddGold = new UIButton("ui/button/button_add.png", 5.6f - w, 27.2f - h);
+            btnAddGold = new UIButton("aztec/button/button_add.png", 5.6f - w, 27.2f - h);
             btnGold.AddChild(btnAddGold);
 
 
             //宝石
-            btnGem = new UIButton("ui/common/base_04.png", btnLevel.x + 480, btnLevel.y);
+            btnGem = new UIButton("aztec/common/base_04.png", btnLevel.x + 480, btnLevel.y);
             AddChild(btnGem);
 
-            var imgGemIcon = new UIImage("ui/icon/icon_diamond.png", 162.5f - w, 0 - h);
+            var imgGemIcon = new UIImage("aztec/icon/icon_diamond.png", 162.5f - w, 0 - h);
             btnGem.AddChild(imgGemIcon);
 
             txtGem = new UIText("10002000", 164 - w, 23 - h, 24, Color.black, TextAnchor.MiddleRight);
             btnGem.AddChild(txtGem);
 
-            btnAddGem = new UIButton("ui/button/button_add.png", 5.6f - w, 27.2f - h);
+            btnAddGem = new UIButton("aztec/button/button_add.png", 5.6f - w, 27.2f - h);
             btnGem.AddChild(btnAddGem);
 
             #endregion
@@ -100,14 +101,14 @@ namespace AnyGame.View.Banner
                 float x = 110 + i * 125;
                 float y = 1230;
 
-                btnNavi[i] = new UIButton("ui/button/mainicon_02.png", x, y);
+                btnNavi[i] = new UIButton("aztec/button/mainicon_02.png", x, y);
                 btnNavi[i].tag = i;
                 AddChild(btnNavi[i]);
                 btnNavi[i].OnClick += FrmBanner_OnClick;
 
 
-                var icon = new UIImage(string.Format("ui/icon/{0}.png", iconPath[i]), 0, 0);
-                icon.Center();
+                var icon = new UIImage(string.Format("aztec/icon/{0}.png", iconPath[i]), 0, 0);
+                icon.SetCenter();
                 btnNavi[i].AddChild(icon);
             }
 

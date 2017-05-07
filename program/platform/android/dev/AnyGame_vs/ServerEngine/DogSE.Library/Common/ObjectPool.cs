@@ -104,7 +104,7 @@ namespace DogSE.Library.Common
         /// </summary>
         ~ObjectPool()
         {            
-            Logs.Info(ToString());
+            //Logs.Info(ToString());
             Console.WriteLine(ToString());
         }
 

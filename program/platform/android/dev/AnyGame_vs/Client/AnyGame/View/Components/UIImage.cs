@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;

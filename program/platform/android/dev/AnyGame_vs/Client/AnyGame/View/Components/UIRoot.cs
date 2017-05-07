@@ -1,6 +1,7 @@
 ﻿using AnyGame.View.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace AnyGame.View.Components
 {
@@ -17,29 +18,8 @@ namespace AnyGame.View.Components
         private static UINode NodePopup = null;
         private static UINode NodeEffect = null;
 
-        public static void Show(FrmBase frm)
+        public static void Init()
         {
-            if (frm.Type == FrmType.Background)
-            {
-                Show(frm, "background");
-            }
-            else if (frm.Type == FrmType.Banner)
-            {
-                Show(frm, "banner");
-            }
-            else if (frm.Type == FrmType.Popup)
-            {
-                Show(frm, "popup");
-            }
-            else if (frm.Type == FrmType.Effect)
-            {
-                Show(frm, "effect");
-            }
-        }
-
-        public static void Show(FrmBase frm, string layer)
-        {
-
             if (uiroot == null)
             {
                 uiroot = UICanvas.Find("Canvas");
@@ -56,7 +36,30 @@ namespace AnyGame.View.Components
                 NodeEffect = new UINode("NodeEffect");
                 uiroot.AddChild(NodeEffect);
             }
+        }
 
+        public static void Show(FrmBase frm)
+        {
+            if (frm.Layer == FrmLayer.Background)
+            {
+                Show(frm, "background");
+            }
+            else if (frm.Layer == FrmLayer.Banner)
+            {
+                Show(frm, "banner");
+            }
+            else if (frm.Layer == FrmLayer.Popup)
+            {
+                Show(frm, "popup");
+            }
+            else if (frm.Layer == FrmLayer.Effect)
+            {
+                Show(frm, "effect");
+            }
+        }
+
+        public static void Show(FrmBase frm, string layer)
+        {
             UINode node = null;
             if (layer == "background")
             {
@@ -75,23 +78,34 @@ namespace AnyGame.View.Components
                 node = NodeEffect;
             }
 
-            if (frm.Type == FrmType.Background)
+            if (frm.Layer == FrmLayer.Background)
             {
                 if (curBackgroundForm != null)
                 {
-                    var find = allFrmBase.FirstOrDefault(o => o.Type == FrmType.Background);
+                    var find = allFrmBase.FirstOrDefault(o => o.Layer == FrmLayer.Background);
                     allFrmBase.Remove(find);
                     curBackgroundForm.Dispose();
                 }
                 curBackgroundForm = frm;
 
-                frm.SetXY(-GlobalInfo.width / 2f, -GlobalInfo.height / 2f);
+                frm.SetXY(-GlobalInfo.HarfWidth, -GlobalInfo.HarfHeight);
             }
 
-            if (frm.Type == FrmType.Popup)
+            if (frm.Layer == FrmLayer.Popup)
             {
+                frm.SetXY(-frm.Width / 2f, -frm.Height / 2f);
+
+                var bgpanel = new UIImage("aztec/common/frame_s_0.png", frm.HarfWidth, frm.HarfHeight, UIUtils.MiddleCenter, UIUtils.Border10);
+                bgpanel.Size = UIUtils.Screen;
+                bgpanel.Alpha = 0.5f;
+
+                frm.AddChild(bgpanel);
+                bgpanel.SetSiblingIndex(0);
+
                 allPopup.Add(frm);
             }
+
+            Game.instance.AddForms(frm);
 
             allFrmBase.Add(frm);
             node.AddChild(frm);

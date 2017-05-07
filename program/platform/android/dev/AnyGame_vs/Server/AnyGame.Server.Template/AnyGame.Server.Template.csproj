@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card\CardTemplate.cs" />
     <Compile Include="Item\ItemTemplate.cs" />
     <Compile Include="Spell\SpellEnum.cs" />
     <Compile Include="Spell\SpellTemplate.cs" />

@@ -7,38 +7,10 @@ using UnityEngine;
 public class Efficiency : EditorWindow
 {
 
-    [MenuItem("TooEfficiency/复制dll到WebSite")]
-    public static void CopyDll()
-    {
-        string dllpath = Application.dataPath + "/dll_vs";
-        string destination;
-
-        if (Dns.GetHostName() == "LvJunxiao")
-        {
-            destination = @"D:\WebSite\ClientRescources\RoyalWar\res\Assembly\";
-        }
-        else
-        {
-            destination = @"D:\WebSite\Client\RoyalWar\res\Assembly\";
-        }
-
-        //string patchFilePath = @"D:\WebSite\ClientRescources\RoyalWar\文件列表自动更新工具.exe";
-
-        var files = Directory.GetFiles(dllpath, "*.dll", SearchOption.TopDirectoryOnly);
-        foreach (var item in files)
-        {
-            File.Copy(item, destination + Path.GetFileName(item), true);
-        }
-        Debug.LogFormat("复制【{0}】个dll文件", files.Length);
-
-        //ExportTools.OpenExploreOrFile(patchFilePath);
-    }
-
-
     [MenuItem("TooEfficiency/删除所有dll")]
     public static void DeleteDll()
     {
-        string dllpath = Application.dataPath + "/dll_vs";
+        string dllpath = Application.dataPath + "/vslib";
         var files = Directory.GetFiles(dllpath, "*.*", SearchOption.AllDirectories);
         foreach (var item in files)
         {
@@ -46,7 +18,6 @@ public class Efficiency : EditorWindow
         }
 
         AssetDatabase.Refresh();
-
     }
 
 

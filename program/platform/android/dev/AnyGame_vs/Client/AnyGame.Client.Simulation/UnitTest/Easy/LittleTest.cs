@@ -18,7 +18,10 @@ namespace AnyGame.Client.Simulation.UnitTest.Easy
             bool isLogin = await LoginServerUseRandomName();
             Assert.IsTrue(isLogin, "登陆失败");
 
-            controller.System.RunGMCommand("addgold 178");
+            //controller.System.RunGMCommand("addgold 178");
+            //controller.System.RunGMCommand("addgold -1178");
+            controller.System.RunGMCommand("additem 9,777");
+            controller.System.RunGMCommand("additem 9,-77");
             controller.Bag.SyncResouceEvent += Bag_SyncResouceEvent;
 
             var ret = await WaitIsTrue(() => false, 100);

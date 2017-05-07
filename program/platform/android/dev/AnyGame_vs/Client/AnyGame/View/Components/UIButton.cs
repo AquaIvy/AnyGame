@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DG.Tweening;
 using DogSE.Library.Log;
 using System;
@@ -74,7 +74,7 @@ namespace AnyGame.View.Components
         {
             this.isClickScale = isClickScale;
 
-            name = gameObjectName;
+            Name = gameObjectName;
 
             button = go.AddComponent<Button>();
 
@@ -82,12 +82,12 @@ namespace AnyGame.View.Components
             {
                 this.textComponent = new UIText(text, 0, 0, fontsize, Color.white);
                 this.textComponent.alignment = TextAnchor.MiddleCenter;
-                this.textComponent.Center();
+                this.textComponent.SetCenter();
                 AddChild(this.textComponent);
             }
 
             this.anchorMax = this.anchorMin = UIUtils.UpperLeft;
-            this.pivot = pivot;
+            this.Pivot = pivot;
             SetXY(x, y);
 
             button.onClick.AddListener(() =>

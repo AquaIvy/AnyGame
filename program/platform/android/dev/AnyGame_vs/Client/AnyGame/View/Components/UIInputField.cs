@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
@@ -29,14 +29,14 @@ namespace AnyGame.View.Components
         public UIInputField(string imgPath, float x, float y, Vector2 pivot, Vector4 border)
             : base(imgPath, x, y, pivot, border)
         {
-            name = gameObjectName;
+            Name = gameObjectName;
 
             image.enabled = !string.IsNullOrEmpty(imgPath);
 
             inputField = go.AddComponent<InputField>();
 
             textContent = new UIText(string.Empty, 10, 0, 22, Color.red);
-            textContent.name = gameObjectName_Text;
+            textContent.Name = gameObjectName_Text;
             this.AddChild(textContent);
 
             inputField.textComponent = textContent.textComponent;

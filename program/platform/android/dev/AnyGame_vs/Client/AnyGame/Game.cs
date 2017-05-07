@@ -1,11 +1,12 @@
 ﻿using AnyGame;
 using AnyGame.Content.Manager;
 using AnyGame.LoginPlugin;
+using AnyGame.View;
 using AnyGame.Utils.TweenLite;
 using AnyGame.View.Components;
 using AnyGame.View.Forms;
 using AnyGame.View.Forms.Login;
-using AnyGame.View.Forms.Shop;
+using AnyGame.View.Forms.Main;
 using DogSE.Client.Core;
 using DogSE.Library.Log;
 using System;
@@ -13,15 +14,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using AnyGame.View.Forms.Bags;
 
 public class Game : MonoBehaviour
 {
+
+    public static Game instance { get; private set; }
+    public static Workflow workflow { get; private set; }
+
+    internal static ILoginProxy LoginProxy { get; set; }
+
+    public static InputMgr inputMgr = null;
+    public static Stopwatch stopwatch = new Stopwatch();
+
+    private List<FrmBase> m_formList = new List<FrmBase>();
+    private string loadedLevelName = string.Empty;
+
+
     #region 窗体注册
     internal FrmLogin FrmLogin { get; set; }
-    //internal FrmMain FrmMain { get; private set; }
-    //internal FrmBanner FrmBanner { get; private set; }
-    internal FrmShop FrmShop { get; set; }
-
+    internal FrmMain FrmMain { get; set; }
+    internal FrmBag FrmBag { get; set; }
 
     #endregion
 
@@ -30,43 +43,35 @@ public class Game : MonoBehaviour
     private void InitFroms()
     {
         FrmLogin = null;
-        //FrmMain = new FrmMain(this);
-        FrmShop = null;
-
-
-        //FrmBanner = new FrmBanner(this);
+        FrmMain = null;
+        FrmBag = null;
     }
 
     #endregion
 
     #region 窗体加入链表
 
-    private void AddForms()
+    public void AddForms<T>(T frm) where T : FrmBase
     {
-        m_formList.Clear();
+        m_formList.Add(frm);
+    }
 
-        //m_formList.Add(FrmLogin);
-        //m_formList.Add(FrmMain);
-        //m_formList.Add(FrmShop);
+    public void SetFormNull<T>(T frm) where T : FrmBase
+    {
+        switch (frm.Type)
+        {
+            case FrmType.Login: FrmLogin = null; break;
+            //case FrmType.CreateCharacter: FrmBag = null; break;
+            case FrmType.Main: FrmMain = null; break;
+            case FrmType.Bag: FrmBag = null; break;
+        }
 
-        //m_formList.Add(FrmBanner);
+        if (m_formList.Contains(frm))
+            m_formList.Remove(frm);
     }
 
     #endregion
 
-    public static Game instance { get; private set; }
-    public static Workflow workflow { get; private set; }
-
-    /// <summary>
-    /// 代理类
-    /// </summary>
-    internal static ILoginProxy LoginProxy { get; set; }
-
-    public static InputMgr inputMgr = null;
-    public static Stopwatch stopwatch = new Stopwatch();
-
-    private List<FrmBase> m_formList = new List<FrmBase>();
-    private string loadedLevelName = "";
 
 
     void Start()
@@ -91,10 +96,9 @@ public class Game : MonoBehaviour
         workflow.Init();
 
         InitFroms();
-        AddForms();
+        //AddForms();
 
         Logs.Warn("好啦   都运行完啦");
-        //Logs.Warn(Lang.Trans("卡牌.品质.3"));
 
         EnterMainScene();
     }
@@ -125,15 +129,35 @@ public class Game : MonoBehaviour
         AssetBundle.LoadFromFile(GlobalInfo.RES_SCENE + "MainScene.assetbundle");
         SceneManager.LoadScene("MainScene");
     }
-
+    UINode mynode = null;
     void OnLevelWasLoaded(int level)
     {
         string scenename = SceneManager.GetActiveScene().name;
         Logs.Info("OnLevelWasLoaded  " + scenename);
 
+        UIRoot.Init();
+
         var login = new FrmLogin();
         FrmLogin = login;
         UIRoot.Show(login);
+
+        //var canvas = GameObject.Find("Canvas");
+
+        ////text = new UIElement("123", 10, 10, 20, Color.red);
+
+        //mynode = new UINode();
+        //mynode.rt.SetParent(canvas.transform);
+        //mynode.rt.anchoredPosition3D = new Vector3(900, -500, 0);
+        //mynode.rt.localRotation = Quaternion.Euler(0, 0, 0);
+        //mynode.rt.localScale = Vector3.one;
+        ////mynode.Pivot = UIUtils.UpperLeft;
+
+        //var a = new UIText("testtt", 5, 3, 30, Color.green);
+        //mynode.AddChild(a);
+
+        //var img = new UIImage("aztec/button/button_back.png", 20, 10);
+        //mynode.AddChild(img);
+
     }
 
 
@@ -157,7 +181,6 @@ public class Game : MonoBehaviour
     void Update()
     {
         elapseTime = (int)(Time.smoothDeltaTime * 1000);
-        Logs.Debug("elapseTime " + elapseTime);
 
         TweenLite.Update(elapseTime);
 
@@ -166,6 +189,19 @@ public class Game : MonoBehaviour
         Task.Update(elapseTime);
 
         Workflow.Update();
+
+        for (int i = 0; i < m_formList.Count; i++)
+        {
+            if (m_formList[i] != null)
+            {
+                m_formList[i].RunUpdate(elapseTime);
+            }
+        }
+        //if (FrmMain != null)
+        //{
+        //    FrmMain.RunUpdate(elapseTime);
+        //}
+
 
         #region Quit
         if (Input.GetKey(KeyCode.Escape))

@@ -9,6 +9,7 @@ using IGameSystem = AnyGame.Server.Interface.Server.IGameSystem;
 using AnyGame.Server.Entity.Login;
 using DogSE.Library.Log;
 using DogSE.Server.Core.Common;
+using AnyGame.Server.Template;
 
 namespace AnyGame.Server.Logic.GameSystem
 {
@@ -28,7 +29,8 @@ namespace AnyGame.Server.Logic.GameSystem
         {
             GMCommand.AddNetCommand("addgold", AddGold);
             GMCommand.AddNetCommand("addgem", AddGem);
-            //GMCommand.AddNetCommand("additem", AddItem);
+            GMCommand.AddNetCommand("additem", AddItem);
+            GMCommand.AddNetCommand("delitem", AddItem);
         }
 
         public void Initializationed()
@@ -90,6 +92,36 @@ namespace AnyGame.Server.Logic.GameSystem
             }
 
             GameController.Bag.GemChange(player, gem, DataChangeType.GM_客户端发送命令行添加资源);
+
+            return true;
+        }
+
+        bool AddItem(NetState netstate, string[] param)
+        {
+            var player = (Player)netstate.Player;
+
+            if (param == null || param.Length != 2)
+            {
+                Logs.Error("additem gm command format is \"additem 1001 10\"");
+                return false;
+            }
+
+            int itemId = 0;
+            int num = 0;
+            if (!int.TryParse(param[0], out itemId))
+            {
+                Logs.Error("addgem gm command param {0} is not number", param[0]);
+                return false;
+            }
+            if (!int.TryParse(param[1], out num))
+            {
+                Logs.Error("addgem gm command param {0} is not number", param[1]);
+                return false;
+            }
+            if (num > 0)
+                GameController.Bag.AddItem(player, itemId, num, DataChangeType.GM_客户端发送命令行添加资源);
+            else if (num < 0)
+                GameController.Bag.ConsumeItem(player, itemId, -num, DataChangeType.GM_客户端发送命令行添加资源);
 
             return true;
         }

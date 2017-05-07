@@ -10,26 +10,26 @@ using UnityEngine;
 
 public class Loader : MonoBehaviour
 {
-    public static Loader Instance { get; private set; }
-
-    internal FrmUpdate FrmUpdate { get; set; }
-    internal FrmPopup FrmPopup { get; set; }
-
     /// <summary>
     /// 登陆代理
     /// </summary>
     internal static ILoginProxy LoginProxy { get; set; }
 
+    internal FrmUpdate FrmUpdate { get; set; }
+    internal FrmPopup FrmPopup { get; set; }
+
+
     void Start()
     {
-        Instance = this;
         if (LoginProxy == null)
         {
             Debug.LogError("未挂载平台代理类");
             return;
         }
 
-        Debug.LogFormat("平台: {0}    版本:{1}", Application.platform, Application.version);
+        LoaderCenter.SetLoader(this);
+
+        Debug.LogFormat("平台: {0}    版本: {1}", Application.platform, Application.version);
         DontDestroyOnLoad(this);
 
         LGlobalInfo.Init();
@@ -39,32 +39,18 @@ public class Loader : MonoBehaviour
     }
 
 
-
     /// <summary>
     /// 所有资源下载均已结束，开始准备真正的进入游戏
     /// </summary>
     public void StartGame()
     {
-        FrmUpdate.DisplayLog(LogLevel.Notice, "所有下载结束，加载 MainScene");
-
-        string path = LGlobalInfo.RES_SCENE + "MainScene.assetbundle";
-
-        if (!File.Exists(path))
-        {
-            FrmUpdate.DisplayLog(LogLevel.Error, "no file. " + path);
-            return;
-        }
-
         ReflectionAssembly();
     }
 
 
-    private DateTime m_lastUpdateTime;
+    private int elapseTime;
     void Update()
     {
-        var elapseTime = (int)(DateTime.Now - m_lastUpdateTime).TotalMilliseconds;
-        m_lastUpdateTime = DateTime.Now;
-
         elapseTime = (int)(Time.smoothDeltaTime * 1000);
 
         Task.Update(elapseTime);
@@ -84,26 +70,26 @@ public class Loader : MonoBehaviour
 
         //加载程序集
         var assembly = LoadAssemblies();
-        var gameType = assembly.GetType("Game");
+        var Game = assembly.GetType("Game");
 
         //创建主游戏物体
-        GameObject gameGameObject = new GameObject("Game");
+        GameObject go = new GameObject("Game");
 
         //挂载代码
-        Component gameComponent = gameGameObject.AddComponent(gameType);
+        Component comp = go.AddComponent(Game);
 
-        gameComponent.GetType().GetMethod("SetPlatformProxy").Invoke(gameComponent, new object[] { LoginProxy.Name });
+        comp.GetType().GetMethod("SetPlatformProxy").Invoke(comp, new object[] { LoginProxy.Name });
 
         Destroy(this);
 
 #elif UNITY_IPHONE
 
             //创建主游戏物体
-            GameObject dontDestory = new GameObject("Game");
+            GameObject go = new GameObject("Game");
 
             //挂载代码
-            dontDestory.AddComponent<DontDestroyThisGameObject>();
-            dontDestory.AddComponent<Game>();
+            go.AddComponent<DontDestroyThisGameObject>();
+            go.AddComponent<Game>();
 
             Destroy(this);
 #endif
@@ -111,6 +97,10 @@ public class Loader : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 加载程序集，并返回叫做AnyGame.dll的那个
+    /// </summary>
+    /// <returns></returns>
     public static Assembly LoadAssemblies()
     {
         //下面的顺序不能随意改动
@@ -138,6 +128,11 @@ public class Loader : MonoBehaviour
         return assembly[assemblyNames.Length - 1];
     }
 
+    /// <summary>
+    /// 加载程序集
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public static Assembly LoadAssembly(string path)
     {
         if (!File.Exists(path))

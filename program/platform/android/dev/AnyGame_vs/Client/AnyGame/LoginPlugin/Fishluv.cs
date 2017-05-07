@@ -39,11 +39,13 @@ namespace AnyGame.LoginPlugin
         public void Login(string account)
         {
             var phoneId = SystemInfo.deviceUniqueIdentifier;
+            //公司
             var loginCheck = string.Format("http://192.168.2.84:200/AnyGame/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
-            if (System.Net.Dns.GetHostName() == "Ivy")
-            {
-                loginCheck = string.Format("http://192.168.249.204:200/LoginWeb/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
-            }
+
+            //家里
+            if (System.Net.Dns.GetHostName() == "Aqua")
+                loginCheck = string.Format("http://192.168.249.204:202/AnyGame/Api/Fishluv.aspx?accessToken={0}&phonePlatformTypes={1}&cver={2}&phoneid={3}", account, "android", 4, phoneId);
+
 
             DownloadTask progDownloadTask = null;
             Task.Invoke(k =>

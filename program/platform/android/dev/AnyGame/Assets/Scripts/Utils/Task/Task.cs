@@ -6,6 +6,40 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
+    #region 用法示例
+    /*
+      
+    DownloadTask progDownloadTask = null;
+    Task.Invoke(t =>
+    {
+        if (progDownloadTask == null)
+        {
+            progDownloadTask = new DownloadTask(loginCheck);
+        }
+
+        if (progDownloadTask.IsDone)
+        {
+            if (string.IsNullOrEmpty(progDownloadTask.ErrorMessage))
+            {
+                
+            }
+            else
+            {
+                Debug.LogError(progDownloadTask.ErrorMessage);
+                
+            }
+
+            return true;
+        }
+
+        return false;
+    });
+
+    
+     */
+
+    #endregion
+
     /// <summary>
     /// 主线程回调任务
     /// </summary>

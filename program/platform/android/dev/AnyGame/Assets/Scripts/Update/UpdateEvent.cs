@@ -3,9 +3,39 @@ using System;
 
 namespace Assets.Scripts.Update
 {
-    public partial class UpdateController
+    public class UpdateEvent
     {
-        #region 事件监听
+        public void Log(LogLevel level, string text)
+        {
+            if (OnLog != null)
+            {
+                OnLog(this, new LogArgs() { Level = level, Text = text });
+            }
+        }
+
+        public void DownloadOneItem(OpState state, int curNum, int totalNum)
+        {
+            if (OnDownloadOneItem != null)
+            {
+                OnDownloadOneItem(this, new ComplateOneItemArgs { State = state, CurNum = curNum, TotalNum = totalNum });
+            }
+        }
+
+        public void DownloadError(OpState state, string msg, Action retryAction)
+        {
+            if (OnDownloadError != null)
+            {
+                OnDownloadError(this, new DownloadErrorArgs() { State = state, Message = msg, RetryAction = retryAction });
+            }
+        }
+
+        public void DownloadFinish()
+        {
+            if (OnDownloadFinish != null)
+            {
+                OnDownloadFinish(this, null);
+            }
+        }
 
         /// <summary>
         /// 触发日志事件
@@ -13,17 +43,12 @@ namespace Assets.Scripts.Update
         public event EventHandler<LogArgs> OnLog;
 
         /// <summary>
-        /// 触发拷贝完成一个文件
-        /// </summary>
-        public event EventHandler<ComplateOneItemArgs> OnCopyOneItem;
-
-        /// <summary>
-        /// 触发下载完成一个文件
+        /// 触发 下载/拷贝 完成一个文件
         /// </summary>
         public event EventHandler<ComplateOneItemArgs> OnDownloadOneItem;
 
         /// <summary>
-        /// 触发下载出错
+        /// 触发 下载/拷贝 出错
         /// </summary>
         public event EventHandler<DownloadErrorArgs> OnDownloadError;
 
@@ -32,68 +57,23 @@ namespace Assets.Scripts.Update
         /// </summary>
         public event EventHandler<EventArgs> OnDownloadFinish;
 
-        #endregion
-
-        #region 事件触发
-
-        public void FireLog(LogLevel level, string text)
-        {
-            if (OnLog != null)
-            {
-                OnLog(this, new LogArgs() { level = level, text = text });
-            }
-        }
-
-        public void FireCopyOneItem(int curNum, int totalNum)
-        {
-            if (OnCopyOneItem != null)
-            {
-                OnCopyOneItem(this, new ComplateOneItemArgs { curNum = curNum, totalNum = totalNum });
-            }
-        }
-
-        public void FireDownloadOneItem(int curNum, int totalNum)
-        {
-            if (OnDownloadOneItem != null)
-            {
-                OnDownloadOneItem(this, new ComplateOneItemArgs { curNum = curNum, totalNum = totalNum });
-            }
-        }
-
-        public void FireDownloadError(OpState state, string msg, Action retryAction)
-        {
-            if (OnDownloadError != null)
-            {
-                OnDownloadError(this, new DownloadErrorArgs() { State = state, Msg = msg, RetryAction = retryAction });
-            }
-        }
-
-        public void FireDownloadFinish()
-        {
-            if (OnDownloadFinish != null)
-            {
-                OnDownloadFinish(this, null);
-            }
-        }
-
-        #endregion
     }
 
-    #region 事件返回参数
 
 
     public class LogArgs : EventArgs
     {
-        public LogLevel level { get; internal set; }
+        public LogLevel Level { get; internal set; }
 
-        public string text;
+        public string Text { get; internal set; }
     }
 
 
     public class ComplateOneItemArgs : EventArgs
     {
-        public int curNum { get; internal set; }
-        public int totalNum { get; internal set; }
+        public OpState State { get; internal set; }
+        public int CurNum { get; internal set; }
+        public int TotalNum { get; internal set; }
     }
 
 
@@ -103,7 +83,7 @@ namespace Assets.Scripts.Update
     public class DownloadErrorArgs : EventArgs
     {
         public OpState State { get; internal set; }
-        public string Msg { get; internal set; }
+        public string Message { get; internal set; }
         public Action RetryAction { get; internal set; }
     }
 
@@ -126,14 +106,6 @@ namespace Assets.Scripts.Update
         /// 下载资源文件
         /// </summary>
         Download,
-
-        /// <summary>
-        /// 版本验证
-        /// </summary>
-        VersionAuth
-
     }
-
-    #endregion
 
 }

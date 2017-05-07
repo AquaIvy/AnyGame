@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace AnyGame.View.Components
         {
             textComponent = go.AddComponent<Text>();
 
-            name = gameObjectName;
+            Name = gameObjectName;
 
             this.font = FontMgr.font;
             this.text = text;
@@ -53,7 +53,6 @@ namespace AnyGame.View.Components
 
             SetAnchor(alignment);
 
-            //this.size = gameObjectSize;
             SetXY(x, y);
         }
 
@@ -62,31 +61,31 @@ namespace AnyGame.View.Components
             switch (alignment)
             {
                 case TextAnchor.UpperLeft:
-                    pivot = UIUtils.UpperLeft;
+                    Pivot = UIUtils.UpperLeft;
                     break;
                 case TextAnchor.UpperCenter:
-                    pivot = UIUtils.UpperCenter;
+                    Pivot = UIUtils.UpperCenter;
                     break;
                 case TextAnchor.UpperRight:
-                    pivot = UIUtils.UpperRight;
+                    Pivot = UIUtils.UpperRight;
                     break;
                 case TextAnchor.MiddleLeft:
-                    pivot = UIUtils.MiddleLeft;
+                    Pivot = UIUtils.MiddleLeft;
                     break;
                 case TextAnchor.MiddleCenter:
-                    pivot = UIUtils.MiddleCenter;
+                    Pivot = UIUtils.MiddleCenter;
                     break;
                 case TextAnchor.MiddleRight:
-                    pivot = UIUtils.MiddleRight;
+                    Pivot = UIUtils.MiddleRight;
                     break;
                 case TextAnchor.LowerLeft:
-                    pivot = UIUtils.LowerLeft;
+                    Pivot = UIUtils.LowerLeft;
                     break;
                 case TextAnchor.LowerCenter:
-                    pivot = UIUtils.LowerCenter;
+                    Pivot = UIUtils.LowerCenter;
                     break;
                 case TextAnchor.LowerRight:
-                    pivot = UIUtils.LowerRight;
+                    Pivot = UIUtils.LowerRight;
                     break;
             }
         }
@@ -100,7 +99,7 @@ namespace AnyGame.View.Components
             {
                 _text = value;
                 textComponent.text = _text;
-                size = new Vector2(textComponent.preferredWidth * 1.5f, textComponent.preferredHeight * 1.5f);
+                Size = new Vector2(textComponent.preferredWidth * 1.5f, textComponent.preferredHeight * 1.5f);
             }
         }
 

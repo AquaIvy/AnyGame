@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace AnyGame.View.Forms
 {
-    abstract class FrmBase : UIImageBase
+    public abstract class FrmBase : UIImageBase
     {
-
         public abstract FrmType Type { get; }
+        public abstract FrmLayer Layer { get; }
 
 
         private TweenLite tl { set { alltls.Add(value); } }
@@ -24,7 +24,7 @@ namespace AnyGame.View.Forms
         {
             Game = Game.instance;
 
-            this.name = name;
+            this.Name = Type.ToString();
 
             image.enabled = false;
         }
@@ -59,7 +59,10 @@ namespace AnyGame.View.Forms
 
         }
 
-
+        public virtual void RunUpdate(int milliseconds)
+        {
+            Update(milliseconds);
+        }
 
         public void Hide()
         {
@@ -73,16 +76,19 @@ namespace AnyGame.View.Forms
             {
                 DisposeAllChilds();
                 if (this.go != null)
-                {
                     GameObject.Destroy(this.go);
-                }
 
                 spriteWrap = null;
-                image.sprite = null;
-                image.enabled = false;
+                if (image != null)
+                {
+                    image.sprite = null;
+                    image.enabled = false;
+                }
 
                 alltls.ForEach(o => o?.Release());
                 alltasks.ForEach(o => o?.Release());
+
+                Game.SetFormNull(this);
 
                 OnClosed();
             }
@@ -104,31 +110,5 @@ namespace AnyGame.View.Forms
         }
     }
 
-    public enum FrmType
-    {
-        /// <summary>
-        /// 底板窗体
-        /// </summary>
-        Background = 0,
 
-        /// <summary>
-        /// 用户自定义窗体
-        /// </summary>
-        Custom,
-
-        /// <summary>
-        /// 弹出窗（弹出效果）
-        /// </summary>
-        Popup,
-
-        /// <summary>
-        /// 顶部、底部窗体
-        /// </summary>
-        Banner,
-
-        /// <summary>
-        /// 特效eng 
-        /// </summary>
-        Effect
-    }
 }

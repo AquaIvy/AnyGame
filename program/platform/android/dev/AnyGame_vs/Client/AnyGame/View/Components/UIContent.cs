@@ -34,7 +34,7 @@ namespace AnyGame.View.Components
         {
             this.layout = layout;
 
-            name = "content";
+            Name = "content";
 
             sizeFitter = go.AddComponent<ContentSizeFitter>();
             sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;

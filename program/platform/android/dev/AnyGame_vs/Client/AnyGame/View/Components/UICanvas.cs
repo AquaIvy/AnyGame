@@ -16,11 +16,13 @@ namespace AnyGame.View.Components
         public CanvasScaler canvasScaler;
         public GraphicRaycaster graphicRaycaster;
 
-        public UICanvas(string name)
+        public UICanvas()
         {
             canvas = go.AddComponent<Canvas>();
             canvasScaler = go.AddComponent<CanvasScaler>();
             graphicRaycaster = go.AddComponent<GraphicRaycaster>();
+
+
         }
 
         public static UICanvas Find(string gameObjectName)
@@ -32,10 +34,11 @@ namespace AnyGame.View.Components
                 return null;
             }
 
-            var uican = new UICanvas(gameObjectName);
+            var uican = new UICanvas();
             GameObject.Destroy(uican.go);
             uican.go = goc;
-            uican.name = gameObjectName;
+            uican.rt = goc.GetComponent<RectTransform>();
+            uican.Name = gameObjectName;
             uican.canvas = goc.GetComponent<Canvas>();
             uican.canvasScaler = goc.GetComponent<CanvasScaler>();
             uican.graphicRaycaster = goc.GetComponent<GraphicRaycaster>();

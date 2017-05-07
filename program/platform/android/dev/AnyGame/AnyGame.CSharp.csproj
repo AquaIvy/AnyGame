@@ -58,43 +58,44 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>Assets\Scripts\Library\DOTween.dll</HintPath>
+      <HintPath>Assets\Scripts\Lib\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>Assets\Scripts\Library\LitJson.dll</HintPath>
-    </Reference>
-    <Reference Include="AnyGame">
-      <HintPath>Assets\vslib\AnyGame.dll</HintPath>
+      <HintPath>Assets\Scripts\Lib\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="AnyGame.Client.Template">
       <HintPath>Assets\vslib\AnyGame.Client.Template.dll</HintPath>
     </Reference>
-    <Reference Include="AnyGame.Client.Entity">
-      <HintPath>Assets\vslib\AnyGame.Client.Entity.dll</HintPath>
+    <Reference Include="AnyGame">
+      <HintPath>Assets\vslib\AnyGame.dll</HintPath>
     </Reference>
-    <Reference Include="AnyGame.Client.Controller">
-      <HintPath>Assets\vslib\AnyGame.Client.Controller.dll</HintPath>
+    <Reference Include="DogSE.Client.Core">
+      <HintPath>Assets\vslib\DogSE.Client.Core.dll</HintPath>
     </Reference>
     <Reference Include="DogSE.Library.net35">
       <HintPath>Assets\vslib\DogSE.Library.net35.dll</HintPath>
     </Reference>
-    <Reference Include="DogSE.Client.Core">
-      <HintPath>Assets\vslib\DogSE.Client.Core.dll</HintPath>
+    <Reference Include="TradeAge.Client.Controller">
+      <HintPath>Assets\vslib\TradeAge.Client.Controller.dll</HintPath>
+    </Reference>
+    <Reference Include="TradeAge.Client.Entity">
+      <HintPath>Assets\vslib\TradeAge.Client.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyGame.Client.Controller">
+      <HintPath>Assets\vslib\AnyGame.Client.Controller.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyGame.Client.Entity">
+      <HintPath>Assets\vslib\AnyGame.Client.Entity.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\LGlobalInfo.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
+    <Compile Include="Assets\Scripts\LoaderCenter.cs" />
     <Compile Include="Assets\Scripts\LoginProxy\Fishluv.cs" />
     <Compile Include="Assets\Scripts\LoginProxy\ILoginProxy.cs" />
     <Compile Include="Assets\Scripts\LoginProxy\LServerStatus.cs" />

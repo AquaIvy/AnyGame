@@ -20,9 +20,9 @@ namespace Assets.Scripts.View
 
         public void Show(string content, Action onOK, Action onCancel)
         {
-            if (Loader.Instance.FrmPopup == null)
+            if (LoaderCenter.Loader.FrmPopup == null)
             {
-                Loader.Instance.FrmPopup = new FrmPopup();
+                LoaderCenter.Loader.FrmPopup = new FrmPopup();
             }
 
             txtContent.text = content;
@@ -40,7 +40,7 @@ namespace Assets.Scripts.View
 
         public override void Dispose()
         {
-            Loader.Instance.FrmPopup = null;
+            LoaderCenter.Loader.FrmPopup = null;
 
             base.Dispose();
         }

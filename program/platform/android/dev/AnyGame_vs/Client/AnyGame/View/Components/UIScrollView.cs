@@ -1,6 +1,6 @@
 ﻿using AnyGame.Content.Manager;
 using AnyGame.Content.Texture;
-using AnyGame.UI;
+using AnyGame.View;
 using DG.Tweening;
 using DogSE.Library.Log;
 using System;
@@ -31,7 +31,7 @@ namespace AnyGame.View.Components
 
         private bool isNeedMask = false;
 
-        public float contentWidth
+        public float ContentWidth
         {
             get { return _contentWidth; }
             set
@@ -39,20 +39,20 @@ namespace AnyGame.View.Components
                 switch (layout)
                 {
                     case Layout.Horizontal:
-                        uiContent.width = value - scrollrectWidth;
+                        uiContent.Width = value - scrollrectWidth;
                         break;
                     case Layout.Vertical:
-                        uiContent.width = value;
+                        uiContent.Width = value;
                         break;
                     case Layout.Grid:
-                        uiContent.width = value - scrollrectWidth;
+                        uiContent.Width = value - scrollrectWidth;
                         break;
                 }
                 _contentWidth = value;
             }
         }
 
-        public float contentHeight
+        public float ContentHeight
         {
             get { return _contentHeight; }
             set
@@ -60,13 +60,13 @@ namespace AnyGame.View.Components
                 switch (layout)
                 {
                     case Layout.Horizontal:
-                        uiContent.height = value;
+                        uiContent.Height = value;
                         break;
                     case Layout.Vertical:
-                        uiContent.height = value;
+                        uiContent.Height = value;
                         break;
                     case Layout.Grid:
-                        uiContent.height = value;
+                        uiContent.Height = value;
                         break;
                 }
                 _contentHeight = value;
@@ -83,7 +83,7 @@ namespace AnyGame.View.Components
             this.isNeedMask = isNeedMask;
             this.layout = layout;
 
-            name = "ScrollRect";
+            Name = "ScrollRect";
 
             //image.enabled = !string.IsNullOrEmpty(imgPath);
             image.color = Color.clear;
@@ -92,7 +92,7 @@ namespace AnyGame.View.Components
             scrollRect = go.AddComponent<ScrollRect>();
             scrollRect.horizontal = layout == Layout.Horizontal || layout == Layout.Grid;
             scrollRect.vertical = layout == Layout.Vertical || layout == Layout.Grid;
-            size = new Vector2(width, height);
+            Size = new Vector2(width, height);
 
             if (horizontalScrollbar != null)
                 scrollRect.horizontalScrollbar = horizontalScrollbar.scrollbar;
@@ -104,10 +104,10 @@ namespace AnyGame.View.Components
             if (isNeedMask)
             {
                 uiViewport = new UIMask(0, 0, width, height);
-                uiViewport.name = "Viewport";
+                uiViewport.Name = "Viewport";
                 uiViewport.anchorMin = Vector2.zero;
                 uiViewport.anchorMax = Vector2.one;
-                uiViewport.pivot = UIUtils.UpperLeft;
+                uiViewport.Pivot = UIUtils.UpperLeft;
                 base.AddChild(uiViewport);
             }
 
@@ -115,34 +115,34 @@ namespace AnyGame.View.Components
 
             // 3. 内容区
             uiContent = new UINode(0, 0);
-            uiContent.name = "Content";
-            contentWidth = width;
-            contentHeight = height;
+            uiContent.Name = "Content";
+            ContentWidth = width;
+            ContentHeight = height;
 
             if (layout == Layout.Horizontal)
             {
                 uiContent.anchorMin = UIUtils.UpperLeft;
                 uiContent.anchorMax = UIUtils.UpperRight;
-                uiContent.pivot = UIUtils.UpperLeft;
+                uiContent.Pivot = UIUtils.UpperLeft;
             }
             else if (layout == Layout.Vertical)
             {
                 uiContent.anchorMin = UIUtils.LowerLeft;
                 uiContent.anchorMax = UIUtils.UpperLeft;
-                uiContent.pivot = UIUtils.UpperLeft;
+                uiContent.Pivot = UIUtils.UpperLeft;
             }
             else if (layout == Layout.Grid)
             {
                 uiContent.anchorMin = UIUtils.UpperLeft;
                 uiContent.anchorMax = UIUtils.UpperRight;
-                uiContent.pivot = UIUtils.UpperLeft;
+                uiContent.Pivot = UIUtils.UpperLeft;
             }
 
             // 4. 给ScrollRect赋值
             if (isNeedMask)
             {
                 uiViewport.AddChild(uiContent);
-                uiViewport.size = new Vector2(width, height);
+                uiViewport.Size = new Vector2(width, height);
             }
             else
             {

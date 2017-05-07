@@ -1,6 +1,8 @@
 ﻿using AnyGame.Server.Database;
 using AnyGame.Server.Entity.Character;
 using AnyGame.Server.Interface.Client;
+using AnyGame.Server.Template;
+using DogSE.Library.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +73,99 @@ namespace AnyGame.Server.Logic.Bags
             DB.GameDB.UpdateEntity<Res>(player.Res);
             //DataWriter.Bag.MoneyChange(player, changeType, money, player.Res.Money);
         }
+        #endregion
+
+        #region 添加物品
+
+        public bool AddItem(Player player, int itemTemplateId, int num, DataChangeType changeType)
+        {
+            if (num <= 0)
+                return false;
+
+            var template = Templates.GetItemTemplate(itemTemplateId);
+            if (template == null)
+            {
+                Logs.Error("not find item {0}. playerId {1}. {2}", itemTemplateId.ToString(), player.Id.ToString(), changeType.ToString());
+                return false;
+            }
+
+            var item = player.Bag.Items.FirstOrDefault(o => o.TemplateId == itemTemplateId);
+            SyncType syncType = SyncType.Update;
+            if (item != null)
+            {
+                item.Num += num;
+            }
+            else
+            {
+                item = new GameItem
+                {
+                    Id = player.Bag.MaxItemId++,
+                    TemplateId = itemTemplateId,
+                    Num = num
+                };
+
+                syncType = SyncType.Add;
+                player.Bag.Items.Add(item);
+            }
+
+            if (player.NetState != null && player.NetState.Running)
+                ClientProxy.Bag.SyncItems(player.NetState, syncType, item);
+            DB.GameDB.UpdateEntity<Bag>(player.Bag);
+
+            return true;
+        }
+
+        #endregion
+
+        #region 消耗物品
+
+        public bool ConsumeItem(Player player, int itemTemplateId, int num, DataChangeType changeType)
+        {
+            if (num <= 0)
+                return false;
+
+            var item = player.Bag.Items.FirstOrDefault(o => o.TemplateId == itemTemplateId);
+            if (item == null)
+            {
+                Logs.Error("not find item {0}. playerId {1}. {2}", itemTemplateId.ToString(), player.Id.ToString(), changeType.ToString());
+                return false;
+            }
+
+            SyncType syncType = SyncType.Update;
+            if (item.Num > num)
+            {
+                item.Num -= num;
+            }
+            else
+            {
+                syncType = SyncType.Remove;
+                item.Num = 0;
+                player.Bag.Items.Remove(item);
+            }
+
+            if (player.NetState != null && player.NetState.Running)
+                ClientProxy.Bag.SyncItems(player.NetState, syncType, item);
+            DB.GameDB.UpdateEntity<Bag>(player.Bag);
+
+            return true;
+        }
+
+        #endregion
+
+        #region 删除物品
+
+        public bool RemoveItem(Player player, int itemTemplateId, DataChangeType changeType)
+        {
+            var item = player.Bag.Items.FirstOrDefault(o => o.TemplateId == itemTemplateId);
+            if (item == null)
+            {
+                Logs.Error("not find item {0}. playerId {1}. {2}", itemTemplateId.ToString(), player.Id.ToString(), changeType.ToString());
+                return false;
+            }
+
+            return ConsumeItem(player, itemTemplateId, item.Num, changeType);
+        }
+
         #endregion
     }
 }

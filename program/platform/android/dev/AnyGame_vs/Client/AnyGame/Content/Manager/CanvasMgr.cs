@@ -27,37 +27,37 @@ namespace AnyGame.Content.Manager
         /// <param name="fileName">控件所在文件,如Login Main Bag</param>
         /// <param name="ctrlName">控件名</param>
         /// <returns></returns>
-        public static string GetPathMap(string fileName, string ctrlName)
-        {
-            if (interactionMap.ContainsKey(fileName))
-            {
-                if (interactionMap[fileName].ContainsKey(ctrlName))
-                {
-                    return interactionMap[fileName][ctrlName];
-                }
-                else
-                {
-                    Logs.Error("CanvasMgr映射不存在，美术是不是又干了什么好事。{0}   {1}", fileName, ctrlName);
-                    return string.Empty;
-                }
-            }
+        //public static string GetPathMap(string fileName, string ctrlName)
+        //{
+        //    if (interactionMap.ContainsKey(fileName))
+        //    {
+        //        if (interactionMap[fileName].ContainsKey(ctrlName))
+        //        {
+        //            return interactionMap[fileName][ctrlName];
+        //        }
+        //        else
+        //        {
+        //            Logs.Error("CanvasMgr映射不存在，美术是不是又干了什么好事。{0}   {1}", fileName, ctrlName);
+        //            return string.Empty;
+        //        }
+        //    }
 
-            string relativeMap = SceneMgr.RelativeMap(fileName + "_ab");
-            relativeMap = relativeMap == "" ? "" : relativeMap + "/";
-            var newmap = LoadMapFile(GlobalInfo.RES_GAME_UI + relativeMap + fileName + ".ctrlconfig");
-            interactionMap[fileName] = newmap;
+        //    string relativeMap = SceneMgr.RelativeMap(fileName + "_ab");
+        //    relativeMap = relativeMap == "" ? "" : relativeMap + "/";
+        //    var newmap = LoadMapFile(GlobalInfo.RES_GAME_UI + relativeMap + fileName + ".ctrlconfig");
+        //    interactionMap[fileName] = newmap;
 
-            if (interactionMap[fileName].ContainsKey(ctrlName))
-            {
-                return interactionMap[fileName][ctrlName];
-            }
-            else
-            {
-                Logs.Error("CanvasMgr映射不存在，美术是不是又干了什么好事。{0}   {1}", fileName, ctrlName);
-                return string.Empty;
-            }
+        //    if (interactionMap[fileName].ContainsKey(ctrlName))
+        //    {
+        //        return interactionMap[fileName][ctrlName];
+        //    }
+        //    else
+        //    {
+        //        Logs.Error("CanvasMgr映射不存在，美术是不是又干了什么好事。{0}   {1}", fileName, ctrlName);
+        //        return string.Empty;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// 加载映射文件（游戏物体名称与路径结构的映射）

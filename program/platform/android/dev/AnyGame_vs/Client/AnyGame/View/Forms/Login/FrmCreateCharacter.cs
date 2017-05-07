@@ -1,4 +1,4 @@
-﻿using AnyGame.UI;
+﻿using AnyGame.View;
 using AnyGame.View.Components;
 using DogSE.Library.Log;
 using System;
@@ -11,7 +11,8 @@ namespace AnyGame.View.Forms.Login
 {
     class FrmCreateCharacter : FrmBase
     {
-        public override FrmType Type { get { return FrmType.Background; } }
+        public override FrmType Type { get { return FrmType.CreateCharacter; } }
+        public override FrmLayer Layer { get { return FrmLayer.Background; } }
 
         public FrmCreateCharacter() : base("FrmCreateCharacter")
         {
@@ -64,23 +65,23 @@ namespace AnyGame.View.Forms.Login
             var characters = new UIButton[3];
             for (int i = 0; i < characters.Length; i++)
             {
-                characters[i] = new UIButton("card/" + (1204 + i) + ".png", 350 + 150 * i, 200);
+                characters[i] = new UIButton("aztec/common/base_01.png", 350 + 150 * i, 200);
                 AddChild(characters[i]);
             }
 
-            inputCharacterName = new UIInputField("ui/common/base_01.png", 640, 500);
-            inputCharacterName.pivot = UIUtils.MiddleCenter;
-            inputCharacterName.border = UIUtils.Border10;
-            inputCharacterName.size = new Vector2(270, 65);
+            inputCharacterName = new UIInputField("aztec/common/base_01.png", 640, 500);
+            inputCharacterName.Pivot = UIUtils.MiddleCenter;
+            inputCharacterName.Border = UIUtils.Border10;
+            inputCharacterName.Size = new Vector2(270, 65);
 
-            inputCharacterName.textContent.Center();
+            inputCharacterName.textContent.SetCenter();
             inputCharacterName.textContent.alignment = TextAnchor.MiddleCenter;
             inputCharacterName.textContent.SetXY(0, 0);
             inputCharacterName.textContent.fontsize = 35;
 
             AddChild(inputCharacterName);
 
-            btnCreate = new UIButton("ui/button/queding.png", 640, 610);
+            btnCreate = new UIButton("aztec/button/queding.png", 640, 610);
             AddChild(btnCreate);
         }
 
